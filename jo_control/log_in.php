@@ -1,0 +1,1 @@
+ <?php if(isset($_SESSION['id'])) { ?> <style> username { display:none; } </style> <script> document.GetElementById("id").value = <?php echo $_SESSION['id']; ?> </script <?php
