@@ -1,0 +1,420 @@
+<?php
+
+
+session_start();
+
+$docno = $date  = $type = $particulars = $origin = $destination = $amount = $status    = $remarks = '';
+
+$btnNew = 'disabled';
+$btnPrint = 'disabled';
+$btnStatus = '';
+
+$now = new DateTime();
+
+if (!isset($_SESSION['id'])) {
+  header('location:../index');
+}
+$user_id = $_SESSION['id'];
+
+include('../config/db_config.php');
+
+include('insert_outgoing.php');
+//include ('insert_ledger.php');
+
+//select user
+$get_user_sql = "SELECT * FROM tbl_users WHERE user_id = :id";
+$user_data = $con->prepare($get_user_sql);
+$user_data->execute([':id' => $user_id]);
+while ($result = $user_data->fetch(PDO::FETCH_ASSOC)) {
+  $db_first_name = $result['first_name'];
+  $db_middle_name = $result['middle_name'];
+  $db_last_name = $result['last_name'];
+  $db_email_ad = $result['email'];
+  $db_contact_number = $result['contact_no'];
+  $user_name = $result['username'];
+  $department = $result['department'];
+}
+
+
+//select all data type
+$get_all_document_sql = "SELECT * FROM document_type";
+$get_all_document_data = $con->prepare($get_all_document_sql);
+$get_all_document_data->execute();
+
+//select all departments
+$get_all_departments_sql = "SELECT * FROM tbl_department";
+$get_all_departments_data = $con->prepare($get_all_departments_sql);
+$get_all_departments_data->execute();
+
+
+$title = 'LGUSCC | Forward Document';
+?>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> <?php echo $title ?></title>
+  <?php include('head.php') ?>
+
+
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+
+    <?php include('sidebar.php') ?>
+
+
+    <div class="content-wrapper">
+      <div class="content-header"></div>
+
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="card card-info">
+          <div class="card-header">
+            <h3 class="card-title">Forward Documents</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <form role="form" method="post" action="<?php htmlspecialchars("PHP_SELF"); ?>">
+              <div class="box-body">
+                <?php echo $alert_msg; ?>
+
+                <div class="row">
+                  <div class="col-md-2" style="text-align: right;padding-top: 5px;">
+                    <label>Document No.:</label>
+                  </div>
+                  <div class="col-md-10">
+                    <input type="text" readonly class="form-control" id="doc_no" name="doc_number" placeholder="Document Number" value="<?php echo
+                                                                                                                                        $docno; ?>" required>
+                  </div>
+                </div><br>
+
+                <div class="row">
+                  <div class="col-md-2" style="text-align: right;padding-top: 5px;">
+                    <label>Date:</label>
+                  </div>
+                  <div class="col-md-10">
+                    <!-- Date -->
+                    <div class="form-group">
+                      <!-- <label>Date:</label> -->
+                      <div class="input-group date" data-provide="datepicker">
+                        <div class="input-group-addon">
+                          <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="text" class="form-control pull-right" id="datepicker" name="date" placeholder="Date Created" value="<?php echo
+                                                                                                                                          $now->format('m/d/Y');; ?>">
+                      </div>
+                    </div>
+                  </div>
+                </div><br>
+
+                <div class="row">
+                  <div class="col-md-2" style="text-align: right;padding-top: 5px;">
+                    <!-- <div class="form-group"> -->
+                    <label>Document Type:</label>
+                  </div>
+
+                  <div class="col-md-10">
+                    <select class="form-control select2" id="select_type" style="width: 100%;" name="type" value="<?php echo
+                                                                                                                  $type; ?>">
+                      <option selected="selected">Please select...</option>
+                      <?php while ($get_type = $get_all_document_data->fetch(PDO::FETCH_ASSOC)) { ?>
+                        <option value="<?php echo
+                                        $get_type['objid']; ?>"><?php echo $get_type['description']; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div><br>
+
+
+                <div class="row">
+                  <div class="col-md-2" style="text-align: right;padding-top: 5px;">
+                    <label>Subject/Particulars:</label>
+                  </div>
+                  <div class="col-md-10">
+                    <textarea rows="5" class="form-control" name="particulars" placeholder="Subject/Particulars" required><?php echo
+                                                                                                                          $particulars; ?></textarea>
+                  </div>
+                </div><br>
+
+                <!-- <div class="row">
+                  <div class="col-md-2" style="text-align: right;padding-top: 5px;">
+                   <label>Amount: (Optional)</label>
+                  </div>
+                  <div class="col-md-10">
+                      <input type="text" class="form-control" name="amount" placeholder="Amount" value="<?php echo
+                                                                                                        $amount; ?>" >
+                  </div>
+                </div><br> -->
+
+
+                <div class="row">
+                  <div class="col-md-2" style="text-align: right;padding-top: 5px;">
+                    <!-- <div class="form-group"> -->
+                    <label>Forwarded To:</label>
+                  </div>
+
+                  <div class="col-md-10">
+                    <select class="form-control select2" readonly style="width: 100%;" name="receiver" value="<?php echo $destination; ?>">
+                      <option>Please select...</option>
+                      <?php while ($get_dept = $get_all_departments_data->fetch(PDO::FETCH_ASSOC)) { ?>
+
+                        <?php
+                        //if $get_author naa value, check nato if equals sa $get_author1['fullname']
+                        //if equals, put 'selected' sa option
+                        $selected = ($destination == $get_dept['objid']) ? 'selected' : '';
+
+                        ?>
+
+                        <option <?= $selected; ?> value="<?php echo $get_dept['objid']; ?>"><?php echo $get_dept['department']; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div><br>
+
+                <div class="row">
+                  <div class="col-md-2" style="text-align: right;padding-top: 5px;">
+                    <label>Remarks:</label>
+                  </div>
+
+
+                  <div class="col-md-10">
+                    <textarea rows="5" class="form-control" name="remarks" placeholder="Remarks" required><?php echo
+                                                                                                          $remarks; ?></textarea>
+                  </div>
+                </div><br>
+
+                <div class="box-footer" align="center">
+                  <input type="submit" <?php echo $btnNew; ?> name="add" class="btn btn-primary" value="New">
+                  <input type="submit" <?php echo $btnStatus; ?> name="insert_outgoing" class="btn btn-success" value="Save">
+                  <a href="../plugins/TCPDF/User/routing.php?docno=<?php echo $docno; ?>" target="blank">
+                    <input type="button" <?php echo $btnPrint; ?> name="print" class="btn btn-warning" value="Print">
+                  </a>
+                  <a href="list_outgoing">
+                    <input type="button" name="cancel" class="btn btn-danger" value="Cancel">
+                  </a>
+                </div>
+
+                <div class="col-md-10">
+                  <input type="hidden" id="department" readonly class="form-control" name="department" placeholder="Department" value="<?php echo $department; ?>">
+                  <input type="hidden" readonly class="form-control" name="username" placeholder="username" value="<?php echo  $user_name; ?>" required>
+                </div>
+
+              </div><br>
+
+              <!-- /.box-body -->
+            </form>
+          </div>
+          <!-- /.box -->
+        </div>
+        <div class="col-md-1"></div>
+
+
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- footer here -->
+    <?php include('footer.php') ?>
+  </div>
+  <!-- ./wrapper -->
+  <!-- jQuery -->
+  <script src="../plugins/jquery/jquery.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <!-- <script src="../dist/css/jquery-ui.min.js"></script> -->
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script>
+    // $.widget.bridge('uibutton', $.ui.button)
+  </script>
+  <!-- Bootstrap 4 -->
+  <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Morris.js charts -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script> -->
+  <!-- <script src="../plugins/morris/morris.min.js"></script> -->
+  <!-- Sparkline -->
+  <!-- <script src="../plugins/sparkline/jquery.sparkline.min.js"></script> -->
+  <!-- jvectormap -->
+  <!-- <script src="../plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script> -->
+  <!-- <script src="../plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script> -->
+  <!-- jQuery Knob Chart -->
+  <!-- <script src="../plugins/knob/jquery.knob.js"></script> -->
+  <!-- daterangepicker -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script> -->
+  <!-- <script src="../plugins/daterangepicker/daterangepicker.js"></script> -->
+  <!-- datepicker -->
+  <script src="../plugins/datepicker/bootstrap-datepicker.js"></script>
+  <!-- Bootstrap WYSIHTML5 -->
+  <script src="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+  <!-- Slimscroll -->
+  <script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+  <!-- FastClick -->
+  <script src="../plugins/fastclick/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../dist/js/adminlte.js"></script>
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <script src="../dist/js/pages/dashboard.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="../dist/js/demo.js"></script>
+  <!-- DataTables -->
+  <script src="../plugins/datatables/jquery.dataTables.js"></script>
+  <script src="../plugins/datatables/dataTables.bootstrap4.js"></script>
+  <!-- Select2 -->
+  <script src="../plugins/select2/select2.full.min.js"></script>
+
+  <script>
+    $('#users').DataTable({
+      'paging': true,
+      'lengthChange': true,
+      'searching': true,
+      'ordering': true,
+      'info': true,
+      'autoWidth': true,
+      'autoHeight': true
+    })
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+
+      $(document).ajaxStart(function() {
+        Pace.restart()
+      })
+
+
+
+
+    });
+  </script>
+
+
+  <script>
+    $('#select_type').on('change', function() {
+      var type = $(this).val();
+      var office = $('#department').val();
+      //  $('#doc_no').val(type);
+      if (type == "DV" || type == "OBR" || type == "DWP" || type == "PYL" || type == "LR" || type == "RIS" || type == "PO" || type == "PR") {
+        window.open("add_outgoing_dv.php?type=" + type, '_parent');
+
+      } else {
+
+        $.ajax({
+          type: 'POST',
+          data: {
+            type: type,
+            office: office
+          },
+          url: 'generate_serial.php',
+          success: function(data) {
+            $('#doc_no').val(data);
+
+          }
+
+
+        });
+      }
+    });
+
+    // $('#doc_no').on('change',function(){
+    //      var docno = $(this).val();
+    //       $.ajax({
+    //         type:'POST',
+    //         data:{docno:docno},
+    //         url:'check_serial.php',
+    //          success:function(data){
+    //          $('#doc_no').val(data);
+    //              alert (data);
+    //          }
+
+
+    //           });           
+
+    //                 });
+
+
+
+
+
+
+    $(function() {
+
+      //Initialize Select2 Elements
+      $('.select2').select2()
+
+      //Datemask dd/mm/yyyy
+      $('#datemask').inputmask('dd/mm/yyyy', {
+        'placeholder': 'dd/mm/yyyy'
+      })
+      //Datemask2 mm/dd/yyyy
+      $('#datemask2').inputmask('mm/dd/yyyy', {
+        'placeholder': 'mm/dd/yyyy'
+      })
+      //Money Euro
+      $('[data-mask]').inputmask()
+
+      //Date range picker
+      $('#reservation').daterangepicker()
+      //Date range picker with time picker
+      $('#reservationtime').daterangepicker({
+        timePicker: true,
+        timePickerIncrement: 30,
+        format: 'MM/DD/YYYY h:mm A'
+      })
+      //Date range as a button
+      $('#daterange-btn').daterangepicker({
+          ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          },
+          startDate: moment().subtract(29, 'days'),
+          endDate: moment()
+        },
+        function(start, end) {
+          $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+        }
+      )
+
+      //Date picker
+      $('#datepicker').datepicker({
+        autoclose: true
+      })
+
+      //iCheck for checkbox and radio inputs
+      $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass: 'iradio_minimal-blue'
+      })
+      //Red color scheme for iCheck
+      $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+        checkboxClass: 'icheckbox_minimal-red',
+        radioClass: 'iradio_minimal-red'
+      })
+      //Flat red color scheme for iCheck
+      $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+        checkboxClass: 'icheckbox_flat-green',
+        radioClass: 'iradio_flat-green'
+      })
+
+      //Colorpicker
+      $('.my-colorpicker1').colorpicker()
+      //color picker with addon
+      $('.my-colorpicker2').colorpicker()
+
+      //Timepicker
+      $('.timepicker').timepicker({
+        showInputs: false
+      })
+    })
+  </script>
+
+</body>
+
+</html>
