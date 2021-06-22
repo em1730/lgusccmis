@@ -1,7 +1,5 @@
  <?php
 
- ob_start();
-
 include ('../config/db_config.php');
 //include('import_pdf.php');
 
@@ -25,6 +23,7 @@ if (isset($_POST['insert_outgoing'])) {
     $status = 'CREATED';
     $remarks = $_POST['remarks'];
     $user_name = $_POST['username'];
+    $host_name = "";
     // $start_time = $date .' ' . $time;
     // $end_time = $date .' ' . $time;
     
@@ -72,6 +71,7 @@ if (isset($_POST['insert_outgoing'])) {
         status             = :stat,
         remarks            = :rem,
         receiver           = :username,
+        machineid          = :host,
         start_time         = :start_time,
         end_time           = :end_time";
     
@@ -110,7 +110,7 @@ if (isset($_POST['insert_outgoing'])) {
     
 
     
-ob_flush();
+
 
 
 ?>

@@ -176,12 +176,6 @@
                   <p>Add User</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="add_employee " class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Add Employee</p>
-                </a>
-              </li>
 
               <li class="nav-item">
                 <a href="add_suppliers " class="nav-link">
@@ -196,7 +190,6 @@
                   <p>Add Regular Employee</p>
                 </a>
               </li>
-             
 
               <li class="nav-item">
                 <a href="add_joborder " class="nav-link">

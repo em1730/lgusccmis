@@ -3,7 +3,6 @@
 include ('../config/db_config.php');
 //include('import_pdf.php');
 
-
 $alert_msg = '';
 $alert_msg1 = '';
 if (isset($_POST['insert_jobOrder'])) {
@@ -20,13 +19,14 @@ if (isset($_POST['insert_jobOrder'])) {
     $status = $_POST['status'];
     $rate = $_POST['rate'];
     $myID = uniqid('jo',true);
+
    
     $insert_doctype_sql = "INSERT INTO tbl_joborder SET 
         objid               = :id,
-        -- joId             = :joid,
-        firstname           = :fname,
-        middlename          = :mname,
-        lastname            = :lname,
+        -- joId               = :joid,
+        firstname               = :fname,
+        middlename               = :mname,
+        lastname               = :lname,
         controlNo           = :controlno,
         rate                = :rate,
         department          = :dept,

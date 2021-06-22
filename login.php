@@ -29,11 +29,11 @@ if (isset($_POST['signin'])) {
         session_start();
         $_SESSION['id'] = $result['user_id'];
 
-        if ($result['account_type'] == 5) {
-          header('location: administrator'); //location is folder || IT ADMIN 
-        } else if ($result['account_type'] == 1) {
-          header('location: admin'); //location is folder || DOCUMENT TRACKING
+        if ($result['account_type'] == 1) {
+          header('location: admin'); //location is folder || IT ADMIN 
         } else if ($result['account_type'] == 2) {
+          header('location: doctrack'); //location is folder || DOCUMENT TRACKING
+        } else if ($result['account_type'] == 3) {
           header('location: sp'); //location is folder || SP SYSTEM
         } else if ($result['account_type'] == 4) {
           header('location: hms'); //location is folder || HARDWARE MONITORING SYSTEM
@@ -71,7 +71,7 @@ if (isset($_POST['signin'])) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>VAMOS | Login</title>
+  <title>LGUSCC MIS | Login</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->

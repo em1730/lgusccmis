@@ -14,13 +14,50 @@ if (isset($_POST['insert_outgoing'])) {
     $date = date('Y-m-d', strtotime($_POST['date']));
     $time =  date('H:i:s');
     $type = $_POST['type'];
-    $obr_no = $_POST['obr_number'];
-    $pr_no = $_POST['pr_number'];
-    $po_no = $_POST['po_number'];
-    $account = $_POST['account'];
-    $dv_no = $_POST['dv_number'];
-    $cheque_no = $_POST['cheque_number'];
-    $acct_no = $_POST['acct_number'];
+
+    if (empty($_POST['obr_number'])){
+        $obr_no = '';
+    }else{
+        $obr_no = $_POST['obr_number'];
+    }
+
+    if (empty($_POST['pr_number'])){
+        $pr_no = '';
+    }else{
+        $pr_no = $_POST['pr_number'];
+    }
+    
+    if (empty($_POST['po_number'])){
+        $po_no = '';
+    }else{
+        $po_no = $_POST['po_number'];
+    }
+   
+    if (empty($_POST['account'])){
+        $account = '';
+    }else{
+        $account = $_POST['account'];
+    }
+
+    if (empty($_POST['dv_number'])){
+        $dv_no = '';
+    }else{
+       $dv_no = $_POST['dv_number'];
+    }
+
+    if (empty($_POST['cheque_number'])){
+        $cheque_no = '';
+    }else{
+        $cheque_no = $_POST['cheque_number'];
+    }
+
+    if (empty($_POST['acct_number'])){
+        $acct_no = '';
+    }else{
+        $acct_no = $_POST['acct_number'];
+    }
+    
+    
     $amount = doubleval($_POST['amount']);
     $payee= $_POST['payee'];
     $particulars = $_POST['particulars'];
