@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.14.0.final using JasperReports Library version 6.14.0-2ab0d8625be255bf609c78e1181801213e51db8f  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vaccine_linelist" language="groovy" pageWidth="612" pageHeight="936" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="202b9b8d-0d9a-4d1e-9295-3986fbc7f4d7">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="894"/>
+	<property name="ireport.y" value="288"/>
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sccdrrmo"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<queryString>
+		<![CDATA[SELECT CONCAT(t.firstname,' ',t.middlename,' ',t.lastname)
+ AS fullname,t.age,r.astrazeneca,a.bakuna_center,a.status
+  FROM tbl_vaccine r
+  INNER JOIN tbl_individual t ON t.entity_no = r.entity_no
+  INNER JOIN tbl_assessment a ON a.entity_no = t.entity_no order by r.lastname asc]]>
+	</queryString>
+	<field name="fullname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fullname"/>
+		<property name="com.jaspersoft.studio.field.label" value="fullname"/>
+	</field>
+	<field name="age" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="age"/>
+		<property name="com.jaspersoft.studio.field.label" value="age"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tbl_individual"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="astrazeneca" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="astrazeneca"/>
+		<property name="com.jaspersoft.studio.field.label" value="astrazeneca"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tbl_vaccine"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bakuna_center" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="bakuna_center"/>
+		<property name="com.jaspersoft.studio.field.label" value="bakuna_center"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tbl_assessment"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="status"/>
+		<property name="com.jaspersoft.studio.field.label" value="status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tbl_assessment"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band height="63" splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText" x="0" y="0" width="572" height="20" uuid="7ac713ca-b31e-469a-b60c-3df724ec5f24"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LINELIST OF PERSONEL FOR VACCINATION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="0" y="20" width="572" height="20" uuid="9aab053a-09ea-4723-abb2-a63d13c68c1f"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Negros Occidental]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="50" width="572" height="20" uuid="6aadbc1c-f100-4fbb-a8ee-c96a180748b7"/>
+				<textElement textAlignment="Center">
+					<font size="15"/>
+				</textElement>
+				<text><![CDATA[LINELIST]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<rectangle>
+				<reportElement key="rectangle-4" x="210" y="1" width="200" height="27" uuid="e84bb743-8f73-42e4-ac30-4cce24ac3f0d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement key="rectangle-1" x="0" y="1" width="210" height="27" uuid="21d15a7f-5b2b-48b7-984d-2d930627901c"/>
+			</rectangle>
+			<staticText>
+				<reportElement key="staticText" x="214" y="0" width="196" height="28" uuid="b9339b05-7a7f-489e-bdc2-496ac0723aef"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Personnel who are willing to be vaccinated with Astrazeneca]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement key="rectangle-4" x="410" y="1" width="29" height="27" uuid="83ad5708-25fb-40ab-9a0f-16f4ef6a81a7"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="410" y="5" width="30" height="16" uuid="6256aed5-c8b7-4fa2-90e2-95ae6c917603"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Age]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="6" width="208" height="22" uuid="12c30494-b9ff-41a8-8f08-07f6b77ae89f"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Bakuna Center]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement key="rectangle-4" x="439" y="1" width="29" height="27" uuid="97011585-3fd9-4ec6-90e6-ce2a5007fcaf"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="439" y="0" width="30" height="26" uuid="6b4c3538-b729-463b-930b-f51d1229d382"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[1st Dose]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement key="rectangle-4" x="468" y="1" width="29" height="27" uuid="8bf6b04e-c56e-4140-914c-c7297c838cf9"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="468" y="0" width="30" height="26" uuid="8f4d10f8-05f0-47b8-8e4f-11d47781f98a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[2nd Dose]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="497" y="1" width="62" height="27" uuid="a89bcd82-d107-4843-b1d0-6fd2223c0d83"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="512" y="6" width="49" height="20" uuid="0b838551-e10f-44a0-aa1c-3b70a08b11b9"/>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="238" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement key="staticText" x="410" y="-1" width="29" height="15" uuid="f272d1b2-f5ac-48a4-8cfc-66226166ad96">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="210" y="-1" width="200" height="15" uuid="419114a3-6a76-4606-85ce-dff92871a7de">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="0" y="-1" width="210" height="15" uuid="809a2a15-b371-4508-8f6b-5b3a29f29428">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="214" y="-2" width="156" height="16" uuid="8db2cebb-8bab-4360-b40d-cfe9f3fca4dc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b51acc7f-41aa-4047-b172-570b749dd8ba"/>
+				</reportElement>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fullname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="409" y="0" width="30" height="13" uuid="eac90c13-613a-406c-a0b2-540f860ff7f5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="81d62ef7-d13e-4dc5-912b-32c5157fc52b"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{age}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="439" y="-1" width="29" height="15" uuid="2ad9129a-81c9-4b2f-aeeb-ef173e47e4b5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1" y="-1" width="208" height="14" uuid="34165519-d1a7-44fa-9e0b-d2409c2fadab">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2c3ad82e-2d85-499b-bf70-0c8caf49d36a"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bakuna_center}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="443" y="1" width="14" height="14" isPrintWhenDetailOverflows="true" uuid="2599a657-1687-48e2-bc67-c2fae98d8c46">
+					<printWhenExpression><![CDATA[$F{status} == "VACCINATED"]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" rotation="Right" markup="">
+					<font size="5" isBold="true"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="449" y="-1" width="14" height="14" uuid="f7185322-e8e8-430d-89dc-f40d9f6849c6">
+					<printWhenExpression><![CDATA[$F{status} == "VACCINATED"]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" rotation="None">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="446" y="2" width="17" height="9" uuid="399ed7b6-7cd4-413f-b2df-f2e52ec5ba19">
+					<printWhenExpression><![CDATA[$F{status} != "VACCINATED"  ]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement key="staticText" x="468" y="-1" width="29" height="15" uuid="c890d011-77c3-43f2-95ba-c6e77f24e2b6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="478" y="-1" width="14" height="14" uuid="8049fe09-b808-4b75-84d9-ea9dbcbc264e">
+					<printWhenExpression><![CDATA[$F{status} == "VACCINATED"]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" rotation="None">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="475" y="2" width="17" height="9" uuid="fa290fdd-e658-478e-9966-899cab81a1bb"/>
+				<graphicElement>
+					<pen lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="497" y="-1" width="62" height="14" uuid="92bc6b39-8cee-4349-bcd6-a265fa9f58fd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d0a2fe7c-9a49-45d3-a3b1-3572b9b0c724"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="497" y="-1" width="62" height="15" uuid="0df179c0-d56d-494c-969b-3c3ed3f6206a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
