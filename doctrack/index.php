@@ -1,17 +1,14 @@
-
 <?php
 
-include ('../config/db_config.php');
+include('../config/db_config.php');
 
 session_start();
 $user_id = $_SESSION['id'];
-$docno ='';
-include ('includes/head.php');
+$docno = '';
 
 if (!isset($_SESSION['id'])) {
-    header('location:../index.php');
+  header('location:../index.php');
 } else {
-
 }
 
 
@@ -23,14 +20,13 @@ $user_data->execute([':id' => $user_id]);
 while ($result = $user_data->fetch(PDO::FETCH_ASSOC)) {
 
 
-    $db_first_name = $result['first_name'];
-    $db_middle_name = $result['middle_name'];
-    $db_last_name = $result['last_name'];
-    $db_email_ad = $result['email'];
-    $db_contact_number = $result['contact_no'];
-    $db_user_name = $result['username'];
-    $department = $result['department'];
-
+  $db_first_name = $result['first_name'];
+  $db_middle_name = $result['middle_name'];
+  $db_last_name = $result['last_name'];
+  $db_email_ad = $result['email'];
+  $db_contact_number = $result['contact_no'];
+  $db_user_name = $result['username'];
+  $department = $result['department'];
 }
 
 
@@ -40,7 +36,7 @@ while ($result = $user_data->fetch(PDO::FETCH_ASSOC)) {
 // $get_all_document_data->execute();  
 
 //count incoming documents
-$get_noofdocs_sql= "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status in ('CREATED','FORWARDED') and destination = '$department'";
+$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status in ('CREATED','FORWARDED') and destination = '$department'";
 $get_noofdocs_data = $con->prepare($get_noofdocs_sql);
 $get_noofdocs_data->execute();
 $get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
@@ -49,7 +45,7 @@ while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
 }
 
 //count incoming documents
-$get_noofdocs_sql= "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status in ('CREATED','FORWARDED') and destination = '$department'";
+$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status in ('CREATED','FORWARDED') and destination = '$department'";
 $get_noofdocs_data = $con->prepare($get_noofdocs_sql);
 $get_noofdocs_data->execute();
 $get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
@@ -59,7 +55,7 @@ while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
 
 
 //count incoming documents
-$get_noofdocs_sql= "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status = 'RECEIVED' and destination = '$department'";
+$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status = 'RECEIVED' and destination = '$department'";
 $get_noofdocs_data = $con->prepare($get_noofdocs_sql);
 $get_noofdocs_data->execute();
 $get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
@@ -67,7 +63,7 @@ while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
   $received_count =  $result1['total'];
 }
 
-$get_noofdocs_sql= "SELECT COUNT(`docno`) as total FROM `tbl_documents` where origin = '$department'";
+$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` where origin = '$department'";
 $get_noofdocs_data = $con->prepare($get_noofdocs_sql);
 $get_noofdocs_data->execute();
 $get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
@@ -75,7 +71,7 @@ while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
   $outgoing_count =  $result1['total'];
 }
 
-$get_noofdocs_sql= "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status = 'ARCHIVED' and destination = '$department'";
+$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status = 'ARCHIVED' and destination = '$department'";
 $get_noofdocs_data = $con->prepare($get_noofdocs_sql);
 $get_noofdocs_data->execute();
 $get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
@@ -87,7 +83,7 @@ while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
 // count new messages
 $get_all_message_sql = "SELECT count(*) as total FROM tbl_message where receiver = $user_id and status = 'PENDING'";
 $get_all_message_data = $con->prepare($get_all_message_sql);
-$get_all_message_data->execute();  
+$get_all_message_data->execute();
 while ($result1 = $get_all_message_data->fetch(PDO::FETCH_ASSOC)) {
   $message_count =  $result1['total'];
 }
@@ -95,39 +91,85 @@ while ($result1 = $get_all_message_data->fetch(PDO::FETCH_ASSOC)) {
 // //select all messages for notification
 $get_all_messages_sql = "SELECT * FROM tbl_message where (receiver = $user_id or receiver = '0') and status = 'PENDING' ";
 $get_all_messages_data = $con->prepare($get_all_messages_sql);
-$get_all_messages_data->execute();  
+$get_all_messages_data->execute();
 
 // //select all messages for email
 $get_all_messages1_sql = "SELECT * FROM tbl_message where receiver = $user_id or receiver ='0'";
 $get_all_messages1_data = $con->prepare($get_all_messages1_sql);
-$get_all_messages1_data->execute();  
+$get_all_messages1_data->execute();
 
 //select all from settings
 $get_all_settings_sql = "SELECT * FROM tbl_settings";
 $get_all_settings_data = $con->prepare($get_all_settings_sql);
-$get_all_settings_data->execute(); 
+$get_all_settings_data->execute();
 $get_all_settings_data->setFetchMode(PDO::FETCH_ASSOC);
 while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
   $settings_obr =  $result['obrno'];
   $settings_dv = $result['dvno'];
-} 
- 
- 
+}
+
+
 ?>
 
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>LGUSCC DTS | Dashboard</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <!-- <link rel="stylesheet" href="../dist/css/ionicons.min.css"> -->
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="../plugins/iCheck/flat/blue.css">
+  <!-- Morris chart
+  <link rel="stylesheet" href="../plugins/morris/morris.css">
+  jvectormap -->
+  <!-- <link rel="stylesheet" href="../plugins/jvectormap/jquery-jvectormap-1.2.2.css"> -->
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="../plugins/datepicker/datepicker3.css">
+  <!-- Daterange picker
+  <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker-bs3.css"> -->
+  <!-- bootstrap wysihtml5 - text editor -->
+  <!-- <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"> -->
+  <!-- Google Font: Source Sans Pro -->
+  <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> -->
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap4.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="../plugins/select2/select2.min.css">
+
+</head>
 
 
 
-  <!-- Navbar -->
-  
-  <!-- /.navbar -->
-<?php  
-      include ('includes/nav-bar.php');
-    include ('includes/aside.php');
-      include ('includes/dashboard.php');
-?>
 
-   <div class="col-md-20">
+
+
+<body class="hold-transition sidebar-mini">
+
+
+  <div class="wrapper">
+
+    <?php include('sidebar.php'); ?>
+
+    <div class="content-wrapper">
+      <div class="content-header">
+
+
+      </div>
+      <?php include('dashboard.php') ?>
+
+
+      <section class="content">
+
+        <div class="col-md-20">
           <div class="card card-primary card-outline">
             <div class="card-header">
               <h3 class="card-title">Inbox</h3>
@@ -148,13 +190,13 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
             <div class="card-body p-0">
               <div class="mailbox-controls">
                 <!-- Check all button -->
-                
+
                 <!-- /.btn-group -->
-                
+
                 <div class="float-right">
-                
+
                   <div class="btn-group">
-                    
+
                   </div>
                   <!-- /.btn-group -->
                 </div>
@@ -163,18 +205,18 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
               <div class="table-responsive mailbox-messages">
                 <table class="table table-hover table-striped">
                   <tbody>
-                  <?php while($messages_data = $get_all_messages1_data->fetch(PDO::FETCH_ASSOC)){ ?>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.php?objid=<?php echo $messages_data['objid'];?>"><?php echo $messages_data['sender'];?></a></td>
-                    <td class="mailbox-subject"><?php echo $messages_data['subject'];?>
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date"><?php echo $messages_data['date'];?></td>
-                  </tr>
-                 
-                  <?php } ?>
+                    <?php while ($messages_data = $get_all_messages1_data->fetch(PDO::FETCH_ASSOC)) { ?>
+                      <tr>
+                        <td><input type="checkbox"></td>
+                        <td class="mailbox-star"><a href="#"><i class="fa fa-star text-warning"></i></a></td>
+                        <td class="mailbox-name"><a href="read-mail.php?objid=<?php echo $messages_data['objid']; ?>"><?php echo $messages_data['sender']; ?></a></td>
+                        <td class="mailbox-subject"><?php echo $messages_data['subject']; ?>
+                        </td>
+                        <td class="mailbox-attachment"></td>
+                        <td class="mailbox-date"><?php echo $messages_data['date']; ?></td>
+                      </tr>
+
+                    <?php } ?>
                   </tbody>
                 </table>
                 <!-- /.table -->
@@ -208,93 +250,33 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
           </div>
           <!-- /. box -->
         </div>
-        <!-- /.col -->
-      </div>
-           
-  
-  <!-- Main Sidebar Container -->
-    </section>
 
-  <!-- Content Wrapper. Contains page content -->
- 
-      <!-- /.row -->
-   
-    <!-- /.content -->
 
-    
-   
-    <!-- modals here -->
-        <!-- modal here delete -->
-        <div class="modal fade" id="myModal" role="dialog" data-backdrop="static" data-keyboard="false">
-          <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">Print Routing Slip</h4>
+
+      </section>
+
+      <aside class="control-sidebar control-sidebar-dark">
+        <div class="modal-header">
+          <h4 class="modal-title">SETTINGS</h4>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="box-body">
+            <div class="form-group" <?php if ($department != 'CBO') { ?> style="display:none" <?php } ?>>
+              <h6 class="modal-title">Update OBR No:</h6>
+              <input type="text" name="update_obr" id="update_obr" class="form-control" value="<?php echo
+                                                                                                $settings_obr; ?>" required>
+            </div>
+
+            <div class="box-body">
+              <div class="form-group" <?php if ($department != 'ACCTG') { ?> style="display:none" <?php } ?>>
+                <h6 class="modal-title">Update DV No:</h6>
+                <input type="text" name="update_dv" id="update_dv" class="form-control" value="<?php echo
+                                                                                                $settings_dv; ?>" required>
               </div>
-              <form method="POST" action="<?php htmlspecialchars("PHP_SELF")?>">
-                <div class="modal-body">  
-                  <div class="box-body">
-                    <div class="form-group">
-                    <label>Please enter Document Number:</label>
-                    <input type="text" name="modal_docno" id="modal_docno" class="form-control" value="<?php echo
-                    $docno; ?>" required>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                    
-                  <button type="button" class="btn btn-default pull-left bg-olive" data-dismiss="modal">No</button>
-                  <!-- <button type="submit" name="delete_user" class="btn btn-danger">Yes</button> -->
-                  <a href= "javascript:;" onclick ="this.href='../plugins/TCPDF/User/routing.php?docno=' + document.getElementById('modal_docno').value" target="blank">
-               
-                  <input type="button" name="delete_user" class="btn btn-danger" value="Yes">
-                  </div>
-                  </form>
-                </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-</div>
-          <!-- /.modal-dialog -->
 
-   <!-- modal here delete -->
-
-          <!-- /.modal-dialog -->
-
-  <!-- modals here -->
-        <!-- modal here delete -->
-        
-          <!-- /.modal-dialog -->
-        
-        <!-- /.modal -->
-
-  <?php include ('includes/footer.php');?>
-  </div>
-  
-  <!-- Control Sidebar -->
-
-  <aside class="control-sidebar control-sidebar-dark">
-  <div class="modal-header">
-                <h4 class="modal-title">SETTINGS</h4>
-              </div>
-          
-                <div class="modal-body">  
-                  
-                  <div class="box-body" >
-                    <div class="form-group" <?php if ($department != 'CBO'){?>  style = "display:none" <?php }?>>
-                    <h6 class="modal-title">Update OBR No:</h6>
-                    <input type="text" name="update_obr" id="update_obr" class="form-control" value="<?php echo
-$settings_obr; ?>" required>
-                    </div>
-
-                    <div class="box-body">
-                    <div class="form-group"  <?php if ($department != 'ACCTG'){?>  style = "display:none" <?php }?> > 
-                    <h6 class="modal-title">Update DV No:</h6>
-                    <input type="text" name="update_dv" id="update_dv" class="form-control" value="<?php echo
-$settings_dv; ?>" required>
-                    </div>
-
-                    <!-- <div class="form-group">
+              <!-- <div class="form-group">
                     <label>Date:</label>
                     <label id="lblDate"></label>
                     </div>
@@ -327,121 +309,175 @@ $settings_dv; ?>" required>
                     <h5 class="blinking"  id="lblMessage"> </h5>
                     </div> -->
 
-                  </div>
-                </div>
-  </aside>
+            </div>
+          </div>
+      </aside>
+    </div>
+
+
+    <!-- Navbar -->
+
+    <!-- /.navbar -->
+
+
+    <!-- /.col -->
+  </div>
+
+
+  <div class="modal fade" id="myModal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Print Routing Slip</h4>
+        </div>
+        <form method="POST" action="<?php htmlspecialchars("PHP_SELF") ?>">
+          <div class="modal-body">
+            <div class="box-body">
+              <div class="form-group">
+                <label>Please enter Document Number:</label>
+                <input type="text" name="modal_docno" id="modal_docno" class="form-control" value="<?php echo
+                                                                                                    $docno; ?>" required>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+
+            <button type="button" class="btn btn-default pull-left bg-olive" data-dismiss="modal">No</button>
+            <!-- <button type="submit" name="delete_user" class="btn btn-danger">Yes</button> -->
+            <a href="javascript:;" onclick="this.href='../plugins/TCPDF/User/routing.php?docno=' + document.getElementById('modal_docno').value" target="blank">
+
+              <input type="button" name="delete_user" class="btn btn-danger" value="Yes">
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+
+  <?php include('footer.php'); ?>
+
+
+  <!-- Control Sidebar -->
+
+
   <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
-<!-- jQuery -->
-
-<script>
 
 
-// $('#scan_track').on('change',function(){
-  
-//   // function receive(){
-//              var docno = document.getElementById("scan_track").value;
-           
-//             //  alert (docno);
-         
-//             $.ajax({
-//               type:'POST',
-//               data:{docno:docno},
-//               url:'scan_track.php',
-//                success:function(data){
-//                 var result = $.parseJSON(data);
-//                 // alert(result.type)
-//                  document.getElementById('lblDate').innerHTML = result.date;
-//                  document.getElementById('lblTime').innerHTML = result.time;
-//                  document.getElementById('lblType').innerHTML = result.type;
-//                  document.getElementById('lblParticulars').innerHTML = result.particulars;
-//                  document.getElementById('lblOrigin').innerHTML = result.origin;
-//                  document.getElementById('lblDestination').innerHTML = result.destination;
-//                  document.getElementById('lblRemarks').innerHTML = result.remarks;
-//                  document.getElementById('lblMessage').innerHTML = result.message;
 
-//                }
-            
-//                 });   
-              
-//                 document.getElementById('scan_track').focus();
-//                 document.getElementById('scan_track').select();
-               
-//                 //
-              
-              
-//     });
-          
-    $('#update_obr').on('change',function(){
-  
-  // function receive(){
-             var obr = document.getElementById("update_obr").value;
-           
-            //  alert (docno);
-         
-            $.ajax({
-              type:'POST',
-              data:{obr:obr},
-              url:'update_obr.php',
-               success:function(data){
-                var result = $.parseJSON(data);
-               alert(data)
-                //  document.getElementById('lblDate').innerHTML = result.date;
-                //  document.getElementById('lblTime').innerHTML = result.time;
-                //  document.getElementById('lblType').innerHTML = result.type;
-                //  document.getElementById('lblParticulars').innerHTML = result.particulars;
-                //  document.getElementById('lblOrigin').innerHTML = result.origin;
-                //  document.getElementById('lblDestination').innerHTML = result.destination;
-                //  document.getElementById('lblRemarks').innerHTML = result.remarks;
-                //  document.getElementById('lblMessage').innerHTML = result.message;
+  <?php include('scripts.php') ?>
 
-               }
-            
-                });   
-              
-                // document.getElementById('scan_track').focus();
-                // document.getElementById('scan_track').select();
-               
-                //
-              
-              
-    });         
-  
-    $('#update_dv').on('change',function(){
-  
-  // function receive(){
-             var dv = document.getElementById("update_dv").value;
-           
-            //  alert (docno);
-         
-            $.ajax({
-              type:'POST',
-              data:{dv:dv},
-              url:'update_dv.php',
-               success:function(data){
-                var result = $.parseJSON(data);
-               alert(data)
-                //  document.getElementById('lblDate').innerHTML = result.date;
-                //  document.getElementById('lblTime').innerHTML = result.time;
-                //  document.getElementById('lblType').innerHTML = result.type;
-                //  document.getElementById('lblParticulars').innerHTML = result.particulars;
-                //  document.getElementById('lblOrigin').innerHTML = result.origin;
-                //  document.getElementById('lblDestination').innerHTML = result.destination;
-                //  document.getElementById('lblRemarks').innerHTML = result.remarks;
-                //  document.getElementById('lblMessage').innerHTML = result.message;
+  <script>
+    // $('#scan_track').on('change',function(){
 
-               }
-            
-                });   
-              
-                // document.getElementById('scan_track').focus();
-                // document.getElementById('scan_track').select();
-               
-                //
-              
-              
-    });         
-  
-</script>
+    //   // function receive(){
+    //              var docno = document.getElementById("scan_track").value;
+
+    //             //  alert (docno);
+
+    //             $.ajax({
+    //               type:'POST',
+    //               data:{docno:docno},
+    //               url:'scan_track.php',
+    //                success:function(data){
+    //                 var result = $.parseJSON(data);
+    //                 // alert(result.type)
+    //                  document.getElementById('lblDate').innerHTML = result.date;
+    //                  document.getElementById('lblTime').innerHTML = result.time;
+    //                  document.getElementById('lblType').innerHTML = result.type;
+    //                  document.getElementById('lblParticulars').innerHTML = result.particulars;
+    //                  document.getElementById('lblOrigin').innerHTML = result.origin;
+    //                  document.getElementById('lblDestination').innerHTML = result.destination;
+    //                  document.getElementById('lblRemarks').innerHTML = result.remarks;
+    //                  document.getElementById('lblMessage').innerHTML = result.message;
+
+    //                }
+
+    //                 });   
+
+    //                 document.getElementById('scan_track').focus();
+    //                 document.getElementById('scan_track').select();
+
+    //                 //
+
+
+    //     });
+
+    $('#update_obr').on('change', function() {
+
+      // function receive(){
+      var obr = document.getElementById("update_obr").value;
+
+      //  alert (docno);
+
+      $.ajax({
+        type: 'POST',
+        data: {
+          obr: obr
+        },
+        url: 'update_obr.php',
+        success: function(data) {
+          var result = $.parseJSON(data);
+          alert(data)
+          //  document.getElementById('lblDate').innerHTML = result.date;
+          //  document.getElementById('lblTime').innerHTML = result.time;
+          //  document.getElementById('lblType').innerHTML = result.type;
+          //  document.getElementById('lblParticulars').innerHTML = result.particulars;
+          //  document.getElementById('lblOrigin').innerHTML = result.origin;
+          //  document.getElementById('lblDestination').innerHTML = result.destination;
+          //  document.getElementById('lblRemarks').innerHTML = result.remarks;
+          //  document.getElementById('lblMessage').innerHTML = result.message;
+
+        }
+
+      });
+
+      // document.getElementById('scan_track').focus();
+      // document.getElementById('scan_track').select();
+
+      //
+
+
+    });
+
+    $('#update_dv').on('change', function() {
+
+      // function receive(){
+      var dv = document.getElementById("update_dv").value;
+
+      //  alert (docno);
+
+      $.ajax({
+        type: 'POST',
+        data: {
+          dv: dv
+        },
+        url: 'update_dv.php',
+        success: function(data) {
+          var result = $.parseJSON(data);
+          alert(data)
+          //  document.getElementById('lblDate').innerHTML = result.date;
+          //  document.getElementById('lblTime').innerHTML = result.time;
+          //  document.getElementById('lblType').innerHTML = result.type;
+          //  document.getElementById('lblParticulars').innerHTML = result.particulars;
+          //  document.getElementById('lblOrigin').innerHTML = result.origin;
+          //  document.getElementById('lblDestination').innerHTML = result.destination;
+          //  document.getElementById('lblRemarks').innerHTML = result.remarks;
+          //  document.getElementById('lblMessage').innerHTML = result.message;
+
+        }
+
+      });
+
+      // document.getElementById('scan_track').focus();
+      // document.getElementById('scan_track').select();
+
+      //
+
+
+    });
+  </script>
+
+</body>
+
+</html>
