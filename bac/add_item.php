@@ -308,23 +308,7 @@ $('#users').DataTable({
 
 
 </script>
-        <script type="text/javascript">
 
-        $(category).ready(function() {
-            $(category).ajaxStart(function() {
-                Pace.restart()
-            })
-
-
-
-        });
-
-
-        } 
-            
-        });       
-
-    </script> 
 
 
 <script>

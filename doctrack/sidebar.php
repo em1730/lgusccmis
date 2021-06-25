@@ -197,7 +197,7 @@ $get_all_messages1_data->execute();
         </li>
     </ul>
 
-    
+
 </nav>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -278,7 +278,7 @@ $get_all_messages1_data->execute();
                         </li>
 
                         <li class="nav-item">
-                            <a href="force_receive" class="nav-link">
+                            <a href="force_receive.php" class="nav-link">
                                 <i class="fa fa-circle-o nav-icon"></i>
                                 <p>Force Receive</p>
                             </a>
