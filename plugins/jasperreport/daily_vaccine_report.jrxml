@@ -1,0 +1,1964 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.14.0.final using JasperReports Library version 6.14.0-2ab0d8625be255bf609c78e1181801213e51db8f  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="daily_vaccine_report" language="groovy" pageWidth="1008" pageHeight="612" orientation="Landscape" columnWidth="968" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="59c92260-aad0-47f0-96ba-d00818463ccf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="77"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sccdrrmo"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[SELECT DATE_FORMAT(date_reg,'%M %d, %Y') AS date_reg,
+SUM(VaccineManufacturer = 'Astrazeneca'  OR VaccineManufacturer = 'Sinovac' ) AS TOTAL,
+SUM(VaccineManufacturer = 'Sinovac' ) AS Sinovac,
+SUM(VaccineManufacturer = 'Astrazeneca' ) AS Astrazeneca,
+SUM(deferral != 'N/A') AS Deferral,
+SUM(Refusal_Reasons != 'N/A') AS Refusal_Reasons,
+COUNT(entity_no)  Eligible_population,
+
+SUM(1stDose = '01_Yes' ) AS TOTAL_1stDose,
+SUM(2ndDose = '01_Yes' ) AS TOTAL_2ndDose,
+
+
+SUM(1stDose = '01_Yes' AND bakuna_center = 'BARANGAY I COVERED COURT') AS 1stDose_BARANGAY_I_COVERED_COURT,
+SUM(1stDose = '01_Yes' AND bakuna_center = 'BARANGAY GUADALUPE COVERED COURT') AS 1stDose_BARANGAY_GUADALUPE,
+SUM(1stDose = '01_Yes' AND bakuna_center = 'BARANGAY III COVERED COURT') AS 1stDose_BARANGAY_III,
+SUM(1stDose = '01_Yes' AND bakuna_center = 'BARANGAY PROSPERIDAD COVERED COURT') AS 1stDose_BARANGAY_PROSPERIDAD,
+SUM(1stDose = '01_Yes' AND bakuna_center = 'BARANGAY PUNAO COVERED COURT') AS 1stDose_BARANGAY_PUNAO,
+SUM(1stDose = '01_Yes' AND bakuna_center = 'BARANGAY QUEZON COVERED COURT') AS 1stDose_BARANGAY_QUEZON,
+SUM(1stDose = '01_Yes' AND bakuna_center = 'BARANGAY RIZAL COVERED COURT') AS 1stDose_BARANGAY_RIZAL,
+SUM(1stDose = '01_Yes' AND bakuna_center = 'BARANGAY SAN JUAN COVERED COURT') AS 1stDose_BARANGAY_SAN_JUAN,
+SUM(1stDose = '01_Yes' AND bakuna_center = 'CITY HEALTH OFFICE SAN CARLOS CITY') AS 1stDose_CITY_HEALTH_OFFICE,
+SUM(1stDose = '01_Yes' AND bakuna_center = 'SAN CARLOS CITY CITY HOSPITAL') AS 1stDose_CITY_HOSPITAL,
+SUM(1stDose = '01_Yes' AND bakuna_center = 'SAN CARLOS DOCTORS HOSPITAL, INC.') AS 1stDose_DOCTORS_HOSPITAL,
+
+SUM(2ndDose = '01_Yes' AND bakuna_center = 'BARANGAY I COVERED COURT') AS 2ndDose_BARANGAY_I_COVERED_COURT,
+SUM(2ndDose = '01_Yes' AND bakuna_center = 'BARANGAY GUADALUPE COVERED COURT') AS 2ndDose_BARANGAY_GUADALUPE,
+SUM(2ndDose = '01_Yes' AND bakuna_center = 'BARANGAY III COVERED COURT') AS 2ndDose_BARANGAY_III,
+SUM(2ndDose = '01_Yes' AND bakuna_center = 'BARANGAY PROSPERIDAD COVERED COURT') AS 2ndDose_BARANGAY_PROSPERIDAD,
+SUM(2ndDose = '01_Yes' AND bakuna_center = 'BARANGAY PUNAO COVERED COURT') AS 2ndDose_BARANGAY_PUNAO,
+SUM(2ndDose = '01_Yes' AND bakuna_center = 'BARANGAY QUEZON COVERED COURT') AS 2ndDose_BARANGAY_QUEZON,
+SUM(2ndDose = '01_Yes' AND bakuna_center = 'BARANGAY RIZAL COVERED COURT') AS 2ndDose_BARANGAY_RIZAL,
+SUM(2ndDose = '01_Yes' AND bakuna_center = 'BARANGAY SAN JUAN COVERED COURT') AS 2ndDose_BARANGAY_SAN_JUAN,
+SUM(2ndDose = '01_Yes' AND bakuna_center = 'CITY HEALTH OFFICE SAN CARLOS CITY') AS 2ndDose_CITY_HEALTH_OFFICE,
+SUM(2ndDose = '01_Yes' AND bakuna_center = 'SAN CARLOS CITY CITY HOSPITAL') AS 2ndDose_CITY_HOSPITAL,
+SUM(2ndDose = '01_Yes' AND bakuna_center = 'SAN CARLOS DOCTORS HOSPITAL, INC.') AS 2ndDose_DOCTORS_HOSPITAL,
+
+SUM(VaccineManufacturer = 'Sinovac' AND bakuna_center = 'BARANGAY I COVERED COURT') AS Sinovac_BARANGAY_I_COVERED_COURT,
+SUM(VaccineManufacturer = 'Sinovac' AND bakuna_center = 'BARANGAY GUADALUPE COVERED COURT') AS Sinovac_BARANGAY_GUADALUPE,
+SUM(VaccineManufacturer = 'Sinovac' AND bakuna_center = 'BARANGAY III COVERED COURT') AS Sinovac_BARANGAY_III,
+SUM(VaccineManufacturer = 'Sinovac' AND bakuna_center = 'BARANGAY PROSPERIDAD COVERED COURT') AS Sinovac_BARANGAY_PROSPERIDAD,
+SUM(VaccineManufacturer = 'Sinovac' AND bakuna_center = 'BARANGAY PUNAO COVERED COURT') AS Sinovac_BARANGAY_PUNAO,
+SUM(VaccineManufacturer = 'Sinovac' AND bakuna_center = 'BARANGAY QUEZON COVERED COURT') AS Sinovac_BARANGAY_QUEZON,
+SUM(VaccineManufacturer = 'Sinovac' AND bakuna_center = 'BARANGAY RIZAL COVERED COURT') AS Sinovac_BARANGAY_RIZAL,
+SUM(VaccineManufacturer = 'Sinovac' AND bakuna_center = 'BARANGAY SAN JUAN COVERED COURT') AS Sinovac_BARANGAY_SAN_JUAN,
+SUM(VaccineManufacturer = 'Sinovac' AND bakuna_center = 'CITY HEALTH OFFICE SAN CARLOS CITY') AS Sinovac_CITY_HEALTH_OFFICE,
+SUM(VaccineManufacturer = 'Sinovac' AND bakuna_center = 'SAN CARLOS CITY CITY HOSPITAL') AS Sinovac_CITY_HOSPITAL,
+SUM(VaccineManufacturer = 'Sinovac' AND bakuna_center = 'SAN CARLOS DOCTORS HOSPITAL, INC.') AS Sinovac_DOCTORS_HOSPITAL,
+
+SUM(VaccineManufacturer = 'Astrazeneca' AND bakuna_center = 'BARANGAY I COVERED COURT') AS Astrazeneca_BARANGAY_I_COVERED_COURT,
+SUM(VaccineManufacturer = 'Astrazeneca' AND bakuna_center = 'BARANGAY GUADALUPE COVERED COURT') AS Astrazeneca_BARANGAY_GUADALUPE,
+SUM(VaccineManufacturer = 'Astrazeneca' AND bakuna_center = 'BARANGAY III COVERED COURT') AS Astrazeneca_BARANGAY_III,
+SUM(VaccineManufacturer = 'Astrazeneca' AND bakuna_center = 'BARANGAY PROSPERIDAD COVERED COURT') AS Astrazeneca_BARANGAY_PROSPERIDAD,
+SUM(VaccineManufacturer = 'Astrazeneca' AND bakuna_center = 'BARANGAY PUNAO COVERED COURT') AS Astrazeneca_BARANGAY_PUNAO,
+SUM(VaccineManufacturer = 'Astrazeneca' AND bakuna_center = 'BARANGAY QUEZON COVERED COURT') AS Astrazeneca_BARANGAY_QUEZON,
+SUM(VaccineManufacturer = 'Astrazeneca' AND bakuna_center = 'BARANGAY RIZAL COVERED COURT') AS Astrazeneca_BARANGAY_RIZAL,
+SUM(VaccineManufacturer = 'Astrazeneca' AND bakuna_center = 'BARANGAY SAN JUAN COVERED COURT') AS Astrazeneca_BARANGAY_SAN_JUAN,
+SUM(VaccineManufacturer = 'Astrazeneca' AND bakuna_center = 'CITY HEALTH OFFICE SAN CARLOS CITY') AS Astrazeneca_CITY_HEALTH_OFFICE,
+SUM(VaccineManufacturer = 'Astrazeneca' AND bakuna_center = 'SAN CARLOS CITY CITY HOSPITAL') AS Astrazeneca_CITY_HOSPITAL,
+SUM(VaccineManufacturer = 'Astrazeneca' AND bakuna_center = 'SAN CARLOS DOCTORS HOSPITAL, INC.') AS Astrazeneca_DOCTORS_HOSPITAL,
+
+SUM( bakuna_center = 'BARANGAY I COVERED COURT') AS TOTAL_BARANGAY_I_COVERED_COURT,
+SUM( bakuna_center = 'BARANGAY GUADALUPE COVERED COURT') AS TOTAL_BARANGAY_GUADALUPE,
+SUM( bakuna_center = 'BARANGAY III COVERED COURT') AS TOTAL_BARANGAY_III,
+SUM(bakuna_center = 'BARANGAY PROSPERIDAD COVERED COURT') AS TOTAL_BARANGAY_PROSPERIDAD,
+SUM(bakuna_center = 'BARANGAY PUNAO COVERED COURT') AS TOTAL_BARANGAY_PUNAO,
+SUM( bakuna_center = 'BARANGAY QUEZON COVERED COURT') AS TOTAL_BARANGAY_QUEZON,
+SUM(bakuna_center = 'BARANGAY RIZAL COVERED COURT') AS TOTAL_BARANGAY_RIZAL,
+SUM( bakuna_center = 'BARANGAY SAN JUAN COVERED COURT') AS TOTAL_BARANGAY_SAN_JUAN,
+SUM( bakuna_center = 'CITY HEALTH OFFICE SAN CARLOS CITY') AS TOTAL_CITY_HEALTH_OFFICE,
+
+SUM(VaccineManufacturer = 'Sinovac' AND bakuna_center = 'SAN CARLOS CITY CITY HOSPITAL') AS TOTAL_CITY_HOSPITAL,
+SUM(VaccineManufacturer = 'Sinovac' AND bakuna_center = 'SAN CARLOS DOCTORS HOSPITAL, INC.') TOTAL_DOCTORS_HOSPITAL,
+
+SUM(deferral != 'N/A' AND bakuna_center = 'BARANGAY I COVERED COURT') AS deferral_BARANGAY_I_COVERED_COURT,
+SUM(deferral != 'N/A' AND bakuna_center = 'BARANGAY GUADALUPE COVERED COURT') AS deferral_BARANGAY_GUADALUPE,
+SUM(deferral != 'N/A' AND bakuna_center = 'BARANGAY III COVERED COURT') AS deferral_BARANGAY_III,
+SUM(deferral != 'N/A' AND bakuna_center = 'BARANGAY PROSPERIDAD COVERED COURT') AS deferral_BARANGAY_PROSPERIDAD,
+SUM(deferral != 'N/A' AND bakuna_center = 'BARANGAY PUNAO COVERED COURT') AS deferral_BARANGAY_PUNAO,
+SUM(deferral != 'N/A' AND bakuna_center = 'BARANGAY QUEZON COVERED COURT') AS deferral_BARANGAY_QUEZON,
+SUM(deferral != 'N/A' AND bakuna_center = 'BARANGAY RIZAL COVERED COURT') AS deferral_BARANGAY_RIZAL,
+SUM(deferral != 'N/A' AND bakuna_center = 'BARANGAY SAN JUAN COVERED COURT') AS deferral_BARANGAY_SAN_JUAN,
+SUM(deferral != 'N/A' AND bakuna_center = 'CITY HEALTH OFFICE SAN CARLOS CITY') AS deferral_CITY_HEALTH_OFFICE,
+SUM(deferral != 'N/A' AND bakuna_center = 'SAN CARLOS CITY CITY HOSPITAL') AS deferral_CITY_HOSPITAL,
+SUM(deferral != 'N/A' AND bakuna_center = 'SAN CARLOS DOCTORS HOSPITAL, INC.') AS deferral_DOCTORS_HOSPITAL,
+
+SUM(Refusal_Reasons != 'N/A' AND bakuna_center = 'BARANGAY I COVERED COURT') AS refusal_BARANGAY_I_COVERED_COURT,
+SUM(Refusal_Reasons != 'N/A' AND bakuna_center = 'BARANGAY GUADALUPE COVERED COURT') AS refusal_BARANGAY_GUADALUPE,
+SUM(Refusal_Reasons != 'N/A' AND bakuna_center = 'BARANGAY III COVERED COURT') AS refusal_BARANGAY_III,
+SUM(Refusal_Reasons != 'N/A' AND bakuna_center = 'BARANGAY PROSPERIDAD COVERED COURT') AS refusal_BARANGAY_PROSPERIDAD,
+SUM(Refusal_Reasons != 'N/A' AND bakuna_center = 'BARANGAY PUNAO COVERED COURT') AS refusal_BARANGAY_PUNAO,
+SUM(Refusal_Reasons != 'N/A' AND bakuna_center = 'BARANGAY QUEZON COVERED COURT') AS refusal_BARANGAY_QUEZON,
+SUM(Refusal_Reasons != 'N/A' AND bakuna_center = 'BARANGAY RIZAL COVERED COURT') AS refusal_BARANGAY_RIZAL,
+SUM(Refusal_Reasons != 'N/A' AND bakuna_center = 'BARANGAY SAN JUAN COVERED COURT') AS refusal_BARANGAY_SAN_JUAN,
+SUM(Refusal_Reasons != 'N/A' AND bakuna_center = 'CITY HEALTH OFFICE SAN CARLOS CITY') AS refusal_CITY_HEALTH_OFFICE,
+SUM(Refusal_Reasons != 'N/A' AND bakuna_center = 'SAN CARLOS CITY CITY HOSPITAL') AS refusal_CITY_HOSPITAL,
+SUM(Refusal_Reasons != 'N/A' AND bakuna_center = 'SAN CARLOS DOCTORS HOSPITAL, INC.') AS refusal_DOCTORS_HOSPITAL,
+
+SUM(bakuna_center = 'BARANGAY I COVERED COURT' AND entity_no != 'N/A') AS eligible_BARANGAY_I_COVERED_COURT,
+SUM(bakuna_center = 'BARANGAY GUADALUPE COVERED COURT' AND entity_no != 'N/A') AS eligible_BARANGAY_GUADALUPE,
+SUM(bakuna_center = 'BARANGAY III COVERED COURT' AND entity_no != 'N/A') AS eligible_BARANGAY_III,
+SUM(bakuna_center = 'BARANGAY PROSPERIDAD COVERED COURT' AND entity_no != 'N/A') AS eligible_BARANGAY_PROSPERIDAD,
+SUM(bakuna_center = 'BARANGAY PUNAO COVERED COURT' AND entity_no != 'N/A') AS eligible_BARANGAY_PUNAO,
+SUM(bakuna_center = 'BARANGAY QUEZON COVERED COURT' AND entity_no != 'N/A') AS eligible_BARANGAY_QUEZON,
+SUM(bakuna_center = 'BARANGAY RIZAL COVERED COURT' AND entity_no != 'N/A') AS eligible_BARANGAY_RIZAL,
+SUM(bakuna_center = 'BARANGAY SAN JUAN COVERED COURT' AND entity_no != 'N/A') AS eligible_BARANGAY_SAN_JUAN,
+SUM(bakuna_center = 'CITY HEALTH OFFICE SAN CARLOS CITY' AND entity_no != 'N/A') AS eligible_CITY_HEALTH_OFFICE,
+SUM(bakuna_center = 'SAN CARLOS CITY CITY HOSPITAL' AND entity_no != 'N/A') AS eligible_CITY_HOSPITAL,
+SUM(bakuna_center = 'SAN CARLOS DOCTORS HOSPITAL, INC.' AND entity_no != 'N/A') AS eligible_DOCTORS_HOSPITAL
+
+FROM tbl_assessment]]>
+	</queryString>
+	<field name="date_reg" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="date_reg"/>
+		<property name="com.jaspersoft.studio.field.label" value="date_reg"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TOTAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL"/>
+	</field>
+	<field name="Sinovac" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Sinovac"/>
+		<property name="com.jaspersoft.studio.field.label" value="Sinovac"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Astrazeneca" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Astrazeneca"/>
+		<property name="com.jaspersoft.studio.field.label" value="Astrazeneca"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Deferral" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Deferral"/>
+		<property name="com.jaspersoft.studio.field.label" value="Deferral"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Refusal_Reasons" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Refusal_Reasons"/>
+		<property name="com.jaspersoft.studio.field.label" value="Refusal_Reasons"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Eligible_population" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="Eligible_population"/>
+		<property name="com.jaspersoft.studio.field.label" value="Eligible_population"/>
+	</field>
+	<field name="TOTAL_1stDose" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TOTAL_1stDose"/>
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL_1stDose"/>
+	</field>
+	<field name="TOTAL_2ndDose" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TOTAL_2ndDose"/>
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL_2ndDose"/>
+	</field>
+	<field name="1stDose_BARANGAY_I_COVERED_COURT" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="1stDose_BARANGAY_I_COVERED_COURT"/>
+		<property name="com.jaspersoft.studio.field.label" value="1stDose_BARANGAY_I_COVERED_COURT"/>
+	</field>
+	<field name="1stDose_BARANGAY_GUADALUPE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="1stDose_BARANGAY_GUADALUPE"/>
+		<property name="com.jaspersoft.studio.field.label" value="1stDose_BARANGAY_GUADALUPE"/>
+	</field>
+	<field name="1stDose_BARANGAY_III" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="1stDose_BARANGAY_III"/>
+		<property name="com.jaspersoft.studio.field.label" value="1stDose_BARANGAY_III"/>
+	</field>
+	<field name="1stDose_BARANGAY_PROSPERIDAD" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="1stDose_BARANGAY_PROSPERIDAD"/>
+		<property name="com.jaspersoft.studio.field.label" value="1stDose_BARANGAY_PROSPERIDAD"/>
+	</field>
+	<field name="1stDose_BARANGAY_PUNAO" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="1stDose_BARANGAY_PUNAO"/>
+		<property name="com.jaspersoft.studio.field.label" value="1stDose_BARANGAY_PUNAO"/>
+	</field>
+	<field name="1stDose_BARANGAY_QUEZON" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="1stDose_BARANGAY_QUEZON"/>
+		<property name="com.jaspersoft.studio.field.label" value="1stDose_BARANGAY_QUEZON"/>
+	</field>
+	<field name="1stDose_BARANGAY_RIZAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="1stDose_BARANGAY_RIZAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="1stDose_BARANGAY_RIZAL"/>
+	</field>
+	<field name="1stDose_BARANGAY_SAN_JUAN" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="1stDose_BARANGAY_SAN_JUAN"/>
+		<property name="com.jaspersoft.studio.field.label" value="1stDose_BARANGAY_SAN_JUAN"/>
+	</field>
+	<field name="1stDose_CITY_HEALTH_OFFICE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="1stDose_CITY_HEALTH_OFFICE"/>
+		<property name="com.jaspersoft.studio.field.label" value="1stDose_CITY_HEALTH_OFFICE"/>
+	</field>
+	<field name="1stDose_CITY_HOSPITAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="1stDose_CITY_HOSPITAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="1stDose_CITY_HOSPITAL"/>
+	</field>
+	<field name="1stDose_DOCTORS_HOSPITAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="1stDose_DOCTORS_HOSPITAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="1stDose_DOCTORS_HOSPITAL"/>
+	</field>
+	<field name="2ndDose_BARANGAY_I_COVERED_COURT" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="2ndDose_BARANGAY_I_COVERED_COURT"/>
+		<property name="com.jaspersoft.studio.field.label" value="2ndDose_BARANGAY_I_COVERED_COURT"/>
+	</field>
+	<field name="2ndDose_BARANGAY_GUADALUPE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="2ndDose_BARANGAY_GUADALUPE"/>
+		<property name="com.jaspersoft.studio.field.label" value="2ndDose_BARANGAY_GUADALUPE"/>
+	</field>
+	<field name="2ndDose_BARANGAY_III" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="2ndDose_BARANGAY_III"/>
+		<property name="com.jaspersoft.studio.field.label" value="2ndDose_BARANGAY_III"/>
+	</field>
+	<field name="2ndDose_BARANGAY_PROSPERIDAD" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="2ndDose_BARANGAY_PROSPERIDAD"/>
+		<property name="com.jaspersoft.studio.field.label" value="2ndDose_BARANGAY_PROSPERIDAD"/>
+	</field>
+	<field name="2ndDose_BARANGAY_PUNAO" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="2ndDose_BARANGAY_PUNAO"/>
+		<property name="com.jaspersoft.studio.field.label" value="2ndDose_BARANGAY_PUNAO"/>
+	</field>
+	<field name="2ndDose_BARANGAY_QUEZON" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="2ndDose_BARANGAY_QUEZON"/>
+		<property name="com.jaspersoft.studio.field.label" value="2ndDose_BARANGAY_QUEZON"/>
+	</field>
+	<field name="2ndDose_BARANGAY_RIZAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="2ndDose_BARANGAY_RIZAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="2ndDose_BARANGAY_RIZAL"/>
+	</field>
+	<field name="2ndDose_BARANGAY_SAN_JUAN" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="2ndDose_BARANGAY_SAN_JUAN"/>
+		<property name="com.jaspersoft.studio.field.label" value="2ndDose_BARANGAY_SAN_JUAN"/>
+	</field>
+	<field name="2ndDose_CITY_HEALTH_OFFICE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="2ndDose_CITY_HEALTH_OFFICE"/>
+		<property name="com.jaspersoft.studio.field.label" value="2ndDose_CITY_HEALTH_OFFICE"/>
+	</field>
+	<field name="2ndDose_CITY_HOSPITAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="2ndDose_CITY_HOSPITAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="2ndDose_CITY_HOSPITAL"/>
+	</field>
+	<field name="2ndDose_DOCTORS_HOSPITAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="2ndDose_DOCTORS_HOSPITAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="2ndDose_DOCTORS_HOSPITAL"/>
+	</field>
+	<field name="Sinovac_BARANGAY_I_COVERED_COURT" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Sinovac_BARANGAY_I_COVERED_COURT"/>
+		<property name="com.jaspersoft.studio.field.label" value="Sinovac_BARANGAY_I_COVERED_COURT"/>
+	</field>
+	<field name="Sinovac_BARANGAY_GUADALUPE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Sinovac_BARANGAY_GUADALUPE"/>
+		<property name="com.jaspersoft.studio.field.label" value="Sinovac_BARANGAY_GUADALUPE"/>
+	</field>
+	<field name="Sinovac_BARANGAY_III" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Sinovac_BARANGAY_III"/>
+		<property name="com.jaspersoft.studio.field.label" value="Sinovac_BARANGAY_III"/>
+	</field>
+	<field name="Sinovac_BARANGAY_PROSPERIDAD" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Sinovac_BARANGAY_PROSPERIDAD"/>
+		<property name="com.jaspersoft.studio.field.label" value="Sinovac_BARANGAY_PROSPERIDAD"/>
+	</field>
+	<field name="Sinovac_BARANGAY_PUNAO" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Sinovac_BARANGAY_PUNAO"/>
+		<property name="com.jaspersoft.studio.field.label" value="Sinovac_BARANGAY_PUNAO"/>
+	</field>
+	<field name="Sinovac_BARANGAY_QUEZON" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Sinovac_BARANGAY_QUEZON"/>
+		<property name="com.jaspersoft.studio.field.label" value="Sinovac_BARANGAY_QUEZON"/>
+	</field>
+	<field name="Sinovac_BARANGAY_RIZAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Sinovac_BARANGAY_RIZAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="Sinovac_BARANGAY_RIZAL"/>
+	</field>
+	<field name="Sinovac_BARANGAY_SAN_JUAN" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Sinovac_BARANGAY_SAN_JUAN"/>
+		<property name="com.jaspersoft.studio.field.label" value="Sinovac_BARANGAY_SAN_JUAN"/>
+	</field>
+	<field name="Sinovac_CITY_HEALTH_OFFICE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Sinovac_CITY_HEALTH_OFFICE"/>
+		<property name="com.jaspersoft.studio.field.label" value="Sinovac_CITY_HEALTH_OFFICE"/>
+	</field>
+	<field name="Sinovac_CITY_HOSPITAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Sinovac_CITY_HOSPITAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="Sinovac_CITY_HOSPITAL"/>
+	</field>
+	<field name="Sinovac_DOCTORS_HOSPITAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Sinovac_DOCTORS_HOSPITAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="Sinovac_DOCTORS_HOSPITAL"/>
+	</field>
+	<field name="Astrazeneca_BARANGAY_I_COVERED_COURT" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Astrazeneca_BARANGAY_I_COVERED_COURT"/>
+		<property name="com.jaspersoft.studio.field.label" value="Astrazeneca_BARANGAY_I_COVERED_COURT"/>
+	</field>
+	<field name="Astrazeneca_BARANGAY_GUADALUPE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Astrazeneca_BARANGAY_GUADALUPE"/>
+		<property name="com.jaspersoft.studio.field.label" value="Astrazeneca_BARANGAY_GUADALUPE"/>
+	</field>
+	<field name="Astrazeneca_BARANGAY_III" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Astrazeneca_BARANGAY_III"/>
+		<property name="com.jaspersoft.studio.field.label" value="Astrazeneca_BARANGAY_III"/>
+	</field>
+	<field name="Astrazeneca_BARANGAY_PROSPERIDAD" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Astrazeneca_BARANGAY_PROSPERIDAD"/>
+		<property name="com.jaspersoft.studio.field.label" value="Astrazeneca_BARANGAY_PROSPERIDAD"/>
+	</field>
+	<field name="Astrazeneca_BARANGAY_PUNAO" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Astrazeneca_BARANGAY_PUNAO"/>
+		<property name="com.jaspersoft.studio.field.label" value="Astrazeneca_BARANGAY_PUNAO"/>
+	</field>
+	<field name="Astrazeneca_BARANGAY_QUEZON" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Astrazeneca_BARANGAY_QUEZON"/>
+		<property name="com.jaspersoft.studio.field.label" value="Astrazeneca_BARANGAY_QUEZON"/>
+	</field>
+	<field name="Astrazeneca_BARANGAY_RIZAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Astrazeneca_BARANGAY_RIZAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="Astrazeneca_BARANGAY_RIZAL"/>
+	</field>
+	<field name="Astrazeneca_BARANGAY_SAN_JUAN" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Astrazeneca_BARANGAY_SAN_JUAN"/>
+		<property name="com.jaspersoft.studio.field.label" value="Astrazeneca_BARANGAY_SAN_JUAN"/>
+	</field>
+	<field name="Astrazeneca_CITY_HEALTH_OFFICE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Astrazeneca_CITY_HEALTH_OFFICE"/>
+		<property name="com.jaspersoft.studio.field.label" value="Astrazeneca_CITY_HEALTH_OFFICE"/>
+	</field>
+	<field name="Astrazeneca_CITY_HOSPITAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Astrazeneca_CITY_HOSPITAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="Astrazeneca_CITY_HOSPITAL"/>
+	</field>
+	<field name="Astrazeneca_DOCTORS_HOSPITAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Astrazeneca_DOCTORS_HOSPITAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="Astrazeneca_DOCTORS_HOSPITAL"/>
+	</field>
+	<field name="TOTAL_BARANGAY_I_COVERED_COURT" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TOTAL_BARANGAY_I_COVERED_COURT"/>
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL_BARANGAY_I_COVERED_COURT"/>
+	</field>
+	<field name="TOTAL_BARANGAY_GUADALUPE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TOTAL_BARANGAY_GUADALUPE"/>
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL_BARANGAY_GUADALUPE"/>
+	</field>
+	<field name="TOTAL_BARANGAY_III" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TOTAL_BARANGAY_III"/>
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL_BARANGAY_III"/>
+	</field>
+	<field name="TOTAL_BARANGAY_PROSPERIDAD" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TOTAL_BARANGAY_PROSPERIDAD"/>
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL_BARANGAY_PROSPERIDAD"/>
+	</field>
+	<field name="TOTAL_BARANGAY_PUNAO" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TOTAL_BARANGAY_PUNAO"/>
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL_BARANGAY_PUNAO"/>
+	</field>
+	<field name="TOTAL_BARANGAY_QUEZON" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TOTAL_BARANGAY_QUEZON"/>
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL_BARANGAY_QUEZON"/>
+	</field>
+	<field name="TOTAL_BARANGAY_RIZAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TOTAL_BARANGAY_RIZAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL_BARANGAY_RIZAL"/>
+	</field>
+	<field name="TOTAL_BARANGAY_SAN_JUAN" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TOTAL_BARANGAY_SAN_JUAN"/>
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL_BARANGAY_SAN_JUAN"/>
+	</field>
+	<field name="TOTAL_CITY_HEALTH_OFFICE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TOTAL_CITY_HEALTH_OFFICE"/>
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL_CITY_HEALTH_OFFICE"/>
+	</field>
+	<field name="TOTAL_CITY_HOSPITAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TOTAL_CITY_HOSPITAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL_CITY_HOSPITAL"/>
+	</field>
+	<field name="TOTAL_DOCTORS_HOSPITAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TOTAL_DOCTORS_HOSPITAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL_DOCTORS_HOSPITAL"/>
+	</field>
+	<field name="deferral_BARANGAY_I_COVERED_COURT" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="deferral_BARANGAY_I_COVERED_COURT"/>
+		<property name="com.jaspersoft.studio.field.label" value="deferral_BARANGAY_I_COVERED_COURT"/>
+	</field>
+	<field name="deferral_BARANGAY_GUADALUPE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="deferral_BARANGAY_GUADALUPE"/>
+		<property name="com.jaspersoft.studio.field.label" value="deferral_BARANGAY_GUADALUPE"/>
+	</field>
+	<field name="deferral_BARANGAY_III" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="deferral_BARANGAY_III"/>
+		<property name="com.jaspersoft.studio.field.label" value="deferral_BARANGAY_III"/>
+	</field>
+	<field name="deferral_BARANGAY_PROSPERIDAD" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="deferral_BARANGAY_PROSPERIDAD"/>
+		<property name="com.jaspersoft.studio.field.label" value="deferral_BARANGAY_PROSPERIDAD"/>
+	</field>
+	<field name="deferral_BARANGAY_PUNAO" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="deferral_BARANGAY_PUNAO"/>
+		<property name="com.jaspersoft.studio.field.label" value="deferral_BARANGAY_PUNAO"/>
+	</field>
+	<field name="deferral_BARANGAY_QUEZON" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="deferral_BARANGAY_QUEZON"/>
+		<property name="com.jaspersoft.studio.field.label" value="deferral_BARANGAY_QUEZON"/>
+	</field>
+	<field name="deferral_BARANGAY_RIZAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="deferral_BARANGAY_RIZAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="deferral_BARANGAY_RIZAL"/>
+	</field>
+	<field name="deferral_BARANGAY_SAN_JUAN" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="deferral_BARANGAY_SAN_JUAN"/>
+		<property name="com.jaspersoft.studio.field.label" value="deferral_BARANGAY_SAN_JUAN"/>
+	</field>
+	<field name="deferral_CITY_HEALTH_OFFICE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="deferral_CITY_HEALTH_OFFICE"/>
+		<property name="com.jaspersoft.studio.field.label" value="deferral_CITY_HEALTH_OFFICE"/>
+	</field>
+	<field name="deferral_CITY_HOSPITAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="deferral_CITY_HOSPITAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="deferral_CITY_HOSPITAL"/>
+	</field>
+	<field name="deferral_DOCTORS_HOSPITAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="deferral_DOCTORS_HOSPITAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="deferral_DOCTORS_HOSPITAL"/>
+	</field>
+	<field name="refusal_BARANGAY_I_COVERED_COURT" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="refusal_BARANGAY_I_COVERED_COURT"/>
+		<property name="com.jaspersoft.studio.field.label" value="refusal_BARANGAY_I_COVERED_COURT"/>
+	</field>
+	<field name="refusal_BARANGAY_GUADALUPE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="refusal_BARANGAY_GUADALUPE"/>
+		<property name="com.jaspersoft.studio.field.label" value="refusal_BARANGAY_GUADALUPE"/>
+	</field>
+	<field name="refusal_BARANGAY_III" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="refusal_BARANGAY_III"/>
+		<property name="com.jaspersoft.studio.field.label" value="refusal_BARANGAY_III"/>
+	</field>
+	<field name="refusal_BARANGAY_PROSPERIDAD" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="refusal_BARANGAY_PROSPERIDAD"/>
+		<property name="com.jaspersoft.studio.field.label" value="refusal_BARANGAY_PROSPERIDAD"/>
+	</field>
+	<field name="refusal_BARANGAY_PUNAO" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="refusal_BARANGAY_PUNAO"/>
+		<property name="com.jaspersoft.studio.field.label" value="refusal_BARANGAY_PUNAO"/>
+	</field>
+	<field name="refusal_BARANGAY_QUEZON" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="refusal_BARANGAY_QUEZON"/>
+		<property name="com.jaspersoft.studio.field.label" value="refusal_BARANGAY_QUEZON"/>
+	</field>
+	<field name="refusal_BARANGAY_RIZAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="refusal_BARANGAY_RIZAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="refusal_BARANGAY_RIZAL"/>
+	</field>
+	<field name="refusal_BARANGAY_SAN_JUAN" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="refusal_BARANGAY_SAN_JUAN"/>
+		<property name="com.jaspersoft.studio.field.label" value="refusal_BARANGAY_SAN_JUAN"/>
+	</field>
+	<field name="refusal_CITY_HEALTH_OFFICE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="refusal_CITY_HEALTH_OFFICE"/>
+		<property name="com.jaspersoft.studio.field.label" value="refusal_CITY_HEALTH_OFFICE"/>
+	</field>
+	<field name="refusal_CITY_HOSPITAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="refusal_CITY_HOSPITAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="refusal_CITY_HOSPITAL"/>
+	</field>
+	<field name="refusal_DOCTORS_HOSPITAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="refusal_DOCTORS_HOSPITAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="refusal_DOCTORS_HOSPITAL"/>
+	</field>
+	<field name="eligible_BARANGAY_I_COVERED_COURT" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="eligible_BARANGAY_I_COVERED_COURT"/>
+		<property name="com.jaspersoft.studio.field.label" value="eligible_BARANGAY_I_COVERED_COURT"/>
+	</field>
+	<field name="eligible_BARANGAY_GUADALUPE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="eligible_BARANGAY_GUADALUPE"/>
+		<property name="com.jaspersoft.studio.field.label" value="eligible_BARANGAY_GUADALUPE"/>
+	</field>
+	<field name="eligible_BARANGAY_III" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="eligible_BARANGAY_III"/>
+		<property name="com.jaspersoft.studio.field.label" value="eligible_BARANGAY_III"/>
+	</field>
+	<field name="eligible_BARANGAY_PROSPERIDAD" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="eligible_BARANGAY_PROSPERIDAD"/>
+		<property name="com.jaspersoft.studio.field.label" value="eligible_BARANGAY_PROSPERIDAD"/>
+	</field>
+	<field name="eligible_BARANGAY_PUNAO" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="eligible_BARANGAY_PUNAO"/>
+		<property name="com.jaspersoft.studio.field.label" value="eligible_BARANGAY_PUNAO"/>
+	</field>
+	<field name="eligible_BARANGAY_QUEZON" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="eligible_BARANGAY_QUEZON"/>
+		<property name="com.jaspersoft.studio.field.label" value="eligible_BARANGAY_QUEZON"/>
+	</field>
+	<field name="eligible_BARANGAY_RIZAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="eligible_BARANGAY_RIZAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="eligible_BARANGAY_RIZAL"/>
+	</field>
+	<field name="eligible_BARANGAY_SAN_JUAN" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="eligible_BARANGAY_SAN_JUAN"/>
+		<property name="com.jaspersoft.studio.field.label" value="eligible_BARANGAY_SAN_JUAN"/>
+	</field>
+	<field name="eligible_CITY_HEALTH_OFFICE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="eligible_CITY_HEALTH_OFFICE"/>
+		<property name="com.jaspersoft.studio.field.label" value="eligible_CITY_HEALTH_OFFICE"/>
+	</field>
+	<field name="eligible_CITY_HOSPITAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="eligible_CITY_HOSPITAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="eligible_CITY_HOSPITAL"/>
+	</field>
+	<field name="eligible_DOCTORS_HOSPITAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="eligible_DOCTORS_HOSPITAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="eligible_DOCTORS_HOSPITAL"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="78" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="968" height="26" uuid="7cef6404-466d-4be2-8f1a-9333b46da25b"/>
+				<textElement textAlignment="Center">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[COVID 19 BAKUNA CENTER REGISTRY (CBCR)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="26" width="968" height="26" uuid="69602eeb-9ba6-442e-9dd1-427002ec78c3"/>
+				<textElement textAlignment="Center">
+					<font size="15"/>
+				</textElement>
+				<text><![CDATA[DAILY QUICK COUNT]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="52" width="968" height="20" uuid="90420568-51bd-4e6f-87ae-1dda0db73dc7"/>
+				<textElement textAlignment="Center">
+					<font size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA["AS OF "+$F{date_reg}+""]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="298" splitType="Stretch">
+			<staticText>
+				<reportElement x="39" y="20" width="251" height="32" uuid="052b0fee-ae08-4b34-9c32-7cab0d9526e2"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Bakuna Center Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="20" width="72" height="32" uuid="fa3be4e8-df75-445f-a98e-037bb1e5797f">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Sinovac]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="448" y="20" width="81" height="32" uuid="67f85fae-32ea-4fde-a91c-9f6807c35071"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Astrazeneca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="789" y="20" width="138" height="32" uuid="d8116ec9-94cc-4cb6-87fa-f6ec2b31fd87">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[TOTAL Vaccine Used by Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="92" width="251" height="20" uuid="84cf1a81-8b95-4aa7-89f8-8dc0f7513b3a"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[BARANGAY GUADALUPE COVERED COURT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="72" width="251" height="20" uuid="d87db5fc-5593-41c3-86f8-8890f2ffa746"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[BARANGAY III COVERED COURT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="112" width="251" height="20" uuid="c6e3149d-b67d-4ed7-956d-00a7f9752855"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[BARANGAY PUNAO COVERED COURT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="132" width="251" height="20" uuid="9adcf9e3-da9a-49a7-ad19-b7873c903718"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[BARANGAY PROSPERIDAD COVERED COURT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="152" width="251" height="20" uuid="4461bc96-099b-4076-869b-4a411aeb4445"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[BARANGAY RIZAL COVERED COURT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="172" width="251" height="20" uuid="7d0a7ee8-d087-496b-9893-18372af653e7"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[BARANGAY SAN JUAN COVERED COURT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="192" width="251" height="20" uuid="02fe84a9-6c8e-4a22-965c-4987b4118228"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[BARANGAY QUEZON COVERED COURT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="212" width="251" height="20" uuid="85b7d3c3-2593-4e79-9ffa-4e39d82413e0"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[CITY HEALTH OFFICE SAN CARLOS CITY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="232" width="251" height="20" uuid="e9136800-7825-4282-815a-e55139cd9a61"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[SAN CARLOS CITY CITY HOSPITAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="252" width="251" height="20" uuid="ff4b426b-f74d-44f8-8f64-5c0ef8d28f58"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[SAN CARLOS DOCTORS HOSPITAL, INC.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="376" y="92" width="72" height="20" uuid="220dd83a-3c0d-4a04-82f3-1106b28a283c"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Sinovac_BARANGAY_GUADALUPE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="72" width="72" height="20" uuid="fd96e59e-78a0-4817-8a56-f140c4d8ee35"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Sinovac_BARANGAY_III}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="112" width="72" height="20" uuid="08bccace-f0f8-4bbb-86aa-e382b5b11377"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Sinovac_BARANGAY_PUNAO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="132" width="72" height="20" uuid="c84ece17-1bb0-448a-9555-eff55f135be0"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Sinovac_BARANGAY_PROSPERIDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="152" width="72" height="20" uuid="63d0c0c1-c8fb-405f-9a64-378022323130"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Sinovac_BARANGAY_RIZAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="172" width="72" height="20" uuid="4fc16e2d-f68a-4378-a6c6-bb987e81c42d"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Sinovac_BARANGAY_SAN_JUAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="192" width="72" height="20" uuid="e0e950bb-28e4-4eba-8fd3-36bb2ee236db"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Sinovac_BARANGAY_QUEZON}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="212" width="72" height="20" uuid="6c3330c6-3908-4824-8e0a-13787a26c13a"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Sinovac_CITY_HEALTH_OFFICE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="232" width="72" height="20" uuid="c8167b7d-1a40-453e-9619-b65ba5169ee1"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Sinovac_CITY_HOSPITAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="252" width="72" height="20" uuid="f3eacfdc-0f11-4756-9c48-f188790876fb"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Sinovac_DOCTORS_HOSPITAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="72" width="81" height="20" uuid="5d935162-e4e3-46ba-af00-f3f85b5e9b7c"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Astrazeneca_BARANGAY_III}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="92" width="81" height="20" uuid="ced10ab4-f6ad-4915-927f-60b1b1ab8680"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Astrazeneca_BARANGAY_GUADALUPE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="112" width="81" height="20" uuid="101ea69e-70f4-460f-8f22-f0912634ce1a"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Astrazeneca_BARANGAY_PUNAO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="132" width="81" height="20" uuid="b74cf096-d95c-4c63-a915-19f45071a2b0"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Astrazeneca_BARANGAY_PROSPERIDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="152" width="81" height="20" uuid="654deb03-997e-42c7-b8da-4c14e19a38dc"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Astrazeneca_BARANGAY_RIZAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="172" width="81" height="20" uuid="0bd7e03d-ad9e-4287-848e-5e4ca6d002a8"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Astrazeneca_BARANGAY_SAN_JUAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="192" width="81" height="20" uuid="29b7448c-74ce-4e9f-b89f-94e7e3d4790d"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Astrazeneca_BARANGAY_QUEZON}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="212" width="81" height="20" uuid="a2cd835a-1bbb-473b-a372-c099c04cde89"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Astrazeneca_CITY_HEALTH_OFFICE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="232" width="81" height="20" uuid="c15bd5b7-e2e2-4f4a-a858-220e6d94f6c4"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Astrazeneca_CITY_HOSPITAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="252" width="81" height="20" uuid="8c6e268a-6501-43c2-9dae-89dd73c80f39"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Astrazeneca_DOCTORS_HOSPITAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="789" y="72" width="138" height="20" uuid="d58a8360-81fc-46f5-b6e3-21e0045e3799"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TOTAL_BARANGAY_III}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="789" y="92" width="138" height="20" uuid="42d79362-1a4e-4e7f-8b56-b1ee10bd251a"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TOTAL_BARANGAY_GUADALUPE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="789" y="112" width="138" height="20" uuid="77935d7e-286c-46fa-83c6-1dce656aea62"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TOTAL_BARANGAY_PUNAO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="789" y="132" width="138" height="20" uuid="6d96d185-ebcc-47a9-bc14-c7e130302f29"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TOTAL_BARANGAY_PROSPERIDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="789" y="152" width="138" height="20" uuid="06aa234c-e08b-447a-80c8-11f273b356fd"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TOTAL_BARANGAY_RIZAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="789" y="172" width="138" height="20" uuid="55f28a12-c64f-4982-8cc4-56b65f48625a"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TOTAL_BARANGAY_SAN_JUAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="789" y="212" width="138" height="20" uuid="efec7e73-b9f8-465a-a7f2-23ecb639f840"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TOTAL_CITY_HEALTH_OFFICE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="789" y="192" width="138" height="20" uuid="7d4be4e2-e74c-44fd-9876-12b46659eb78"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TOTAL_BARANGAY_QUEZON}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="789" y="232" width="138" height="20" uuid="656bc6dc-cbd6-47a6-b1fc-3f75b283b43f"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TOTAL_CITY_HOSPITAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="789" y="252" width="138" height="20" uuid="55c531f0-43ed-40ae-93d3-9291cb7525cb"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TOTAL_DOCTORS_HOSPITAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="39" y="272" width="251" height="20" uuid="f367c4ef-7619-48dc-8441-a501acface32"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[TOTAL DOSES]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="376" y="272" width="72" height="20" uuid="c0310629-daac-45e4-98be-10ed6d5124ae"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Sinovac}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="272" width="81" height="20" uuid="12bdef2f-830d-4064-8bf7-133b40921cbc"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Astrazeneca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="789" y="272" width="138" height="20" uuid="7eaffc3e-ebd4-4b4e-a079-873d20e1c0a0"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="529" y="20" width="67" height="32" uuid="06ae6475-75e8-45c8-b7a2-c638e2ebe286"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Deferral]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="596" y="20" width="63" height="32" uuid="ca069802-c90c-44a3-ac3b-85088e5ffbf6"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Refusal]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="529" y="72" width="67" height="20" uuid="46a7ae6c-591c-4a9c-811e-2906662379df">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{deferral_BARANGAY_III}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="529" y="92" width="67" height="20" uuid="5f6627b6-776a-4e69-9a49-dc18965f42e4">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{deferral_BARANGAY_GUADALUPE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="529" y="112" width="67" height="20" uuid="a0020548-5d3f-46ea-a201-da5b37fc098c">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{deferral_BARANGAY_PUNAO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="529" y="132" width="67" height="20" uuid="923b6b42-35ab-41f2-beec-6a121870ca73">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{deferral_BARANGAY_PROSPERIDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="529" y="152" width="67" height="20" uuid="55c14331-e9db-4b31-a928-8f7405805a43">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{deferral_BARANGAY_RIZAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="529" y="172" width="67" height="20" uuid="ec59bf47-a493-4eb3-acf3-8e2402f608c5">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{deferral_BARANGAY_SAN_JUAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="529" y="192" width="67" height="20" uuid="8a75d849-f4df-4591-b10f-5004d7d08bba">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{deferral_BARANGAY_QUEZON}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="529" y="212" width="67" height="20" uuid="239a3fc2-538e-4960-a0f7-25325cb5c601">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{deferral_CITY_HEALTH_OFFICE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="529" y="232" width="67" height="20" uuid="1f3df16e-b0ef-44e8-947a-d3270300d565">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{deferral_CITY_HOSPITAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="529" y="252" width="67" height="20" uuid="5f16f5fb-8f2e-483f-a556-4c7734e59a8e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{deferral_DOCTORS_HOSPITAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="529" y="272" width="67" height="20" uuid="ad1c5460-bae9-4633-9c33-2a35b67af8ef">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Deferral}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="596" y="72" width="63" height="20" uuid="eab7f785-5740-4fff-be31-9932f98e8138">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{refusal_BARANGAY_III}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="596" y="92" width="63" height="20" uuid="370c5267-0ce5-49be-959b-969f5a1ec454">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{refusal_BARANGAY_GUADALUPE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="596" y="112" width="63" height="20" uuid="f26b613b-d52e-4b0e-8602-0894883dd7a0">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{refusal_BARANGAY_PUNAO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="596" y="132" width="63" height="20" uuid="2e7e3893-863a-4217-b8c0-eed5fe717d5b">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{refusal_BARANGAY_PROSPERIDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="596" y="152" width="63" height="20" uuid="0e4a01dc-e897-4117-b419-c380405d791b">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{refusal_BARANGAY_RIZAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="596" y="172" width="63" height="20" uuid="67ec6dc7-652a-4869-af88-d319f53ef90c">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{refusal_BARANGAY_SAN_JUAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="596" y="192" width="63" height="20" uuid="b50916dc-1ae1-4b59-bd48-77b84ee2d1e7">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{refusal_BARANGAY_QUEZON}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="596" y="212" width="63" height="20" uuid="63a110b4-c674-4796-baa3-ff41ab2c903f">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{refusal_CITY_HEALTH_OFFICE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="596" y="232" width="63" height="20" uuid="091ad8bc-c8af-4667-b7c0-720f1a186f84">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{refusal_CITY_HOSPITAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="596" y="252" width="63" height="20" uuid="541b2590-78f8-4ca4-82cb-be85ee1245a1">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{refusal_DOCTORS_HOSPITAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="596" y="272" width="63" height="20" uuid="ba11bdfb-9108-4045-9b18-17e7ba33fb4c">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Refusal_Reasons}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="290" y="20" width="86" height="32" uuid="f57cffeb-ec87-42b5-9d3d-7363ad2ed963">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Eligible Population]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="290" y="92" width="86" height="20" uuid="cdbd0605-12ad-43de-9aba-899bb8b5fc9b"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{eligible_BARANGAY_GUADALUPE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="72" width="86" height="20" uuid="c43b8c5f-7dc9-49ea-b964-d9c7f4ed75d0"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{eligible_BARANGAY_III}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="112" width="86" height="20" uuid="d779bcaa-0d75-4248-9eae-acac1e572ec4"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{eligible_BARANGAY_PUNAO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="132" width="86" height="20" uuid="04cd7b7c-4316-472f-8606-05005a85cc7b"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{eligible_BARANGAY_PROSPERIDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="152" width="86" height="20" uuid="55acc21a-8bff-451c-b830-739463a727a2"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{eligible_BARANGAY_RIZAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="172" width="86" height="20" uuid="a1587a9f-0835-4bc6-a310-cff47b6a7cd3"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{eligible_BARANGAY_SAN_JUAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="192" width="86" height="20" uuid="8160da5e-333d-4f6b-9bd4-04046226dda8"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{eligible_BARANGAY_QUEZON}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="212" width="86" height="20" uuid="c9ad4423-1dff-46cd-a099-ad3dbc0779de"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{eligible_CITY_HEALTH_OFFICE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="232" width="86" height="20" uuid="de1398d7-8f65-4771-95e3-319b3e39897b"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{eligible_CITY_HOSPITAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="252" width="86" height="20" uuid="bcd8cb8c-06b1-41c8-8ad6-753a02e33893"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{eligible_DOCTORS_HOSPITAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="272" width="86" height="20" uuid="56c669e3-4743-45ab-85f4-9636b99f814d"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Eligible_population}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="726" y="212" width="63" height="20" uuid="32d0e3be-b5a9-44fc-ba5c-3d60bccc0cce">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{2ndDose_CITY_HEALTH_OFFICE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="726" y="172" width="63" height="20" uuid="e81103cd-5df3-4fc3-9098-286509b37edc">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{2ndDose_BARANGAY_SAN_JUAN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="726" y="192" width="63" height="20" uuid="fedd7ac8-5cce-44aa-9471-4b15f4c5e444">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{2ndDose_BARANGAY_QUEZON}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="726" y="272" width="63" height="20" uuid="16a36ba5-f8f5-4c5e-a946-85880bbf5886">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL_2ndDose}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="726" y="252" width="63" height="20" uuid="3f628c20-aeda-4380-aa0e-70db048f6454">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{2ndDose_DOCTORS_HOSPITAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="659" y="132" width="67" height="20" uuid="0c99f4c3-6093-4130-b7da-da946c499403">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{1stDose_BARANGAY_PROSPERIDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="659" y="172" width="67" height="20" uuid="ff78c057-76ef-40c0-a66e-1820163b3c4e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{1stDose_BARANGAY_SAN_JUAN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="659" y="20" width="67" height="32" uuid="2c9548b9-3067-40d2-b728-fa64e23dcd76"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[1st Dose]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="726" y="232" width="63" height="20" uuid="05ba844c-a6fd-4dac-bcf8-e5ef86e12f36">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{2ndDose_CITY_HOSPITAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="659" y="192" width="67" height="20" uuid="71d8d149-b7f6-40b4-90ff-7756581d2801">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{1stDose_BARANGAY_QUEZON}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="659" y="272" width="67" height="20" uuid="6a3b6826-bc30-45bf-b8cd-c141146bcd8e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL_1stDose}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="726" y="92" width="63" height="20" uuid="092ac2cd-12b8-4e4e-8096-27b5ec0f8744">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{2ndDose_BARANGAY_GUADALUPE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="659" y="252" width="67" height="20" uuid="01a5f06f-2d61-40bc-8ac9-d4ef2c21f7ac">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{1stDose_DOCTORS_HOSPITAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="659" y="232" width="67" height="20" uuid="e922896f-36ae-4fa0-bdf4-c7fc8894e2a3">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{1stDose_CITY_HOSPITAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="659" y="72" width="67" height="20" uuid="e0afc7c8-36cf-4abf-93c5-3e6e90c0267c">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{1stDose_BARANGAY_III}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="659" y="92" width="67" height="20" uuid="2286e100-be1d-4022-997a-b2961a46e678">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{1stDose_BARANGAY_GUADALUPE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="726" y="132" width="63" height="20" uuid="b7b4b89e-1e52-4439-8bc7-8df0dcb94aa9">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{2ndDose_BARANGAY_PROSPERIDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="659" y="152" width="67" height="20" uuid="de3f199d-d1d8-4171-8938-349cffdcdbe9">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{1stDose_BARANGAY_RIZAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="726" y="72" width="63" height="20" uuid="e881d4db-d6a8-4a60-ba79-673f9adb6994">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{2ndDose_BARANGAY_III}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="726" y="152" width="63" height="20" uuid="c1b3a191-9421-46d7-ba45-86564b2cf694">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{2ndDose_BARANGAY_RIZAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="659" y="212" width="67" height="20" uuid="48aeeee0-6206-42a2-9f85-1deca1b7f62d">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{1stDose_CITY_HEALTH_OFFICE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="659" y="112" width="67" height="20" uuid="13351f06-748f-4ea2-8bbd-0cd06fa0bd6d">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{1stDose_BARANGAY_PUNAO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="726" y="20" width="63" height="32" uuid="7110eaa4-c989-4fda-8fa3-60f620d3277f"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[2nd Dose]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="726" y="112" width="63" height="20" uuid="bb7c98a8-0487-4c56-acbc-44d1935cd905">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{2ndDose_BARANGAY_PUNAO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="39" y="52" width="251" height="20" uuid="7d4e9047-7290-45ec-bc43-c1d09fea5521"/>
+				<box leftPadding="2">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[BARANGAY I COVERED COURT]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="376" y="52" width="72" height="20" uuid="009a649e-7877-48b4-9b4e-dd0fed058966"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Sinovac_BARANGAY_I_COVERED_COURT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="52" width="81" height="20" uuid="7db3d19d-20b0-43a9-8f79-1d463649e476"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Astrazeneca_BARANGAY_I_COVERED_COURT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="789" y="52" width="138" height="20" uuid="d5ad0181-6f6b-4608-b271-34b7b7e31fc5"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TOTAL_BARANGAY_I_COVERED_COURT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="529" y="52" width="67" height="20" uuid="a7148217-c6db-4651-995f-b35c75129f4c">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{deferral_BARANGAY_I_COVERED_COURT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="596" y="52" width="63" height="20" uuid="f2ab86e4-d432-453c-95e0-3abd316671fe">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{refusal_BARANGAY_I_COVERED_COURT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="52" width="86" height="20" uuid="a546fccc-699a-404c-a64d-2f658ad996ca"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{eligible_BARANGAY_I_COVERED_COURT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="659" y="52" width="67" height="20" uuid="c75cde94-b739-449e-a448-46e6dcf86865">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{1stDose_BARANGAY_I_COVERED_COURT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="726" y="52" width="63" height="20" uuid="bb46ef64-9c61-4d20-a9b5-44962d1fdf20">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{2ndDose_BARANGAY_I_COVERED_COURT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+</jasperReport>
