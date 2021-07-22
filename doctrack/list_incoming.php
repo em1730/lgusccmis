@@ -117,105 +117,111 @@ $get_all_doctype_data->execute();
             </table>
           </div>
           <!-- /.box-body -->
-          </form>
+         
         </div>
 
-      </section>
+      </section><br>
+
+
+
+      <div class="col-md-10">
+        <input type="hidden" id="department" readonly class="form-control" name="department" placeholder="Department" value="<?php echo $department; ?>">
+      </div>
+
+      <!-- modal here delete -->
+      <div class="modal fade" id="myModal" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Print Routing Slip</h4>
+            </div>
+            <form method="POST" action="<?php htmlspecialchars("PHP_SELF") ?>">
+              <div class="modal-body">
+                <div class="box-body">
+                  <div class="form-group">
+                    <label>Please enter Document Number:</label>
+                    <input type="text" name="modal_docno" id="modal_docno" class="form-control" value="<?php echo $docno; ?>" required>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left bg-olive" data-dismiss="modal">No</button>
+                <!-- <button type="submit" name="delete_user" class="btn btn-danger">Yes</button> -->
+                <a href="javascript:;" onclick="this.href='../plugins/TCPDF/User/routing.php?docno=' + document.getElementById('modal_docno').value" target="blank">
+                  <input type="button" name="delete_user" class="btn btn-danger" value="Yes">
+              </div>
+            </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+
+
+
+      <!-- Control Sidebar -->
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <div class="modal-header">
+          <h5 class="modal-title">SETTINGS</h5>
+        </div>
+
+        <div class="modal-body" <?php if ($department == 'CBO' || $department == 'ACCTG') { ?> style="visibility:visible" <?php } else { ?> style="display:none" <?php } ?>>
+          <div class="box-body">
+            <div class="form-group">
+              <h6 class="modal-title">Please enter Document No.:</h6>
+              <input type="text" name="docno" id="docno" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label>Date:</label>
+              <label id="lblDate"></label>
+            </div>
+            <div class="form-group">
+              <label>Type:</label>
+              <label id="lblType"></label>
+            </div>
+            <div class="form-group">
+              <label>Change Document Type:</label>
+              <label id="lblRemarks"></label>
+              <div class="col-md-14">
+                <select class="form-control select2" id="select_type" readonly style="width: 100%;" name="type" value="<?php echo $type; ?>">
+                  <option>Please select...</option>
+                  <?php while ($get_doctype = $get_all_doctype_data->fetch(PDO::FETCH_ASSOC)) { ?>
+
+                    <?php
+                    //if $get_author naa value, check nato if equals sa $get_author1['fullname']
+                    //if equals, put 'selected' sa option
+                    $selected = ($type == $get_doctype['objid']) ? 'selected' : '';
+                    ?>
+
+                    <option <?= $selected; ?> value="<?php echo $get_doctype['objid']; ?>"><?php echo $get_doctype['description']; ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
+
+            <div class="box-footer" align="center">
+              <input type="button" id="change" name="submit" class="btn btn-success" value="CHANGE">
+            </div>
+
+            <!-- <div class="form-group">
+                    <h5 class="blinking"  id="lblMessage"> </h5>
+                    </div> -->
+
+          </div>
+        </div>
+      </aside>
+
+
     </div>
+
+
 
 
     <?php include('footer.php') ?>
 
-
-    <div class="col-md-10">
-      <input type="hidden" id="department" readonly class="form-control" name="department" placeholder="Department" value="<?php echo $department; ?>">
-    </div>
-
-    <!-- modal here delete -->
-    <div class="modal fade" id="myModal" role="dialog" data-backdrop="static" data-keyboard="false">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Print Routing Slip</h4>
-          </div>
-          <form method="POST" action="<?php htmlspecialchars("PHP_SELF") ?>">
-            <div class="modal-body">
-              <div class="box-body">
-                <div class="form-group">
-                  <label>Please enter Document Number:</label>
-                  <input type="text" name="modal_docno" id="modal_docno" class="form-control" value="<?php echo $docno; ?>" required>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default pull-left bg-olive" data-dismiss="modal">No</button>
-              <!-- <button type="submit" name="delete_user" class="btn btn-danger">Yes</button> -->
-              <a href="javascript:;" onclick="this.href='../plugins/TCPDF/User/routing.php?docno=' + document.getElementById('modal_docno').value" target="blank">
-                <input type="button" name="delete_user" class="btn btn-danger" value="Yes">
-            </div>
-          </form>
-        </div>
-        <!-- /.modal-content -->
-      </div>
-      <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-
-
-
-    <!-- Control Sidebar -->
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <div class="modal-header">
-        <h5 class="modal-title">SETTINGS</h5>
-      </div>
-
-      <div class="modal-body" <?php if ($department == 'CBO' || $department == 'ACCTG') { ?> style="visibility:visible" <?php } else { ?> style="display:none" <?php } ?>>
-        <div class="box-body">
-          <div class="form-group">
-            <h6 class="modal-title">Please enter Document No.:</h6>
-            <input type="text" name="docno" id="docno" class="form-control">
-          </div>
-
-          <div class="form-group">
-            <label>Date:</label>
-            <label id="lblDate"></label>
-          </div>
-          <div class="form-group">
-            <label>Type:</label>
-            <label id="lblType"></label>
-          </div>
-          <div class="form-group">
-            <label>Change Document Type:</label>
-            <label id="lblRemarks"></label>
-            <div class="col-md-14">
-              <select class="form-control select2" id="select_type" readonly style="width: 100%;" name="type" value="<?php echo $type; ?>">
-                <option>Please select...</option>
-                <?php while ($get_doctype = $get_all_doctype_data->fetch(PDO::FETCH_ASSOC)) { ?>
-
-                  <?php
-                  //if $get_author naa value, check nato if equals sa $get_author1['fullname']
-                  //if equals, put 'selected' sa option
-                  $selected = ($type == $get_doctype['objid']) ? 'selected' : '';
-                  ?>
-
-                  <option <?= $selected; ?> value="<?php echo $get_doctype['objid']; ?>"><?php echo $get_doctype['description']; ?></option>
-                <?php } ?>
-              </select>
-            </div>
-          </div>
-
-          <div class="box-footer" align="center">
-            <input type="button" id="change" name="submit" class="btn btn-success" value="CHANGE">
-          </div>
-
-          <!-- <div class="form-group">
-                    <h5 class="blinking"  id="lblMessage"> </h5>
-                    </div> -->
-
-        </div>
-      </div>
-    </aside>
 
   </div>
 

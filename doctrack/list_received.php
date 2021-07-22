@@ -196,7 +196,7 @@ $get_all_messages1_data->execute();
       </div>
 
 
-    </div>
+    </div><br>
 
     <?php include('footer.php') ?>
 
