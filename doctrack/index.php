@@ -6,6 +6,7 @@ session_start();
 $user_id = $_SESSION['id'];
 $docno = '';
 
+
 if (!isset($_SESSION['id'])) {
   header('location:../index.php');
 } else {
@@ -111,40 +112,37 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
 
 ?>
 
+
+
+<!DOCTYPE html>
+<html>
+
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>LGUSCC DTS | Dashboard</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <?php include('heading.php') ?>
+
+
+  <?php include('heading.php'); ?>
+
 
 </head>
 
 
-
-
-
-
 <body class="hold-transition sidebar-mini">
 
-
   <div class="wrapper">
+    <?php include('sidebar.php') ?>
 
-    <?php include('sidebar.php'); ?>
 
     <div class="content-wrapper">
-      <div class="content-header">
 
-
-      </div>
+      <div class="content-header"></div>
       <?php include('dashboard.php') ?>
-
-
       <section class="content">
+
 
         <div class="col-md-20">
           <div class="card card-primary card-outline">
@@ -228,32 +226,39 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
           <!-- /. box -->
         </div>
 
+        <br>
 
 
       </section>
 
-      <aside class="control-sidebar control-sidebar-dark">
-        <div class="modal-header">
-          <h4 class="modal-title">SETTINGS</h4>
-        </div>
+    </div>
 
-        <div class="modal-body">
+
+    <?php include('footer.php') ?>
+
+
+    <aside class="control-sidebar control-sidebar-dark">
+      <div class="modal-header">
+        <h4 class="modal-title">SETTINGS</h4>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="box-body">
+          <div class="form-group" <?php if ($department != 'CBO') { ?> style="display:none" <?php } ?>>
+            <h6 class="modal-title">Update OBR No:</h6>
+            <input type="text" name="update_obr" id="update_obr" class="form-control" value="<?php echo
+                                                                                              $settings_obr; ?>" required>
+          </div>
 
           <div class="box-body">
-            <div class="form-group" <?php if ($department != 'CBO') { ?> style="display:none" <?php } ?>>
-              <h6 class="modal-title">Update OBR No:</h6>
-              <input type="text" name="update_obr" id="update_obr" class="form-control" value="<?php echo
-                                                                                                $settings_obr; ?>" required>
+            <div class="form-group" <?php if ($department != 'ACCTG') { ?> style="display:none" <?php } ?>>
+              <h6 class="modal-title">Update DV No:</h6>
+              <input type="text" name="update_dv" id="update_dv" class="form-control" value="<?php echo
+                                                                                              $settings_dv; ?>" required>
             </div>
 
-            <div class="box-body">
-              <div class="form-group" <?php if ($department != 'ACCTG') { ?> style="display:none" <?php } ?>>
-                <h6 class="modal-title">Update DV No:</h6>
-                <input type="text" name="update_dv" id="update_dv" class="form-control" value="<?php echo
-                                                                                                $settings_dv; ?>" required>
-              </div>
-
-              <!-- <div class="form-group">
+            <!-- <div class="form-group">
                     <label>Date:</label>
                     <label id="lblDate"></label>
                     </div>
@@ -286,61 +291,11 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
                     <h5 class="blinking"  id="lblMessage"> </h5>
                     </div> -->
 
-            </div>
           </div>
-      </aside>
-    </div>
-
-
-    <!-- Navbar -->
-
-    <!-- /.navbar -->
-
-
-    <!-- /.col -->
-  </div>
-
-
-  <div class="modal fade" id="myModal" role="dialog" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Print Routing Slip</h4>
         </div>
-        <form method="POST" action="<?php htmlspecialchars("PHP_SELF") ?>">
-          <div class="modal-body">
-            <div class="box-body">
-              <div class="form-group">
-                <label>Please enter Document Number:</label>
-                <input type="text" name="modal_docno" id="modal_docno" class="form-control" value="<?php echo
-                                                                                                    $docno; ?>" required>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-
-            <button type="button" class="btn btn-default pull-left bg-olive" data-dismiss="modal">No</button>
-            <!-- <button type="submit" name="delete_user" class="btn btn-danger">Yes</button> -->
-            <a href="javascript:;" onclick="this.href='../plugins/TCPDF/User/routing.php?docno=' + document.getElementById('modal_docno').value" target="blank">
-
-              <input type="button" name="delete_user" class="btn btn-danger" value="Yes">
-          </div>
-        </form>
-      </div>
-
-    </div>
+    </aside>
 
   </div>
-
-  <?php include('footer.php'); ?>
-
-
-  <!-- Control Sidebar -->
-
-
-  <!-- /.control-sidebar -->
-
-
 
   <?php include('scripts.php') ?>
 
@@ -454,7 +409,6 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
 
     });
   </script>
-
 </body>
 
 </html>

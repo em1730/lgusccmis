@@ -1,88 +1,32 @@
 <?php
 
 
+include('../config/db_config.php');
 
 
-$get_user_sql = "SELECT * FROM tbl_users WHERE user_id = :id";
-$get_user_data = $con->prepare($get_user_sql);
-$get_user_data->execute([':id' => $user_id]);
-while ($result = $get_user_data->fetch(PDO::FETCH_ASSOC)) {
 
-    $user_name = $result['username'];
-    $department = $result['department'];
+$docno = '';
+// include ('includes/head.php');
+
+if (!isset($_SESSION['id'])) {
+    header('location:../index.php');
+} else {
+}
+//fetch user from database
+$get_user_sql = "SELECT * FROM tbl_users where user_id = :id";
+$user_data = $con->prepare($get_user_sql);
+$user_data->execute([':id' => $user_id]);
+while ($result = $user_data->fetch(PDO::FETCH_ASSOC)) {
+
+
     $db_first_name = $result['first_name'];
     $db_middle_name = $result['middle_name'];
     $db_last_name = $result['last_name'];
     $db_email_ad = $result['email'];
     $db_contact_number = $result['contact_no'];
     $db_user_name = $result['username'];
+    $department = $result['department'];
 }
-
-
-
-//count incoming documents
-$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status in ('CREATED','FORWARDED') and destination = '$department'";
-$get_noofdocs_data = $con->prepare($get_noofdocs_sql);
-$get_noofdocs_data->execute();
-$get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
-while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
-    $incoming_count =  $result1['total'];
-}
-
-
-//count incoming documents
-$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status in ('CREATED','FORWARDED') and destination = '$department'";
-$get_noofdocs_data = $con->prepare($get_noofdocs_sql);
-$get_noofdocs_data->execute();
-$get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
-while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
-    $incoming_count =  $result1['total'];
-}
-
-
-//count incoming documents
-$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status = 'RECEIVED' and destination = '$department'";
-$get_noofdocs_data = $con->prepare($get_noofdocs_sql);
-$get_noofdocs_data->execute();
-$get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
-while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
-    $received_count =  $result1['total'];
-}
-
-$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` where origin = '$department'";
-$get_noofdocs_data = $con->prepare($get_noofdocs_sql);
-$get_noofdocs_data->execute();
-$get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
-while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
-    $outgoing_count =  $result1['total'];
-}
-
-$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status = 'ARCHIVED' and destination = '$department'";
-$get_noofdocs_data = $con->prepare($get_noofdocs_sql);
-$get_noofdocs_data->execute();
-$get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
-while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
-    $archived_count =  $result1['total'];
-}
-
-
-// count new messages
-$get_all_message_sql = "SELECT count(*) as total FROM tbl_message where receiver = $user_id and status = 'PENDING'";
-$get_all_message_data = $con->prepare($get_all_message_sql);
-$get_all_message_data->execute();
-while ($result1 = $get_all_message_data->fetch(PDO::FETCH_ASSOC)) {
-    $message_count =  $result1['total'];
-}
-
-// //select all messages for notification
-$get_all_messages_sql = "SELECT * FROM tbl_message where (receiver = $user_id or receiver = '0') and status = 'PENDING' ";
-$get_all_messages_data = $con->prepare($get_all_messages_sql);
-$get_all_messages_data->execute();
-
-// //select all messages for email
-$get_all_messages1_sql = "SELECT * FROM tbl_message where receiver = $user_id or receiver ='0'";
-$get_all_messages1_data = $con->prepare($get_all_messages1_sql);
-$get_all_messages1_data->execute();
 
 
 
@@ -90,7 +34,8 @@ $get_all_messages1_data->execute();
 
 
 ?>
-<nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+
+<nav class="main-header navbar navbar-expand bg-success navbar-light border-bottom">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -198,34 +143,56 @@ $get_all_messages1_data->execute();
     </ul>
 
 
+
 </nav>
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-        <img src="../dist/img/scclogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
-        <span class="brand-text font-weight-light">LGUSSC | DTS</span>
-    </a>
+
+
+
+
+    <!-- <a href="index" class="brand-link">  
+      <img src="../dist/img/scdrrmo_logo.png" class="img-circle elevation-2" width="40px">   
+    </a> -->
 
     <!-- Sidebar -->
-    <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="../dist/img/logo.png" class="img-circle elevation-2" alt="User Image">
-            </div>
-            <div class="info">
-                <a href="profile.php" class="d-block"><?php echo $db_first_name . " " . $db_middle_name . " " . $db_last_name ?> </a>
-            </div>
+
+    <!-- Sidebar user panel (optional) -->
+    <div class="greenBG">
+
+        <div class="sidebar bg-success">
+            <br>
+            <img src="../dist/img/scclogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-4">
+            <span class="brand-text font-weight-bold" style="font-size: 20px;">LGUSSC | DTS</span>
+
+
+            <br>
+            <label style="color:white">
+                <br>
+                &nbsp; &nbsp;&nbsp;
+                <?php echo strtoupper($db_first_name . ' ' . $db_middle_name . ' ' . $db_last_name) ?>
+
+            </label>
+            <br>
+
+
+
         </div>
 
+    </div>
+
+
+    <div class="sidebar">
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
+
+
                 <li class="nav-item">
-                    <a href="index.php" class="nav-link active">
+                    <a href="index.php" class="nav-link ">
                         <i class="nav-icon fa fa-th"></i>
                         <p>
                             Dashboard
@@ -234,205 +201,19 @@ $get_all_messages1_data->execute();
                     </a>
                 </li>
 
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-dashboard"></i>
-                        <p>
-                            TRANSACTIONS
-                            <i class="right fa fa-angle-left"></i>
-                        </p>
-                    </a>
-
-                    <ul class="nav nav-treeview">
-
-                        <li class="nav-item">
-                            <a href="add_outgoing.php" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Forward</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="receive_incoming_other.php" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Receive</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="release_document.php" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Release</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="archive_document.php" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Archive</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="track_documents.php" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Track Documents</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="force_receive.php" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Force Receive</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-dashboard"></i>
-                        <p>
-                            MASTER LISTS
-                            <i class="right fa fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="list_joborder" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Job Orders</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="list_suppliers" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Suppliers</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="list_document_type" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Document Types</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="list_department" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Departments</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="list_document_type" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Users</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link ">
-                        <i class="nav-icon fa fa-dashboard"></i>
-                        <p>
-                            REPORTS
-                            <i class="right fa fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="receiving_copy" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Receiving Copy</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#myModal" data-toggle="modal" data-target="#myModal" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Routing Slip</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link ">
-                        <i class="nav-icon fa fa-dashboard"></i>
-                        <p>
-                            SETTINGS
-                            <i class="right fa fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="add_document" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Add Document Type</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="add_department" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Add Department</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="add_user " class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Add User</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="add_suppliers " class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Add Suppliers</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="add_regular " class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Add Regular Employee</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="add_joborder " class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Add Job Order</p>
-                            </a>
-                        </li>
 
 
-                    </ul>
-                </li>
 
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link ">
-                        <i class="nav-icon fa fa-dashboard"></i>
-                        <p>
-                            SYTEM
-                            <i class="right fa fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="../lockscreen.php" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>LOCK</p>
-                            </a>
-                        </li>
 
-                        <li class="nav-item">
-                            <a href="../logout.php" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>SIGN OUT</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+
+
+
             </ul>
-
         </nav>
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
+
+
+
 </aside>

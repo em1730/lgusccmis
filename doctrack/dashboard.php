@@ -71,5 +71,3 @@
 
   <!-- /.box -->
 </div>
-<!-- TO DO List -->
-<!-- Main content -->
