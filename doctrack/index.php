@@ -32,35 +32,6 @@ while ($result = $user_data->fetch(PDO::FETCH_ASSOC)) {
 
 
 
-// $get_all_document_sql = "SELECT * FROM tbl_ledger";
-// $get_all_document_data = $con->prepare($get_all_document_sql);
-// $get_all_document_data->execute();  
-
-//count incoming documents
-
-
-// count new messages
-
-
-// //select all messages for notification
-$get_all_messages_sql = "SELECT * FROM tbl_message where (receiver = $user_id or receiver = '0') and status = 'PENDING' ";
-$get_all_messages_data = $con->prepare($get_all_messages_sql);
-$get_all_messages_data->execute();
-
-// //select all messages for email
-$get_all_messages1_sql = "SELECT * FROM tbl_message where receiver = $user_id or receiver ='0'";
-$get_all_messages1_data = $con->prepare($get_all_messages1_sql);
-$get_all_messages1_data->execute();
-
-//select all from settings
-$get_all_settings_sql = "SELECT * FROM tbl_settings";
-$get_all_settings_data = $con->prepare($get_all_settings_sql);
-$get_all_settings_data->execute();
-$get_all_settings_data->setFetchMode(PDO::FETCH_ASSOC);
-while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
-  $settings_obr =  $result['obrno'];
-  $settings_dv = $result['dvno'];
-}
 
 
 ?>
