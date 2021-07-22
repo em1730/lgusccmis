@@ -1,3 +1,65 @@
+<?php
+
+include('../config/db_config.php');
+
+
+$user_id = $_SESSION['id'];
+$docno = '';
+
+
+if (!isset($_SESSION['id'])) {
+  header('location:../index.php');
+} else {
+}
+
+
+
+$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status in ('CREATED','FORWARDED') and destination = '$department'";
+$get_noofdocs_data = $con->prepare($get_noofdocs_sql);
+$get_noofdocs_data->execute();
+$get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
+while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
+  $incoming_count =  $result1['total'];
+}
+
+//count incoming documents
+$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status in ('CREATED','FORWARDED') and destination = '$department'";
+$get_noofdocs_data = $con->prepare($get_noofdocs_sql);
+$get_noofdocs_data->execute();
+$get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
+while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
+  $incoming_count =  $result1['total'];
+}
+
+
+//count incoming documents
+$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status = 'RECEIVED' and destination = '$department'";
+$get_noofdocs_data = $con->prepare($get_noofdocs_sql);
+$get_noofdocs_data->execute();
+$get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
+while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
+  $received_count =  $result1['total'];
+}
+
+$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` where origin = '$department'";
+$get_noofdocs_data = $con->prepare($get_noofdocs_sql);
+$get_noofdocs_data->execute();
+$get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
+while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
+  $outgoing_count =  $result1['total'];
+}
+
+$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status = 'ARCHIVED' and destination = '$department'";
+$get_noofdocs_data = $con->prepare($get_noofdocs_sql);
+$get_noofdocs_data->execute();
+$get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
+while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
+  $archived_count =  $result1['total'];
+}
+
+?>
+
+
 <div class="container-fluid">
   <!-- Info boxes -->
   <div class="row">
