@@ -37,57 +37,10 @@ while ($result = $user_data->fetch(PDO::FETCH_ASSOC)) {
 // $get_all_document_data->execute();  
 
 //count incoming documents
-$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status in ('CREATED','FORWARDED') and destination = '$department'";
-$get_noofdocs_data = $con->prepare($get_noofdocs_sql);
-$get_noofdocs_data->execute();
-$get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
-while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
-  $incoming_count =  $result1['total'];
-}
-
-//count incoming documents
-$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status in ('CREATED','FORWARDED') and destination = '$department'";
-$get_noofdocs_data = $con->prepare($get_noofdocs_sql);
-$get_noofdocs_data->execute();
-$get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
-while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
-  $incoming_count =  $result1['total'];
-}
-
-
-//count incoming documents
-$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status = 'RECEIVED' and destination = '$department'";
-$get_noofdocs_data = $con->prepare($get_noofdocs_sql);
-$get_noofdocs_data->execute();
-$get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
-while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
-  $received_count =  $result1['total'];
-}
-
-$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` where origin = '$department'";
-$get_noofdocs_data = $con->prepare($get_noofdocs_sql);
-$get_noofdocs_data->execute();
-$get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
-while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
-  $outgoing_count =  $result1['total'];
-}
-
-$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status = 'ARCHIVED' and destination = '$department'";
-$get_noofdocs_data = $con->prepare($get_noofdocs_sql);
-$get_noofdocs_data->execute();
-$get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
-while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
-  $archived_count =  $result1['total'];
-}
 
 
 // count new messages
-$get_all_message_sql = "SELECT count(*) as total FROM tbl_message where receiver = $user_id and status = 'PENDING'";
-$get_all_message_data = $con->prepare($get_all_message_sql);
-$get_all_message_data->execute();
-while ($result1 = $get_all_message_data->fetch(PDO::FETCH_ASSOC)) {
-  $message_count =  $result1['total'];
-}
+
 
 // //select all messages for notification
 $get_all_messages_sql = "SELECT * FROM tbl_message where (receiver = $user_id or receiver = '0') and status = 'PENDING' ";
@@ -226,7 +179,6 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
           <!-- /. box -->
         </div>
 
-        <br>
 
 
       </section>
@@ -235,6 +187,37 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
 
 
     <?php include('footer.php') ?>
+
+    <div class="modal fade" id="myModal" role="dialog" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Print Routing Slip</h4>
+          </div>
+          <form method="POST" action="<?php htmlspecialchars("PHP_SELF") ?>">
+            <div class="modal-body">
+              <div class="box-body">
+                <div class="form-group">
+                  <label>Please enter Document Number:</label>
+                  <input type="text" name="modal_docno" id="modal_docno" class="form-control" value="<?php echo
+                                                                                                      $docno; ?>" required>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+
+              <button type="button" class="btn btn-default pull-left bg-olive" data-dismiss="modal">No</button>
+              <!-- <button type="submit" name="delete_user" class="btn btn-danger">Yes</button> -->
+              <a href="javascript:;" onclick="this.href='../plugins/TCPDF/User/routing.php?docno=' + document.getElementById('modal_docno').value" target="blank">
+
+                <input type="button" name="delete_user" class="btn btn-danger" value="Yes">
+            </div>
+          </form>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
 
 
     <aside class="control-sidebar control-sidebar-dark">
