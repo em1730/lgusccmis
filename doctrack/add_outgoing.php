@@ -37,7 +37,7 @@ while ($result = $user_data->fetch(PDO::FETCH_ASSOC)) {
 
 
 
-include('insert_outgoing.php');
+// include('insert_outgoing.php');
 //include ('insert_ledger.php');
 
 
@@ -88,19 +88,15 @@ $get_all_departments_data->execute();
 
 
         <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Forward Documents</h3>
+          <div class="card-header bg-success">
+            <h3 class="card-title">FORWARD DOCUMENTS</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-
-
-
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" method="post" action="<?php htmlspecialchars("PHP_SELF"); ?>">
+            <form role="form" method="post" action="insert_outgoing.php">
               <div class="box-body">
-                <?php echo $alert_msg; ?>
 
                 <div class="row">
                   <div class="col-md-2" style="text-align: right;padding-top: 5px;">
@@ -122,16 +118,12 @@ $get_all_departments_data->execute();
                         <div class="input-group-addon">
                           <i class="fa fa-calendar"></i>
                         </div>
-                        <input type="text" class="form-control pull-right" id="datepicker" name="date" placeholder="Date Created" value="<?php echo $now->format('m/d/Y');; ?>">
+                        <input type="text" readonly class="form-control pull-right" id="datepicker" name="date" placeholder="Date Created" value="<?php echo $now->format('m/d/Y'); ?>">
                       </div>
                     </div>
                   </div>
                 </div><br>
 
-                <div class="row">
-
-
-                </div><br>
 
                 <div class="row">
                   <div class="col-md-2" style="text-align: right;padding-top: 5px;">
@@ -155,7 +147,7 @@ $get_all_departments_data->execute();
                     <label>Subject/Particulars:</label>
                   </div>
                   <div class="col-md-8">
-                    <textarea rows="5" class="form-control" name="particulars" placeholder="Subject/Particulars" required><?php echo $particulars; ?></textarea>
+                    <textarea rows="5" class="form-control" name="particulars" style=" text-transform: uppercase;" placeholder="Subject/Particulars" required><?php echo $particulars; ?></textarea>
                   </div>
                 </div><br>
 
@@ -200,7 +192,7 @@ $get_all_departments_data->execute();
 
 
                   <div class="col-md-8">
-                    <textarea rows="5" class="form-control" name="remarks" placeholder="Remarks" required><?php echo $remarks; ?></textarea>
+                    <textarea rows="5" style=" text-transform: uppercase;" class="form-control" name="remarks" placeholder="Remarks" required><?php echo $remarks; ?></textarea>
                   </div>
                 </div><br>
 
@@ -214,19 +206,22 @@ $get_all_departments_data->execute();
                     <input type="button" name="cancel" class="btn btn-default" value="Cancel">
                   </a>
                 </div>
+
                 <div class="col-md-10">
                   <input type="hidden" id="department" readonly class="form-control" name="department" placeholder="Department" value="<?php echo $department; ?>">
                 </div>
+
+
+
+                <div class="col-md-10">
+                  <input type="hidden" readonly class="form-control" name="username" placeholder="username" value="<?php echo $user_name; ?>" required>
+                </div>
               </div><br>
 
-              <div class="col-md-10">
-                <input type="hidden" readonly class="form-control" name="username" placeholder="username" value="<?php echo $user_name; ?>" required>
-              </div>
-          </div><br>
+              <!-- /.box-body -->
 
-          <!-- /.box-body -->
-
-          </form>
+            </form>
+          </div>
         </div>
 
 
@@ -332,6 +327,26 @@ $get_all_departments_data->execute();
 
 
   <?php include('scripts.php') ?>
+  
+  <?php
+
+  if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
+
+  ?>
+    <script>
+      swal({
+        title: "<?php echo $_SESSION['status'] ?>",
+        // text: "You clicked the button!",
+        icon: "<?php echo $_SESSION['status_code'] ?>",
+        button: "OK. Done!",
+      });
+    </script>
+
+  <?php
+    unset($_SESSION['status']);
+  }
+  ?>
+
 
 
   <script>

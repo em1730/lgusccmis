@@ -144,6 +144,7 @@ $get_all_unit_data->execute();
                             <option value="<?php echo $get_unit['code']; ?>"><?php echo $get_unit['itemunit']; ?></option>
                         <?php } ?>
                      </select>
+                     
                    </div>
                 </div><br>
 

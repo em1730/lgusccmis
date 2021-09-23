@@ -114,8 +114,13 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
         </li>
+
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="send_email.php" class="nav-link">Contact</a>
+            <a href="index.php" class="nav-link "> Dashboard </a>
+        </li>
+  
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="send_email.php" class="nav-link">Contact </a>
         </li>
 
         <li class="nav-item d-none d-sm-inline-block">
@@ -236,13 +241,7 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
 
 
                 <li class="nav-item">
-                    <a href="index.php" class="nav-link ">
-                        <i class="nav-icon fa fa-th"></i>
-                        <p>
-                            Dashboard
-                            <!-- <span class="right badge badge-danger">New</span> -->
-                        </p>
-                    </a>
+
                 </li>
                 <div>
 
@@ -260,6 +259,24 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
                             <p> &nbsp; Forward</p>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="release_document.php" class="nav-link sidebar-link">
+                            &nbsp;
+                            <i class="nav-icon fa fa-question icons"></i>
+                            <p> &nbsp; Release</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a href="archive_document.php" class="nav-link sidebar-link">
+                            &nbsp;
+                            <i class="nav-icon fa fa-question icons"></i>
+                            <p> &nbsp; Archive</p>
+                        </a>
+                    </li>
+
 
 
 
@@ -337,12 +354,7 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
                                 <p>Forward</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="receive_incoming_other" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Receive</p>
-                            </a>
-                        </li>
+                     
                         <li class="nav-item">
                             <a href="release_document" class="nav-link">
                                 <i class="fa fa-circle-o nav-icon"></i>

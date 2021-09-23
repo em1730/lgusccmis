@@ -33,7 +33,7 @@ $get_category_data->execute([':category'=> $category]);
 // $get_user_data->execute([':id'=>$user_id]);
 // while ($result2 = $get_user_data->fetch(PDO::FETCH_ASSOC)) {
 
-//   $user_name = $result2['username'];
+//   $user_name = $result2['username']; 
 //   $department = $result2['department'];
 // }
 
