@@ -5,10 +5,10 @@ include('../config/db_config.php');
 session_start();
 $user_id = $_SESSION['id'];
 $docno = $date  = $type = $particulars = $origin =
-  $destination = $amount = $status    = $remarks = '';
+  $destination = $amount = $status    = $remarks = $btnNew = $btnPrint = '';
 
-$btnNew = 'disabled';
-$btnPrint = 'disabled';
+// $btnNew = 'disabled';
+// $btnPrint = 'disabled';
 $btnStatus = '';
 
 if (!isset($_SESSION['id'])) {
@@ -16,7 +16,10 @@ if (!isset($_SESSION['id'])) {
 } else {
 }
 
+include('insert_outgoing.php');
+
 $now = new DateTime();
+
 
 
 //fetch user from database
@@ -60,13 +63,12 @@ $get_all_departments_data->execute();
 <!DOCTYPE html>
 <html>
 
-<!DOCTYPE html>
-<html>
+
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+  <title>LGUSCC DTS | Outgoing</title>
 
   <?php include('heading.php'); ?>
 
@@ -95,7 +97,7 @@ $get_all_departments_data->execute();
           <div class="card-body">
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" method="post" action="insert_outgoing.php">
+            <form role="form" method="post" action="">
               <div class="box-body">
 
                 <div class="row">
@@ -198,7 +200,10 @@ $get_all_departments_data->execute();
 
                 <div class="box-footer" align="center">
                   <input type="submit" <?php echo $btnNew; ?> name="add" class="btn btn-primary" value="New">
-                  <input type="submit" <?php echo $btnStatus; ?> name="insert_outgoing" class="btn btn-primary" value="Save">
+                  <!-- <input type="submit" <?php echo $btnStatus; ?> name="insert_outgoing" class="btn btn-primary" value="Save"> -->
+
+                  <button type="submit" <?php echo $btnStatus; ?> name="insert_outgoing" class="btn btn-primary" value="Save"><i class="far fa-save fa-2x"></i></button>
+
                   <a href="../plugins/TCPDF/User/routing.php?docno=<?php echo $docno; ?>" target="blank">
                     <input type="button" <?php echo $btnPrint; ?> name="print" class="btn btn-primary" value="Print">
                   </a>
@@ -327,7 +332,7 @@ $get_all_departments_data->execute();
 
 
   <?php include('scripts.php') ?>
-  
+
   <?php
 
   if (isset($_SESSION['status']) && $_SESSION['status'] != '') {

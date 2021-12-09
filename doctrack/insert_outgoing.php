@@ -2,7 +2,7 @@
 
     include('../config/db_config.php');
     //include('import_pdf.php');
-    session_start();
+    // session_start();
     date_default_timezone_set('Asia/Manila');
 
 
@@ -100,15 +100,15 @@
             $_SESSION['status'] = "Registered Succesfully!";
             $_SESSION['status_code'] = "success";
 
-            header('location: add_outgoing.php?id=' . $docno);
+            // header('location: add_outgoing.php?id=' . $docno);
         } else {
             $_SESSION['status'] = "Not successfully registered!!";
             $_SESSION['status_code'] = "error";
 
-            header('location: add_outgoing.php?id=' . $docno);
+            // header('location: add_outgoing.php?id=' . $docno);
         }
-        $btnNew = 'disabled';
-        $btnPrint = 'enabled';
+        // $btnNew = 'disabled';
+        // $btnPrint = 'enabled';
     }
 
 

@@ -59,7 +59,8 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
 
 ?>
 <style>
-    label {
+    label,
+    label2 {
 
         font-size: 16px;
         color: green;
@@ -94,7 +95,9 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
         color: black;
     }
 
-    #label1::after {
+    #label1::after,
+    .label3::before,
+    .label3::after {
         content: '';
         display: block;
         position: absolute;
@@ -106,6 +109,13 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
 
         /* bottom: -3px; */
     }
+
+    /* i {
+        margin-left: 10px;
+        font-size: 20px;
+        height: 30px;
+        vertical-align: middle;
+    } */
 </style>
 
 <nav class="main-header navbar navbar-expand bg-success navbar-light border-bottom">
@@ -116,9 +126,9 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
         </li>
 
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="index.php" class="nav-link "> Dashboard </a>
+            <a href="index.php" class="nav-link">Dashboard </a>
         </li>
-  
+
         <li class="nav-item d-none d-sm-inline-block">
             <a href="send_email.php" class="nav-link">Contact </a>
         </li>
@@ -132,7 +142,7 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
 
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="fa fa-comments-o"></i>
                 <?php if ($message_count != 0) { ?>
@@ -169,9 +179,9 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
                 <div class="dropdown-divider"></div>
                 <a href="mailbox.php" class="dropdown-item dropdown-footer">See All Messages</a>
             </div>
-        </li>
+        </li> -->
 
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="fa fa-bell-o"></i>
                 <span class="badge badge-warning navbar-badge">15</span>
@@ -196,10 +206,10 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
             </div>
-        </li>
-        <li class="nav-item">
+        </li> -->
+        <!-- <li class="nav-item">
             <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i class="fa fa-th-large"></i></a>
-        </li>
+        </li> -->
     </ul>
 
 
@@ -238,42 +248,85 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-
-
-                <li class="nav-item">
-
-                </li>
                 <div>
+                    <!-- <br> -->
 
                     <label id="label1" style="font-size:18px; ">
                         &nbsp;
-                        <i class="nav-icon fa fa-info-circle icons"></i>
+                        <!-- <i class="nav-icon fa fa-info-circle icons"></i> -->
+                        <i class="fa fa-tasks nav-icon icons"></i>
                         &nbsp;
                         TRANSACTION
                     </label>
 
+
+                    <!-- <li class="nav-item">
+                        <a href="index.php" class="nav-link sidebar-link">
+                            &nbsp;
+                            <i class="fa fa-home nav-icon icons"></i>
+                            <p> &nbsp; Dashboard</p>
+                        </a>
+                    </li> -->
+
+
                     <li class="nav-item">
                         <a href="add_outgoing.php" class="nav-link sidebar-link">
                             &nbsp;
-                            <i class="nav-icon fa fa-question icons"></i>
+                            <!-- <i class="fas fa-level-up-alt nav-icon icons  fa-rotate-90"></i> -->
+                            <!-- <i class="nav-icon fa fa-question icons"></i> -->
+                            <i class="fa fa-share  nav-icon icons  fa-rotate-horizontal-180"></i>
                             <p> &nbsp; Forward</p>
                         </a>
                     </li>
 
                     <li class="nav-item">
+                        <a href="receive_incoming_other.php" class="nav-link sidebar-link">
+                            &nbsp;
+
+                            <!-- <i class="fas fa-level-up-alt nav-icon icons  fa-rotate-90"></i> -->
+                            <i class="fa fa-arrow-right nav-icon icons"></i>
+                            <p> &nbsp; Receive</p>
+                        </a>
+                    </li>
+
+
+
+                    <li class="nav-item">
                         <a href="release_document.php" class="nav-link sidebar-link">
                             &nbsp;
-                            <i class="nav-icon fa fa-question icons"></i>
+
+                            <!-- <i class="fas fa-level-up-alt nav-icon icons  fa-rotate-90"></i> -->
+                            <i class="fa fa-arrow-right nav-icon icons"></i>
                             <p> &nbsp; Release</p>
                         </a>
                     </li>
 
                     <li class="nav-item">
-
                         <a href="archive_document.php" class="nav-link sidebar-link">
                             &nbsp;
-                            <i class="nav-icon fa fa-question icons"></i>
+                            <i class="fa fa-archive nav-icon icons "></i>
                             <p> &nbsp; Archive</p>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a href="track_documents.php" class="nav-link sidebar-link">
+                            &nbsp;
+                            <!-- <i class="fas fa-level-up-alt nav-icon icons  fa-rotate-90"></i> -->
+                            <i class="fa fa-search nav-icon icons"></i>
+                            <p> &nbsp; Track Documents</p>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a href="force_receive.php" class="nav-link sidebar-link">
+                            &nbsp;
+                            <!-- <i class="fas fa-level-up-alt nav-icon icons  fa-rotate-90"></i> -->
+                            <!-- <i class="fas fa-search nav-icon icons"></i> -->
+                            <i class="fa fa-share-square nav-icon icons  fa-flip-horizontal"></i>
+                            <p> &nbsp; Force Receive</p>
                         </a>
                     </li>
 
@@ -284,27 +337,29 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
 
 
                 <div>
-
                     <label id="label1" style="font-size:18px; ">
                         &nbsp;
-                        <i class="nav-icon fa fa-info-circle icons"></i>
+                        <!-- <i class="nav-icon fa fa-info-circle icons"></i> -->
+                        <!-- <i class="fas fa-tasks nav-icon icons"></i> -->
+                        <i class="fa fa-folder-open nav-icon icons"></i>
                         &nbsp;
-                        ABOUT US
+                        MASTERLIST
                     </label>
 
 
                     <li class="nav-item">
-                        <a href="information" class="nav-link sidebar-link">
+                        <a href="list_document_type.php" class="nav-link sidebar-link">
                             &nbsp;
                             <i class="nav-icon fa fa-question icons"></i>
-                            <p> &nbsp; Information</p>
+                            <p> &nbsp; Document Type</p>
                         </a>
                     </li>
 
 
 
 
-                </div> <br>
+                </div><br>
+
 
                 <div>
 
@@ -326,7 +381,7 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
                     </li>
 
                     <li class="nav-item">
-                        <a href="../index" class="nav-link  sidebar-link">
+                        <a href="../login.php" class="nav-link  sidebar-link">
                             &nbsp;
                             <i class="fa fa-sign-out nav-icon icons"></i>
                             <p> &nbsp; Sign Out</p>
@@ -336,6 +391,9 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
 
 
                 </div><br>
+
+
+                <br><br><br><br>
 
                 <!-- <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">

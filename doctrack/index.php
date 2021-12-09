@@ -47,7 +47,7 @@ while ($result = $user_data->fetch(PDO::FETCH_ASSOC)) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> DOCTRACK | Dashboard </title>
+  <title> LGUSCC DTS | Dashboard </title>
 
   <?php include('heading.php'); ?>
 

@@ -22,7 +22,7 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap4.css">
 
-<script src="https://kit.fontawesome.com/629c6e6cbc.js" crossorigin="anonymous"></script>
+<script src="../js/629c6e6cbc.js" crossorigin="anonymous"></script>
 <!-- <link rel="stylesheet" href="../plugins/datatables/jquery.dataTables.css"> -->
 
 <link rel="stylesheet" href="../plugins/select2/select2.min.css">

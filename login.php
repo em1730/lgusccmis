@@ -11,6 +11,7 @@ if (isset($_POST['signin'])) {
 
   $username = $_POST['username'];
   $password = $_POST['password'];
+  
 
   $check_username_sql = "SELECT * FROM tbl_users where username = :uname";
 
@@ -65,108 +66,149 @@ if (isset($_POST['signin'])) {
 
 
 
+
+
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>LGUSCC MIS | Login</title>
+
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <!-- <link rel="stylesheet" href="../dist/css/ionicons.css"> -->
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
-  <!-- Morris chart
-<link rel="stylesheet" href="../plugins/morris/morris.css">
-jvectormap -->
-  <!-- <link rel="stylesheet" href="../plugins/jvectormap/jquery-jvectormap-1.2.2.css"> -->
   <!-- Date Picker -->
-  <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
-  <!-- Daterange picker
-<link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker-bs3.css"> -->
-  <!-- bootstrap wysihtml5 - text editor -->
-  <!-- <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"> -->
-  <!-- Google Font: Source Sans Pro -->
-  <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> -->
-  <!-- DataTables -->
-  <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-  <style>
+  <!-- <link rel="stylesheet" href="plugins/datepicker/datepicker3.css"> -->
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles/form-style.css">
 
+  <style>
+    body,
+    html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .bg-image {
+      /* The image used */
+      background-image: url("Capture.png");
+
+      /* Add the blur effect */
+      filter: blur(5px);
+      -webkit-filter: blur(5px);
+
+      /* Full height */
+      height: 100%;
+
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    /* Position text in the middle of the page/image */
+
+    .login-box {
+      width: 320px;
+      height: 450px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      top: 50%;
+      left: 50%;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      box-sizing: border-box;
+      padding: 70px 30px;
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 100%;
+      position: absolute;
+      top: -50px;
+      left: 35%;
+    }
+
+    .login-box p {
+      margin: 0;
+      padding: 0;
+      font-weight: bold;
+    }
+
+    .login-box input {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .login-box input[type="text"],
+    input[type="password"] {
+      border: none;
+      border-bottom: 1px solid #fff;
+      background: transparent;
+      outline: none;
+      height: 40px;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    .login-box a {
+      text-decoration: none;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    .login-box a:hover {
+      color: #39dc79;
+    }
   </style>
+
+  <title>LGUSCC MIS | Login</title>
 </head>
 
-<body class="hold-transition login-page">
-  <div class="login-box">
-    <div class="login-logo">
+<body>
+  <div class="bg-image"></div>
 
-      <img src="dist/img/scclogo.png" width="50%">
+  <div class="login-box fadeIn second">
 
-      <h1 id="vamos"><b>LGUSCC</b></h1>
-      <h6><b>MONITORING INFORMATION SYSTEM</b></h6>
-    </div>
-    <!-- /.login-logo -->
-    <div class="login-box-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+    <img src="dist/img/logo.png" class="avatar">
 
-      <form role="form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <div class="Ashake form-group has-feedback">
-          <?php echo $alert_msg; ?>
-        </div>
+    <h1 style="color:white;  font-size: 28px;"> Login Here </h1>
 
-        <div class="form-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fa fa-user"></i></span>
-            <input type="text" class="form-control" name="username" placeholder="Username">
-          </div>
-        </div>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+      <div style="color: #da5a5a; text-align: center" class="form-group has-feedback fadeIn third">
+        <?php echo $alert_msg; ?>
+      </div>
+      <br>
+      <p>Username</p>
+      <input type="text" class="fadeIn second" name="username" placeholder="Enter Username" autofocus require>
+      <br>
+      <p>Password</p>
+      <input type="password" class="fadeIn third" name="password" placeholder="Enter Password" require>
 
-        <div class="form-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fa fa-lock"></i></span>
-            <input type="password" class="form-control" name="password" placeholder="Password">
-          </div>
-        </div>
+      <!-- <input type="submit" name="submut" class="btn btn-success fadeIn fourth " style="height: 40px;  width: 90%;" value="Log In"> -->
+      <input type="submit" class="btn btn-success fadeIn fourth" name="signin" style="height: 40px;  width: 90%;" value="Sign In">
+      <br>
+      <br>
+      <!-- <label style="display: block; text-align: right;">Register
+        <a href="#">| Click Here</a></label> -->
 
-        <br>
+    </form>
 
-        <div class="row" align="center">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <!-- <a href="#addnew" data-toggle="modal" style="color:white;" data-backdrop="static" class="btn btn-primary pull-left">Sign Up</a> -->
-            <input type="submit" class="btn btn-success pull-right" name="signin" value="Sign In">
-          </div>
-        </div>
 
-      </form>
-    </div>
-  </div><!-- /.login-box -->
+  </div>
+
+
 </body>
 
-
-
-<!-- jQuery 3 -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<script src="plugins/jquery/jquery.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-<script src="plugins/datepicker/bootstrap-datepicker.js"></script>
-
-
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="/__/firebase/8.2.9/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-https://firebase.google.com/docs/web/setup#available-libraries -->
-
-<!-- Initialize Firebase -->
-<!-- <script src="/__/firebase/init.js"></script> -->
-
-</body>
 
 </html>
