@@ -108,7 +108,6 @@ while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
                 <table id="users" class="table table-bordered table-striped">
                   <thead>
                     <tr>
-
                       <th>Document No.</th>
                       <th>Type</th>
                       <th>OBR No. </th>
@@ -117,6 +116,8 @@ while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
                       <th>Particulars</th>
                       <th>Amount</th>
                       <th>Options</th>
+                    </tr>
+                  </thead>
 
 
                 </table>

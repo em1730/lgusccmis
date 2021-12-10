@@ -16,7 +16,7 @@ if (!isset($_SESSION['id'])) {
 } else {
 }
 
-include('insert_outgoing.php');
+// include('insert_outgoing.php');
 
 $now = new DateTime();
 
@@ -68,7 +68,7 @@ $get_all_departments_data->execute();
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>LGUSCC DTS | Outgoing</title>
+  <title> DTS | Outgoing Document</title>
 
   <?php include('heading.php'); ?>
 
@@ -97,7 +97,7 @@ $get_all_departments_data->execute();
           <div class="card-body">
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" method="post" action="">
+            <form role="form" method="post" action="insert_outgoing.php">
               <div class="box-body">
 
                 <div class="row">
@@ -198,26 +198,28 @@ $get_all_departments_data->execute();
                   </div>
                 </div><br>
 
+
+
+
                 <div class="box-footer" align="center">
-                  <input type="submit" <?php echo $btnNew; ?> name="add" class="btn btn-primary" value="New">
+                  <!-- <input type="submit" <?php echo $btnNew; ?> name="add" class="btn btn-primary" value="New"> -->
                   <!-- <input type="submit" <?php echo $btnStatus; ?> name="insert_outgoing" class="btn btn-primary" value="Save"> -->
 
-                  <button type="submit" <?php echo $btnStatus; ?> name="insert_outgoing" class="btn btn-primary" value="Save"><i class="far fa-save fa-2x"></i></button>
+                  <button type="submit" <?php echo $btnStatus; ?> name="insert_outgoing" class="btn btn-success">
+                    <h4>Submit Form</h4>
+                  </button>
 
-                  <a href="../plugins/TCPDF/User/routing.php?docno=<?php echo $docno; ?>" target="blank">
+                  <!-- <a href="../plugins/TCPDF/User/routing.php?docno=<?php echo $docno; ?>" target="blank">
                     <input type="button" <?php echo $btnPrint; ?> name="print" class="btn btn-primary" value="Print">
-                  </a>
-                  <a href="list_outgoing">
+                  </a> -->
+                  <!-- <a href="list_outgoing">
                     <input type="button" name="cancel" class="btn btn-default" value="Cancel">
-                  </a>
+                  </a> -->
                 </div>
 
                 <div class="col-md-10">
                   <input type="hidden" id="department" readonly class="form-control" name="department" placeholder="Department" value="<?php echo $department; ?>">
                 </div>
-
-
-
                 <div class="col-md-10">
                   <input type="hidden" readonly class="form-control" name="username" placeholder="username" value="<?php echo $user_name; ?>" required>
                 </div>
@@ -333,24 +335,6 @@ $get_all_departments_data->execute();
 
   <?php include('scripts.php') ?>
 
-  <?php
-
-  if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
-
-  ?>
-    <script>
-      swal({
-        title: "<?php echo $_SESSION['status'] ?>",
-        // text: "You clicked the button!",
-        icon: "<?php echo $_SESSION['status_code'] ?>",
-        button: "OK. Done!",
-      });
-    </script>
-
-  <?php
-    unset($_SESSION['status']);
-  }
-  ?>
 
 
 

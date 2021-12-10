@@ -123,7 +123,13 @@ $get_all_messages1_data->execute();
       <section class="content">
         <div class="card">
           <div class="card-header bg-success">
-            <h3 class="card-title">Outgoing Documents</h3>
+            <h3 class="card-title">Outgoing Documents
+
+              <a href="add_outgoing.php" id="add_individual" style="float:right;" type="button" class="btn btn-success bg-gradient-success" style="border-radius: 0px;">
+                <i class="nav-icon fa fa-plus-square"></i></a>
+            </h3>
+
+
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -155,7 +161,8 @@ $get_all_messages1_data->execute();
           </form>
         </div>
 
-      </section>
+      </section> <br>
+
 
     </div>
 
@@ -199,9 +206,10 @@ $get_all_messages1_data->execute();
     </div>
     <br>
 
-    <?php include('footer.php') ?>
+
   </div>
 
+  <?php include('footer.php') ?>
 
   <!-- <aside class="control-sidebar control-sidebar-dark">
   <div class="modal-header">
@@ -243,8 +251,32 @@ $get_all_messages1_data->execute();
                 </div>
   </aside> -->
 
+
+
+
   <!-- ./wrapper -->
   <?php include('scripts.php') ?>
+
+
+  <?php
+
+  if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
+
+  ?>
+    <script>
+      swal({
+        title: "<?php echo $_SESSION['status'] ?>",
+        // text: "You clicked the button!",
+        icon: "<?php echo $_SESSION['status_code'] ?>",
+        button: "OK. Done!",
+      });
+    </script>
+
+  <?php
+    unset($_SESSION['status']);
+  }
+  ?>
+
 
   <script>
     $(document).ready(function() {

@@ -270,7 +270,7 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
 
 
                     <li class="nav-item">
-                        <a href="add_outgoing.php" class="nav-link sidebar-link">
+                        <a href="list_outgoing.php" class="nav-link sidebar-link">
                             &nbsp;
                             <!-- <i class="fas fa-level-up-alt nav-icon icons  fa-rotate-90"></i> -->
                             <!-- <i class="nav-icon fa fa-question icons"></i> -->
