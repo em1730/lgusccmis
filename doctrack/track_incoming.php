@@ -7,14 +7,18 @@ session_start();
 // $dbname = "scc_doctrack";
 // $office = $_POST['office'];
 
-$servername = "192.168.0.5";
-$username = "root";
-$password = "1234";
-$dbname = "scc_doctrack";
-$office = $_POST['office'];
+// $servername = "192.168.0.5";
+// $username = "root";
+// $password = "1234";
+// $dbname = "scc_doctrack";
+// $office = $_POST['office'];
+
+include('../config/db_config.php');
+// $conn = mysqli_connect($servername, $username, $password, $dbname) or die("Connection failed: " . mysqli_connect_error());
 
 
-$conn = mysqli_connect($servername, $username, $password, $dbname) or die("Connection failed: " . mysqli_connect_error());
+
+
 
 
 // $get_user_sql = "SELECT * FROM tbl_users WHERE user_id = :id";
