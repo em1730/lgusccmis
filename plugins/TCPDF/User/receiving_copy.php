@@ -106,7 +106,7 @@ $html .= '
 
 //select all users
 
-$get_document_sql = "SELECT DISTINCT d.docno, d.creator, d.destination, d.payee, d.particulars, d.amount FROM tbl_documents d inner join tbl_ledger l on l.docno = d.docno  WHERE l.txndate between '$date_from' and '$date_to' and l.status in ('FORWARDED','CREATED') and d.status in ('FORWARDED','CREATED') and  l.receiver = '$user' and d.print = 0 group by l.docno order by UNIX_TIMESTAMP(l.txndate),UNIX_TIMESTAMP(l.time)";
+$get_document_sql = "SELECT DISTINCT d.docno, d.creator, d.destination, d.particulars FROM tbl_documents d inner join tbl_ledger l on l.docno = d.docno  WHERE l.txndate between '$date_from' and '$date_to' and l.status in ('FORWARDED','CREATED') and d.status in ('FORWARDED','CREATED') and  l.receiver = '$user' and d.print = 0 group by l.docno order by UNIX_TIMESTAMP(l.txndate),UNIX_TIMESTAMP(l.time)";
 $get_document_data = $con->prepare($get_document_sql);
 $get_document_data->execute();
 
@@ -119,19 +119,11 @@ $docno = $result['docno'];
 $creator = $result['creator'];
 $destination = $result['destination'];
 // $receiver = $result['receiver'];
-$payee = $result['payee'];
 $particulars = $result['particulars'];
-$amount = $result['amount'];
 // $date = $result['txndate'];
 // $time = $result['time'];
 // $action = $result['status'];
 // $remarks = $result['remarks'];
-
-$finalparticulars = 
-$payee.'
-'.$particulars.'
-'.$amount;
-         
 
  
 
@@ -152,9 +144,9 @@ $update_data->execute([
                 <tbody>
                     <tr> 
                     <td>'. $docno .'</td>
-                    <td>'. $department .'</td>
+                    <td>'. $creator .'</td>
                     <td>'. $destination .'</td>
-                    <td>'. $finalparticulars .'</td>
+                    <td>'. $particulars .'</td>
                     <td></td>
                     <td></td>
                     </tr>

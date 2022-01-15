@@ -292,7 +292,9 @@ $remarks = $result['remarks'];
 
 $html .= '</table>';
 
-$pdf->write1DBarcode($docno, 'C128C', '155', '5', '60', 18, 0.4, $style, 'N');
+//$pdf->write1DBarcode($docno, 'C128C', '155', '5', '60', 18, 0.4, $style, 'N');
+$pdf->write2DBarcode('www.tcpdf.org', 'QRCODE,H', 20, 210, 50, 50, $style, 'N');
+$pdf->Text(20, 205, 'QRCODE H');
 $pdf->writeHTML($html, true, false, true, false, '');
     
 

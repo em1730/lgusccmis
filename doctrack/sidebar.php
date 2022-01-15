@@ -350,11 +350,20 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
                     <li class="nav-item">
                         <a href="list_document_type.php" class="nav-link sidebar-link">
                             &nbsp;
-                            <i class="nav-icon fa fa-question icons"></i>
+                            <!-- <i class="nav-icon fa fa-question icons"></i> -->
+                            <i class="nav-icon fas fa-file-invoice icons"></i>
                             <p> &nbsp; Document Type</p>
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="list_suppliers.php" class="nav-link sidebar-link">
+                            &nbsp;
+                            <i class="nav-icon fas fa-truck-loading icons"></i>
+                            <!-- <i class="nav-icon fa fa-question icons"></i> -->
+                            <p> &nbsp; Supplier</p>
+                        </a>
+                    </li>
 
 
 
@@ -395,168 +404,7 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
 
                 <br><br><br><br>
 
-                <!-- <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-dashboard"></i>
-                        <p>
-                            TRANSACTIONS
-                            <i class="right fa fa-angle-left"></i>
-                        </p>
-                    </a>
-
-                    <ul class="nav nav-treeview">
-
-                        <li class="nav-item">
-                            <a href="add_outgoing" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Forward</p>
-                            </a>
-                        </li>
-                     
-                        <li class="nav-item">
-                            <a href="release_document" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Release</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="archive_document" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Archive</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="track_documents" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Track Documents</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="force_receive" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Force Receive</p>
-                            </a>
-                        </li>
-                    </ul>
-
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-dashboard"></i>
-                        <p>
-                            MASTER LISTS
-                            <i class="right fa fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="list_joborder" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Job Orders</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="list_suppliers" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Suppliers</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="list_document_type" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Document Types</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="list_department" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Departments</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="list_document_type" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Users</p>
-                            </a>
-                        </li>
-                    </ul>
-
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link ">
-                        <i class="nav-icon fa fa-dashboard"></i>
-                        <p>
-                            REPORTS
-                            <i class="right fa fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="receiving_copy" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Receiving Copy</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#myModal" data-toggle="modal" data-target="#myModal" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Routing Slip</p>
-                            </a>
-                        </li>
-                    </ul>
-
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link ">
-                        <i class="nav-icon fa fa-dashboard"></i>
-                        <p>
-                            SETTINGS
-                            <i class="right fa fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="add_document" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Add Document Type</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="add_department" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Add Department</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="add_user " class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Add User</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="add_suppliers " class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Add Suppliers</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="add_regular " class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Add Regular Employee</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="add_joborder " class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Add Job Order</p>
-                            </a>
-                        </li>
-
-
-                    </ul> -->
-
+          
 
 
 

@@ -1,5 +1,7 @@
 <?php
 
+
+
 define ('K_TCPDF_EXTERNAL_CONFIG', true);
 
 define ('K_PATH_IMAGES', dirname(__FILE__).'/../images/');
