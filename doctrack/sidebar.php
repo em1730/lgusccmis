@@ -8,9 +8,10 @@ $docno = '';
 $user_id = $_SESSION['id'];
 
 if (!isset($_SESSION['id'])) {
-    header('location:../index.php');
+    header('location:../login.php');
 } else {
 }
+
 //fetch user from database
 $get_user_sql = "SELECT * FROM tbl_users where user_id = :id";
 $user_data = $con->prepare($get_user_sql);
@@ -138,6 +139,36 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
         </li>
     </ul>
 
+    
+    <aside class="control-sidebar control-sidebar-dark">
+        <div class="modal-header">
+            <h4 class="modal-title">SETTINGS</h4>
+        </div>
+
+        <div class="modal-body">
+
+            <div class="box-body">
+                <div class="form-group" <?php if ($department != 'CBO') { ?> style="display:none" <?php } ?>>
+                    <h6 class="modal-title">Update OBR No:</h6>
+                    <input type="text" name="update_obr" id="update_obr" class="form-control" value="<?php echo
+                                                                                                        $settings_obr; ?>" required>
+                </div>
+
+                <div class="box-body">
+                    <div class="form-group" <?php if ($department != 'ACCTG') { ?> style="display:none" <?php } ?>>
+                        <h6 class="modal-title">Update DV No:</h6>
+                        <input type="text" name="update_dv" id="update_dv" class="form-control" value="<?php echo
+                                                                                                        $settings_dv; ?>" required>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </aside>
+
+
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -222,14 +253,14 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
         <div class="sidebar bg-success">
             <br>
             <img src="../dist/img/scclogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-4">
-            <span class="brand-text font-weight-bold" style="font-size: 20px;">LGUSSC | DTS</span>
+            <span class="brand-text font-weight-bold" style="font-size: 18px;">LGUSCCMIS | DTS</span>
 
 
             <br>
             <label style="color:white">
                 <br>
                 &nbsp; &nbsp;&nbsp;
-                <?php echo strtoupper($db_first_name . ' ' . $db_middle_name . ' ' . $db_last_name) ?>
+                <?php echo strtoupper($db_first_name . ' ' . $db_middle_name . '. ' . $db_last_name) ?>
 
             </label>
             <br>
@@ -301,14 +332,6 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="archive_document.php" class="nav-link sidebar-link">
-                            &nbsp;
-                            <i class="fa fa-archive nav-icon icons "></i>
-                            <p> &nbsp; Archive</p>
-                        </a>
-                    </li>
-
 
                     <li class="nav-item">
                         <a href="track_documents.php" class="nav-link sidebar-link">
@@ -365,6 +388,13 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="list_joborder.php" class="nav-link sidebar-link">
+                            &nbsp;
+                            <i class="nav-icon fas fa-user-friends icons"></i>
+                            <p> &nbsp; Job Order</p>
+                        </a>
+                    </li>
 
 
                 </div><br>
@@ -404,7 +434,7 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
 
                 <br><br><br><br>
 
-          
+
 
 
 
