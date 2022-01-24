@@ -7,7 +7,7 @@
     
     $alert_msg = '';
     $alert_msg1 = '';
-    if (isset($_POST['update_documenttype'])) {
+    if (isset($_POST['insert_document'])) {
 
         //     echo "<pre>";
         //     print_r($_POST);
@@ -15,38 +15,35 @@
         $objid = $_POST['doc_code'];
         $type = $_POST['type'];
         $description = $_POST['description'];
-        $idno2 = $_POST['idno'];
-        // $status = $_POST['status'];
+        $status = $_POST['status'];
 
-        $insert_doctype_sql = "UPDATE document_type SET 
+        $insert_doctype_sql = "INSERT INTO document_type SET 
         objid               = :code,
         type                = :type,
-        description         = :desc
-        -- status              = :status
-        where idno          = :idno";
+        description         = :desc,
+        status              = :status";
 
         $doctype_data = $con->prepare($insert_doctype_sql);
         $doctype_data->execute([
-            ':idno'             => $idno2,
             ':code'             => $objid,
             ':type'             => $type,
-            ':desc'             => $description
-            // ':status'           => $status
+            ':desc'             => $description,
+            ':status'           => 'Active'
 
         ]);
 
 
         if ($doctype_data) {
 
-            $_SESSION['status'] = "Update Succesfully!";
+            $_SESSION['status'] = "Registered Succesfully!";
             $_SESSION['status_code'] = "success";
 
-            header('location: view_document.php?&idno=' . $idno2);
+            header('location: list_document_type.php');
         } else {
-            $_SESSION['status'] = "Update Unsuccessful!";
+            $_SESSION['status'] = "Not successfully registered!!";
             $_SESSION['status_code'] = "error";
 
-            header('location: view_document.php?&idno=' . $idno2);
+            header('location: list_document_type.php');
         }
     }
 

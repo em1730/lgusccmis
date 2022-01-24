@@ -7,6 +7,8 @@
 
     $alert_msg = '';
     $alert_msg1 = '';
+
+
     if (isset($_POST['insert_suppliers'])) {
 
         //     echo "<pre>";
@@ -23,9 +25,6 @@
         $fax_no = $_POST['fax_no'];
         $others = $_POST['others'];
 
-
-
-
         $insert_suppliers_sql   = "INSERT INTO tbl_suppliers SET 
         code                = :code,
         name_supplier       = :name_supplier,
@@ -37,8 +36,6 @@
         contact_person      = :contact_person,
         fax_no              = :fax_no,
         others              = :others";
-
-
 
         $suppliers_data = $con->prepare($insert_suppliers_sql);
         $suppliers_data->execute([
@@ -55,6 +52,9 @@
 
 
         ]);
+
+
+     
 
 
         if ($suppliers_data) {

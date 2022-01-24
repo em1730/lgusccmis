@@ -49,57 +49,60 @@ $columns = array(
 	5 => 'payee',
 	6 => 'particulars',
 	7 => 'amount',
-	8 => 'destination',
+	8 => 'origin',
 );
 
 // getting total number records without any search
-$getAllIncomingDocuments = "SELECT * FROM tbl_documents where status in ('CREATED', 'FORWARDED') 
- AND origin =:office ORDER BY date_time DESC LIMIT " . $requestData['start'] . "," . $requestData['length'] . "  ";
+$getAllIncomingDocuments = "SELECT docno, date, obrno, dvno, type, payee, particulars, amount, origin 
+		FROM tbl_documents where status in ('CREATED', 'FORWARDED') and destination = 
+		:office  ";
 
 $getAllIncomingDocumentsData = $con->prepare($getAllIncomingDocuments);
-$getAllIncomingDocumentsData->execute(['office' => $office]);
+$getAllIncomingDocumentsData->execute([':office' =>$office]);
+
 
 $countNoFilter = "SELECT COUNT(docno) as id from tbl_documents";
 $getrecordstmt = $con->prepare($countNoFilter);
-$getrecordstmt->execute() or die("track_outgoing.php");
+$getrecordstmt->execute() or die("track_incoming.php");
 $getrecord = $getrecordstmt->fetch(PDO::FETCH_ASSOC);
 $totalData = $getrecord['id'];
+
 $totalFiltered = $totalData;  // when there is no search parameter then total number rows = total number filtered rows.
 
-$getAllIncomingDocuments = "SELECT * from tbl_documents	where  ";
+
+
+
+$getAllIncomingDocuments = "SELECT docno, date, type, obrno, dvno, payee, particulars, amount, origin from tbl_documents
+		where status in ('CREATED', 'FORWARDED') and destination = '$office'  ";
 
 if (!empty($requestData['search']['value'])) {   // if there is a search parameter, $requestData['search']['value'] contains search parameter
-	$getAllIncomingDocuments .= " (docno LIKE '%" . $requestData['search']['value'] . "%' ";
+	$getAllIncomingDocuments .= " AND ( docno LIKE '%" . $requestData['search']['value'] . "%' ";
 	$getAllIncomingDocuments .= " OR date LIKE '%" . $requestData['search']['value'] . "%' ";
-	$getAllIncomingDocuments .= " OR date_time LIKE '%" . $requestData['search']['value'] . "%' ";
-	$getAllIncomingDocuments .= " OR time LIKE '%" . $requestData['search']['value'] . "%' ";
 	$getAllIncomingDocuments .= " OR type LIKE '%" . $requestData['search']['value'] . "%' ";
 	$getAllIncomingDocuments .= " OR obrno LIKE '%" . $requestData['search']['value'] . "%' ";
 	$getAllIncomingDocuments .= " OR dvno LIKE '%" . $requestData['search']['value'] . "%' ";
 	$getAllIncomingDocuments .= " OR payee LIKE '%" . $requestData['search']['value'] . "%' ";
 	$getAllIncomingDocuments .= " OR particulars LIKE '%" . $requestData['search']['value'] . "%' ";
 	$getAllIncomingDocuments .= " OR amount LIKE '%" . $requestData['search']['value'] . "%' ";
-	$getAllIncomingDocuments .= " OR destination LIKE '%" . $requestData['search']['value'] . "%' ) ";
-	$getAllIncomingDocuments .= " AND status in ('CREATED', 'FORWARDED') AND origin = :office ORDER BY date_time  LIMIT " . $requestData['start'] . "," . $requestData['length'] . " ";
+	$getAllIncomingDocuments .= " OR origin LIKE '%" . $requestData['search']['value'] . "%'  ";
+	$getAllIncomingDocuments .= " ORDER BY date DESC LIMIT 50 )";
 	$getAllIncomingDocumentsData = $con->prepare($getAllIncomingDocuments);
-	$getAllIncomingDocumentsData->execute(['office' => $office]);
+	$getAllIncomingDocumentsData->execute();
 
-	$countFilter = " SELECT COUNT(docno) as id from tbl_documents where ";
+	$countFilter = " SELECT COUNT(docno) as id from tbl_documents  where ";
 	$countFilter .= " (docno LIKE '%" . $requestData['search']['value'] . "%' ";
 	$countFilter .= " OR date LIKE '%" . $requestData['search']['value'] . "%' ";
-	$countFilter .= " OR time LIKE '%" . $requestData['search']['value'] . "%' ";
-	$countFilter .= " OR date_time LIKE '%" . $requestData['search']['value'] . "%' ";
 	$countFilter .= " OR type LIKE '%" . $requestData['search']['value'] . "%' ";
 	$countFilter .= " OR obrno LIKE '%" . $requestData['search']['value'] . "%' ";
 	$countFilter .= " OR dvno LIKE '%" . $requestData['search']['value'] . "%' ";
 	$countFilter .= " OR payee LIKE '%" . $requestData['search']['value'] . "%' ";
 	$countFilter .= " OR particulars LIKE '%" . $requestData['search']['value'] . "%' ";
 	$countFilter .= " OR amount LIKE '%" . $requestData['search']['value'] . "%' ";
-	$countFilter .= " OR destination LIKE '%" . $requestData['search']['value'] . "%' )";
-	$countFilter .= " ORDER BY date_time LIMIT " . $requestData['length'] . " ";
+	$countFilter .= " OR origin LIKE '%" . $requestData['search']['value'] . "%' )";
+	$countfilter .= "LIMIT " . $requestData['length'] . " ";
 
-	$getrecordstmt = $con->prepare($countFilter);
-	$getrecordstmt->execute() or die("track_outgoing.php");
+	$getrecordstmt = $con->prepare($countfilter);
+	$getrecordstmt->execute() or die("track_incoming.php");
 	$getrecord1 = $getrecordstmt->fetch(PDO::FETCH_ASSOC);
 	$totalData = $getrecord['id'];
 	$totalFiltered = $totalData;
@@ -123,7 +126,7 @@ while ($row = $getAllIncomingDocumentsData->fetch(PDO::FETCH_ASSOC)) {
 	}
 	$nestedData[] = $row["particulars"];
 	$nestedData[] = number_format($row["amount"], 2);
-	$nestedData[] = $row["destination"];
+	$nestedData[] = $row["origin"];
 
 	$data[] = $nestedData;
 }
@@ -137,3 +140,6 @@ $json_data = array(
 );
 
 echo json_encode($json_data);  // send data as json format
+
+
+

@@ -48,7 +48,7 @@ $columns = array(
 );
 
 // getting total number records without any search
-$getAllDocuments = "SELECT * FROM document_type where status='Active' ORDER BY type ASC LIMIT " . $requestData['start'] . "," . $requestData['length'] . "  ";
+$getAllDocuments = "SELECT * FROM document_type where status !='VOID' ORDER BY type ASC LIMIT " . $requestData['start'] . "," . $requestData['length'] . "  ";
 
 $getAllDocumentsData = $con->prepare($getAllDocuments);
 $getAllDocumentsData->execute();
@@ -67,7 +67,7 @@ if (!empty($requestData['search']['value'])) {   // if there is a search paramet
 	$getAllDocuments .= " OR objid LIKE '%" . $requestData['search']['value'] . "%' ";
 	$getAllDocuments .= " OR type LIKE '%" . $requestData['search']['value'] . "%' ";
 	$getAllDocuments .= " OR description LIKE '%" . $requestData['search']['value'] . "%' ) ";
-	$getAllDocuments .= " AND status ='Active' ORDER BY type ASC LIMIT " . $requestData['start'] . "," . $requestData['length'] . " ";
+	$getAllDocuments .= " AND status !='VOID' ORDER BY type ASC LIMIT " . $requestData['start'] . "," . $requestData['length'] . " ";
 	$getAllDocumentsData = $con->prepare($getAllDocuments);
 	$getAllDocumentsData->execute();
 
@@ -76,7 +76,7 @@ if (!empty($requestData['search']['value'])) {   // if there is a search paramet
 	$countFilter .= " OR objid LIKE '%" . $requestData['search']['value'] . "%' ";
 	$countFilter .= " OR type LIKE '%" . $requestData['search']['value'] . "%' ";
 	$countFilter .= " OR description LIKE '%" . $requestData['search']['value'] . "%' )";
-	$countFilter .= " AND status ='Active' ORDER BY type ASC LIMIT " . $requestData['length'] . " ";
+	$countFilter .= " AND status !='VOID' ORDER BY type ASC LIMIT " . $requestData['length'] . " ";
 	$getrecordstmt = $con->prepare($countFilter);
 	$getrecordstmt->execute() or die("search_document.php");
 	$getrecord1 = $getrecordstmt->fetch(PDO::FETCH_ASSOC);

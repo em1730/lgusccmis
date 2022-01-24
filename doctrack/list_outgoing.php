@@ -97,7 +97,7 @@ $get_all_messages1_data->execute();
 <!DOCTYPE html>
 <html>
 
-</html>
+
 
 <head>
     <meta charset="utf-8">
@@ -172,15 +172,6 @@ $get_all_messages1_data->execute();
             </section><br><br>
         </div>
 
-
-
-
-
-
-
-
-
-
         <div class="col-md-10">
             <input type="hidden" id="department2" readonly class="form-control" name="department2" placeholder="Department2" value="<?php echo $department; ?>">
         </div>
@@ -188,8 +179,10 @@ $get_all_messages1_data->execute();
 
         <?php include('footer.php'); ?>
     </div>
+
 </body>
 
+</html>
 
 
 <?php include('scripts.php') ?>
@@ -218,7 +211,7 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
     $(document).ready(function() {
         var office = $('#department2').val();
 
-        var dataTable = $('#users').DataTable({
+         var dataTable = $('#users').DataTable({
 
             page: true,
             stateSave: true,
@@ -243,7 +236,7 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
                 }
             },
             columnDefs: [{
-                    width: "250px",
+                    width: "200px",
                     targets: -1,
                     data: null,
                     defaultContent: '<button class="btn btn-outline-success btn-sm editDocument" style = "margin-right:10px;"  id = "editDocument" data-placement="top" title="Edit Document"> <i class="fa fa-edit"></i></button>' +
