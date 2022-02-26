@@ -13,7 +13,7 @@
         //     echo "<pre>";
         //     print_r($_POST);
         // echo "</pre>";
-        $docno = $_POST['doc_number'];
+        $docno = $_POST['doc_no'];
         $date = date('Y-m-d', strtotime($_POST['date']));
         $time =  date('H:i:s');
         $type = $_POST['type'];
@@ -104,12 +104,12 @@
             $_SESSION['status'] = "Registered Succesfully!";
             $_SESSION['status_code'] = "success";
 
-            header('location: list_outgoing.php');
+            header('location: add_outgoing.php?docno=' . $docno);
         } else {
             $_SESSION['status'] = "Not successfully registered!!";
             $_SESSION['status_code'] = "error";
 
-            header('location: list_outgoing.php');
+            header('location: add_outgoing.php?docno=' . $docno);
         }
         // $btnNew = 'disabled';
         // $btnPrint = 'enabled';
