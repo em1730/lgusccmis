@@ -102,7 +102,7 @@ $get_all_messages1_data->execute();
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>VAMOS | Master Lists Individual </title>
+    <title>DOCTRACK | List Outgoing</title>
     <?php include('heading.php'); ?>
 
 

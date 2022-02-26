@@ -139,7 +139,7 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
         </li>
     </ul>
 
-    
+
     <aside class="control-sidebar control-sidebar-dark">
         <div class="modal-header">
             <h4 class="modal-title">SETTINGS</h4>
@@ -253,7 +253,7 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
         <div class="sidebar bg-success">
             <br>
             <img src="../dist/img/scclogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-4">
-            <span class="brand-text font-weight-bold" style="font-size: 18px;">LGUSCCMIS | DTS</span>
+            <span class="brand-text font-weight-bold" style="font-size: 18px;"> DOCTRACK </span>
 
 
             <br>
@@ -388,13 +388,37 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="list_joborder.php" class="nav-link sidebar-link">
                             &nbsp;
                             <i class="nav-icon fas fa-user-friends icons"></i>
                             <p> &nbsp; Job Order</p>
                         </a>
+                    </li> -->
+
+
+                </div><br>
+
+                <div>
+                    <label id="label1" style="font-size:18px; ">
+                        &nbsp;
+                        <!-- <i class="nav-icon fa fa-info-circle icons"></i> -->
+                        <!-- <i class="fas fa-tasks nav-icon icons"></i> -->
+                        <i class="fa fa-folder-open nav-icon icons"></i>
+                        &nbsp;
+                        MASTERLIST
+                    </label>
+
+                    <li class="nav-item">
+                        <a href="receive_copy.php" class="nav-link sidebar-link">
+                            &nbsp;
+                            <!-- <i class="nav-icon fa fa-question icons"></i> -->
+                            <i class="nav-icon fas fa-file-invoice icons"></i>
+                            <p> &nbsp; Receiving Copy</p>
+                        </a>
                     </li>
+
+
 
 
                 </div><br>
