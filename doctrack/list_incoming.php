@@ -202,7 +202,7 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
           width: "200px",
           targets: -1,
           data: null,
-          defaultContent: '<button class="btn btn-outline-success btn-sm editIndividual" style = "margin-right:10px;"  id = "button_receive" data-placement="top" title="Edit Individual"> <i class="fa fa-edit"></i></button> ' +
+          defaultContent: '<button class="btn btn-outline-success btn-sm editIndividual" style = "margin-right:10px;"  id = "button_receive" data-placement="top" title="Receive Document"> <i class="fa fa-check"></i></button> ' +
             ' ',
         },
 
