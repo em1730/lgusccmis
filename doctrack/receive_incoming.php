@@ -210,7 +210,7 @@ $get_all_dept_data->execute();
                 <!-- /.box-body -->
                 <div class="box-footer" align="center">
                   <a href="list_incoming.php">
-                    <input type="submit" <?php echo $btnStatus; ?> name="insert_received" class="btn btn-primary" value="Receive">
+                    <input type="submit" <?php echo $btnStatus; ?> name="insert_received" class="btn btn-success" value="Receive">
                   </a>
 
                 </div>
