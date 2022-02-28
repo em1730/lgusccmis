@@ -73,6 +73,7 @@
         $user_name = $_POST['username'];
         //$host_name = gethostbyaddr($_SERVER['REMOTE_ADDR']);
         $status = 'CREATED';
+        $host_name = "";
         $print = 0;
 
         if (empty($_POST['etc'])) {
@@ -100,6 +101,23 @@
         ' . $payee . " " . $etal . '
         ' . $particulars . '
         ' . $amount;
+
+        $check_start_sql = "select end_time from tbl_ledger where docno = :docno and end_time < now() ORDER BY end_time DESC limit 1";
+        $check_start_data = $con->prepare($check_start_sql);
+        $check_start_data->execute([
+            ':docno' => $docno
+        ]);
+        while ($result = $check_start_data->fetch(PDO::FETCH_ASSOC)) {
+            $start_time = $result['end_time'];
+        }
+
+        $check_now_sql =  "select now() as time";
+        $check_now_data = $con->prepare($check_now_sql);
+        $check_now_data->execute([]);
+        while ($result = $check_now_data->fetch(PDO::FETCH_ASSOC)) {
+            $now_time = $result['time'];
+        }
+
 
 
 
@@ -130,7 +148,7 @@
         $insert_dv_data->execute([
             ':code'             => $docno,
             ':date'             => $date,
-            ':timeey'           => $date.' '.$time,
+            ':timeey'           => $date . ' ' . $time,
             ':type'             => $type,
             ':prevyear'         => $prevyear,
             ':obrno'            => $obr_no,
@@ -162,7 +180,10 @@
             destination        = :destination,
             status             = :stat,
             remarks            = :rem,
-            receiver           = :username";
+            receiver           = :username,
+            machineid          = :host,
+            start_time         = :start_time,
+            end_time           = :end_time";
 
 
 
@@ -179,22 +200,59 @@
             ':destination'      => $destination,
             ':stat'             => $status,
             ':rem'              => $remarks,
-            ':username'         => $user_name
+            ':username'         => $user_name,
+            ':host'             => $host_name,
+            ':start_time'       => $now_time,
+            ':end_time'         => $now_time
         ]);
+
+
+
+
+
+
+
+        $tnxhistory_sql = "INSERT INTO tbl_tnxhistory SET 
+                ref        = :ref ,
+                date        = :date ,
+                docno        = :docno ,
+            
+                username     = :username,
+                activity     = :activity
+
+
+        ";
+
+
+        $tnxhistory_data = $con->prepare($tnxhistory_sql);
+        $tnxhistory_data->execute([
+
+            ':ref'                    => "ref:" . $docno,
+            ':date'                   => $date . ' - ' . $time,
+            ':docno'              => $docno,
+
+            ':username'               => $user_name,
+            ':activity'               => "FORWARD " . $type . " DOCUMENT TO " . $destination
+
+
+
+        ]);
+
+
+
+
+
 
         if ($insert_ledgerdv_data && $insert_dv_data) {
 
-            $_SESSION['status'] = "Registered Succesfully!";
+            $_SESSION['status'] = "Forward Document Succesfully!";
             $_SESSION['status_code'] = "success";
 
             header('location: list_outgoing.php');
         } else {
-            $_SESSION['status'] = "Not successfully registered!!";
+            $_SESSION['status'] = "Forward Document Unsuccessfull!!";
             $_SESSION['status_code'] = "error";
 
             header('location: list_outgoing.php');
         }
     }
-
-
-

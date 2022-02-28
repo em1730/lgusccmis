@@ -211,7 +211,7 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
     $(document).ready(function() {
         var office = $('#department2').val();
 
-         var dataTable = $('#users').DataTable({
+        var dataTable = $('#users').DataTable({
 
             page: true,
             stateSave: true,
@@ -239,44 +239,79 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
                     width: "200px",
                     targets: -1,
                     data: null,
-                    defaultContent: '<button class="btn btn-outline-success btn-sm editDocument" style = "margin-right:10px;"  id = "editDocument" data-placement="top" title="Edit Document"> <i class="fa fa-edit"></i></button>' +
-                        '<a class="btn btn-outline-success btn-sm printlink"  style = "margin-right:10px;" id="printlink" href ="../plugins/jasperreport/routing.php?docno=" data-placement="top" target="_blank" title="Print ID">  <i class="nav-icon fa fa-print"></i></a> ',
+                    defaultContent: '<button class="editDocument btn btn-outline-success btn-sm " style = "margin-right:10px;"  id = "editDocument" data-placement="top" title="Edit Document"> <i class="fa fa-edit"></i></button>'
+                       
                 },
 
             ],
         });
 
-        $("#users tbody").on("click", ".printlink", function() {
-            // event.preventDefault();
-            var currow = $(this).closest("tr");
-            var docno = currow.find("td:eq(0)").text();
-            $('.printlink').attr("href", "../plugins/jasperreport/routing.php?docno=" + docno, '_parent');
-            // window.open("../plugins/jasperreport/entity_id.php?entity_no=" + entity, '_parent');
-
-        });
-
-        $("#users tbody").on("click", "#editDocument", function() {
-            event.preventDefault();
-            var currow = $(this).closest("tr");
-            var docno = currow.find("td:eq(0)").text();
-            // $('#viewIndividual').attr("href", "view_individual.php?&id=" + entity, '_parent');
-            window.open("revert_document.php?&docno=" + docno, '_parent');
-
-        });
-
-
-        $('#users tbody').on('click', 'button.revert', function() {
+        $('#users tbody').on('click', '#editDocument', function() {
             // alert ('hello');
             // var row = $(this).closest('tr');
             var table = $('#users').DataTable();
             var data = table.row($(this).parents('tr')).data();
             //  alert (data[0]);
             //  var data = $('#users').DataTable().row('.selected').data(); //table.row(row).data().docno;
+            var type = data[2];
             var docno = data[0];
-            window.open("revert_document.php?docno=" + docno, '_parent');
+
+            if (type == "DV" || type == "OBR" || type == "DWP" || type == "PYL" || type == "LR" || type == "RIS" || type == "PO" || type == "PR") {
+                window.open("revert_outgoing_dv.php?docno=" + docno, '_parent');
+            } else {
+
+                window.open("revert_document.php?docno=" + docno, '_parent');
+            }
             // alert(docno);
 
         });
+
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $("#users tbody").on("click", ".printlink", function() {
+        // event.preventDefault();
+        var currow = $(this).closest("tr");
+        var docno = currow.find("td:eq(0)").text();
+        $('.printlink').attr("href", "../plugins/jasperreport/routing.php?docno=" + docno, '_parent');
+        // window.open("../plugins/jasperreport/entity_id.php?entity_no=" + entity, '_parent');
+
+    });
+
+    $("#users tbody").on("click", "#editDocument", function() {
+        event.preventDefault();
+        var currow = $(this).closest("tr");
+        var docno = currow.find("td:eq(0)").text();
+        // $('#viewIndividual').attr("href", "view_individual.php?&id=" + entity, '_parent');
+        window.open("revert_document.php?&docno=" + docno, '_parent');
+
+    });
+
+
+    $('#users tbody').on('click', 'button.revert', function() {
+        // alert ('hello');
+        // var row = $(this).closest('tr');
+        var table = $('#users').DataTable();
+        var data = table.row($(this).parents('tr')).data();
+        //  alert (data[0]);
+        //  var data = $('#users').DataTable().row('.selected').data(); //table.row(row).data().docno;
+        var docno = data[0];
+        window.open("revert_document.php?docno=" + docno, '_parent');
+        // alert(docno);
+
     });
 
 
