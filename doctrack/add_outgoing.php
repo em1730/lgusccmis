@@ -49,6 +49,8 @@ while ($result = $user_data->fetch(PDO::FETCH_ASSOC)) {
 
 
 
+
+
 $get_all_document_sql = "SELECT * FROM document_type";
 $get_all_document_data = $con->prepare($get_all_document_sql);
 $get_all_document_data->execute();
@@ -105,7 +107,7 @@ $get_all_departments_data->execute();
                     <label>Document No.:</label>
                   </div>
                   <div class="col-md-4">
-                    <input type="text" readonly class="form-control" id="doc_no" name="doc_number" placeholder="Document Number" value="<?php echo $docno; ?>" required>
+                    <input type="text" readonly class="form-control" id="doc_no" name="doc_no" placeholder="Document Number" value="<?php echo $docno; ?>" required>
                   </div>
 
                   <div class="col-md-1" style="text-align: right;padding-top: 5px;">
@@ -124,7 +126,7 @@ $get_all_departments_data->execute();
                       </div>
                     </div>
                   </div>
-                  
+
                 </div><br>
 
 
@@ -274,7 +276,7 @@ $get_all_departments_data->execute();
     </div>
 
 
-  
+
   </div>
 </body>
 
@@ -351,11 +353,4 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
   //           });           
 
   //                 });
-
-
-
-
-
-
-
 </script>
