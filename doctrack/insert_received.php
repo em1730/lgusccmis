@@ -95,17 +95,43 @@
         ]);
 
 
+       $tnxhistory_sql = "INSERT INTO tbl_tnxhistory SET 
+                ref        = :ref ,
+                date        = :date ,
+                docno        = :docno ,
+            
+                username     = :username,
+                activity     = :activity
+
+
+            ";
+
+
+        $tnxhistory_data = $con->prepare($tnxhistory_sql);
+        $tnxhistory_data->execute([
+
+            ':ref'                    => "ref:" . $docno,
+            ':date'                   => $date . ' - ' . $time,
+            ':docno'              => $docno,
+
+            ':username'               => $user_name,
+            ':activity'               => "RECIEVED ". $type . " DOCUMENT FROM ". $origin
+
+
+
+        ]);
+
 
 
 
         if ($insert_ledger_data && $update_documents_data) {
 
-            $_SESSION['status'] = "Forward Succesfully!";
+            $_SESSION['status'] = "Received Document Succesfully!";
             $_SESSION['status_code'] = "success";
 
             header('location: receive_incoming.php?docno=' . $docno);
         } else {
-            $_SESSION['status'] = "Forward Unsuccessful!!";
+            $_SESSION['status'] = "Received Document Unsuccessful!!";
             $_SESSION['status_code'] = "error";
 
             header('location: receive_incoming.php?docno=' . $docno);
