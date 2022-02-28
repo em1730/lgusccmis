@@ -103,7 +103,7 @@
         $tnxhistory_sql = "INSERT INTO tbl_tnxhistory SET 
                 ref        = :ref ,
                 date        = :date ,
-                entity_no        = :entity_no ,
+                docno        = :docno ,
             
                 username     = :username,
                 activity     = :activity
@@ -117,7 +117,7 @@
 
             ':ref'                    => "ref:" . $docno,
             ':date'                   => $date . ' - ' . $time,
-            ':entity_no'              => $docno,
+            ':docno'                  => $docno,
 
             ':username'               => $user_name,
             ':activity'               => "FORWARD ". $type . " DOCUMENT TO ". $destination
