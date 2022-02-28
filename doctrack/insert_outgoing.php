@@ -6,7 +6,7 @@
 
     session_start();
     date_default_timezone_set('Asia/Manila');
-
+ 
 
     if (isset($_POST['insert_outgoing'])) {
 
@@ -51,7 +51,7 @@
         $outgoing_data = $con->prepare($insert_outgoing_sql);
         $outgoing_data->execute([
             ':code'             => $docno,
-            ':timey'            => $date.' '.$time,
+            ':timey'            => $date . ' ' . $time,
             ':datecreated'      => $date,
             ':type'             => $type,
             ':particular'       => $particulars,
@@ -99,14 +99,42 @@
         ]);
 
 
-        if ($ledger_data && $outgoing_data) {
 
-            $_SESSION['status'] = "Registered Succesfully!";
+        $tnxhistory_sql = "INSERT INTO tbl_tnxhistory SET 
+                ref        = :ref ,
+                date        = :date ,
+                entity_no        = :entity_no ,
+            
+                username     = :username,
+                activity     = :activity
+
+
+            ";
+
+
+        $tnxhistory_data = $con->prepare($tnxhistory_sql);
+        $tnxhistory_data->execute([
+
+            ':ref'                    => "ref:" . $docno,
+            ':date'                   => $date . ' - ' . $time,
+            ':entity_no'              => $docno,
+
+            ':username'               => $user_name,
+            ':activity'               => "FORWARD ". $type . " DOCUMENT TO ". $destination
+
+
+
+        ]);
+
+
+        if ($ledger_data && $outgoing_data && $tnxhistory_data) {
+
+            $_SESSION['status'] = "Forward Document Succesfully!";
             $_SESSION['status_code'] = "success";
 
             header('location: add_outgoing.php?docno=' . $docno);
         } else {
-            $_SESSION['status'] = "Not successfully registered!!";
+            $_SESSION['status'] ="Forward Document Unsuccessfull!";
             $_SESSION['status_code'] = "error";
 
             header('location: add_outgoing.php?docno=' . $docno);
