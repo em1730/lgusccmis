@@ -259,7 +259,7 @@ $get_all_account_data->execute();
                     <div class="col-md-2" style="text-align: right;padding-top: 5px;">
                       <label>Particulars:</label>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                       <textarea rows="3" class="form-control" name="particulars" placeholder="Subject/Particulars" required><?php echo
                                                                                                                             $particulars; ?></textarea>
                     </div>
@@ -289,7 +289,7 @@ $get_all_account_data->execute();
                       <label>Forwarded To:</label>
                     </div>
 
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                       <select class="form-control select2" readonly style="width: 100%;" name="receiver" value="<?php echo $destination; ?>">
                         <option>Please select...</option>
                         <?php while ($get_dept = $get_all_departments_data->fetch(PDO::FETCH_ASSOC)) { ?>
@@ -314,7 +314,7 @@ $get_all_account_data->execute();
                     <div class="col-md-2" style="text-align: right;padding-top: 5px;">
                       <label>Remarks:</label>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                       <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Remarks" value="<?php echo
                                                                                                                         $remarks; ?>" required>
                     </div>
@@ -322,14 +322,14 @@ $get_all_account_data->execute();
                   </div><br>
 
                   <div class="box-footer" align="center">
-                    <input type="submit" <?php echo $btnNew; ?> name="add" class="btn btn-primary" value="New">
+                    <!-- <input type="submit" <?php echo $btnNew; ?> name="add" class="btn btn-primary" value="New"> -->
                     <input type="submit" <?php echo $btnStatus; ?> name="insert_outgoing" class="btn btn-primary" value="Save">
                     <a href="../plugins/TCPDF/User/routing.php?docno=<?php echo $docno; ?>" target="blank">
                       <input type="button" <?php echo $btnPrint; ?> name="print" class="btn btn-primary" value="Print">
                     </a>
-                    <a href="list_outgoing">
+                    <!-- <a href="list_outgoing">
                       <input type="button" name="cancel" class="btn btn-default" value="Cancel">
-                    </a>
+                    </a> -->
                   </div>
 
 
@@ -365,6 +365,8 @@ $get_all_account_data->execute();
 
 </html>
 <?php include('scripts.php') ?>
+
+
 
 
 

@@ -197,7 +197,7 @@ if (isset($_POST['update_revertdocu_dv'])) {
         // 'txndate'           => $date,
         // ':time'             => $time,
         ':type'             => $type,
-        ':particular'       => $finalparticulars,
+        ':particular'       => $particulars,
         ':orig'             => $department,
         ':destination'      => $destination,
         ':stat'             => $status,
