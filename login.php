@@ -19,6 +19,7 @@ if (isset($_POST['signin'])) {
   $username_data->execute([
     ':uname' => $username
   ]);
+  
   if ($username_data->rowCount() > 0) {
     while ($result = $username_data->fetch(PDO::FETCH_ASSOC)) {
 

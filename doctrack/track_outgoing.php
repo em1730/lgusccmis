@@ -96,7 +96,7 @@ if (!empty($requestData['search']['value'])) {   // if there is a search paramet
 	$countFilter .= " OR particulars LIKE '%" . $requestData['search']['value'] . "%' ";
 	$countFilter .= " OR amount LIKE '%" . $requestData['search']['value'] . "%' ";
 	$countFilter .= " OR destination LIKE '%" . $requestData['search']['value'] . "%' )";
-	$countFilter .= " ORDER BY date_time LIMIT " . $requestData['length'] . " ";
+	// $countFilter .= " ORDER BY date_time LIMIT " . $requestData['length'] . " ";
 
 	$getrecordstmt = $con->prepare($countFilter);
 	$getrecordstmt->execute() or die("track_outgoing.php");

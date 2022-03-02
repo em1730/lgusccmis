@@ -115,7 +115,7 @@
             ':docno'              => $docno,
 
             ':username'               => $user_name,
-            ':activity'               => "RECIEVED ". $type . " DOCUMENT FROM ". $origin
+            ':activity'               => "RECEIVED ". $type . " DOCUMENT FROM ". $origin
 
 
 
@@ -129,11 +129,11 @@
             $_SESSION['status'] = "Received Document Succesfully!";
             $_SESSION['status_code'] = "success";
 
-            header('location: receive_incoming.php?docno=' . $docno);
+            header('location: list_incoming.php');
         } else {
             $_SESSION['status'] = "Received Document Unsuccessful!!";
             $_SESSION['status_code'] = "error";
 
-            header('location: receive_incoming.php?docno=' . $docno);
+            header('location: list_incoming.php');
         }
     }

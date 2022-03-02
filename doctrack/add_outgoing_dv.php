@@ -323,7 +323,7 @@ $get_all_account_data->execute();
 
                   <div class="box-footer" align="center">
                     <!-- <input type="submit" <?php echo $btnNew; ?> name="add" class="btn btn-primary" value="New"> -->
-                    <input type="submit" <?php echo $btnStatus; ?> name="insert_outgoing" class="btn btn-primary" value="Save">
+                    <input type="submit" <?php echo $btnStatus; ?> name="insert_outgoing" class="btn btn-success" value="Save">
                     <a href="../plugins/TCPDF/User/routing.php?docno=<?php echo $docno; ?>" target="blank">
                       <input type="button" <?php echo $btnPrint; ?> name="print" class="btn btn-primary" value="Print">
                     </a>

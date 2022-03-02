@@ -234,7 +234,7 @@ if (isset($_POST['update_revertdocu_dv'])) {
         ':docno'              => $docno,
 
         ':username'               => $user_name,
-        ':activity'               => "UPDATED " . $type . " DOCUMENT TO " . $destination
+        ':activity'               => "UPDATE THE DOCUMENT" 
 
 
 
