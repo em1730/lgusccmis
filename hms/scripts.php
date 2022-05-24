@@ -1,4 +1,4 @@
-<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="../plugins/charts/loader.js"></script>
 <!-- jQuery -->
 <script src="../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -19,8 +19,11 @@
 <script src="../dist/js/demo.js"></script>
 <!-- DataTables -->
 <script src="../plugins/datatables/jquery.dataTables.js"></script>
+<!-- DataTables Bootstrap -->
 <script src="../plugins/datatables/dataTables.bootstrap4.js"></script>
+<!-- Font Awesome -->
 <script src="../plugins/font-awesome/629c6e6cbc.js" crossorigin="anonymous"></script>
-
-
+<!-- Sweet Alert -->
+<script src="../plugins/sweetalert/sweetalert.min.js"></script>
+<!-- Select2 -->
 <script src="../plugins/select2/select2.full.min.js"></script>
