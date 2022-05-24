@@ -199,7 +199,7 @@ while ($result = $user_data->fetch(PDO::FETCH_ASSOC)) {
 
 
                     <li class="nav-item">
-                        <a href="edit_profile" class="nav-link sidebar-link">
+                        <a href="edit_profile.php" class="nav-link sidebar-link">
                             &nbsp;
                             <i class="nav-icon fas fa-pen icons"></i>
                             <!-- <i class="nav-icon fa fa-user-edit icons"></i> -->
@@ -209,7 +209,7 @@ while ($result = $user_data->fetch(PDO::FETCH_ASSOC)) {
                     </li>
 
                     <li class="nav-item">
-                        <a href="../index.php" class="nav-link  sidebar-link">
+                        <a href="../login.php" class="nav-link  sidebar-link">
                             &nbsp;
                             <i class="fa fa-sign-out nav-icon icons"></i>
                             <p> &nbsp; Sign Out</p>
