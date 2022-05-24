@@ -79,13 +79,11 @@ while ($result = $user_data->fetch(PDO::FETCH_ASSOC)) {
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
         </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">HM SYSTEM</a>
-        </li>
+       
 
 
         <li class="nav-item">
-            <a href="index.php" class="nav-link ">HOME PAGE</a>
+            <a href="index.php" class="nav-link ">DASHBOARD</a>
         </li>
 
 
