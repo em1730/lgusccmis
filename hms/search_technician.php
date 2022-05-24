@@ -10,9 +10,12 @@ include('../config/db_config.php');
 $columns= array( 
     // datatable column index  => database column name
         0 => 'idno', 
-        1 => 'fullname',
-        2 => 'position',
-        3 => 'status',
+        
+        1 => 'firstname',
+        2 => 'middlename',
+        3 => 'lastname',
+        4 => 'position',
+        5 => 'status',
     
     );
     
@@ -21,7 +24,7 @@ $columns= array(
 $requestData= $_REQUEST;
 
 
-$getAllIndividual = "SELECT * FROM hms_technician  ORDER BY idno DESC 
+$getAllIndividual = "SELECT * FROM hms_technician  where status ='Active' ORDER BY idno DESC 
                     LIMIT ".$requestData['start']." ,".$requestData['length']."  ";
 
 $getIndividualData = $con->prepare($getAllIndividual);
@@ -37,7 +40,7 @@ $totalFiltered = $totalData;
 // when there is no search parameter then total number rows = total number filtered rows.
 
 
-$getAllIndividual = "SELECT * from hms_technician where ";
+$getAllIndividual = "SELECT * from hms_technician where status='Active' AND ";
              
      if( !empty($requestData['search']['value']) ) {
         $getAllIndividual.=" (idno LIKE '%".$requestData['search']['value']."%'";
@@ -50,14 +53,14 @@ $getAllIndividual = "SELECT * from hms_technician where ";
         $getIndividualData = $con->prepare($getAllIndividual);
         $getIndividualData->execute(); 
 
-     $countfilter = "SELECT COUNT(idno) as id from hms_technician where";
+     $countfilter = "SELECT COUNT(idno) as id from hms_technician where status='Active' ";
        $countfilter.=" (idno LIKE '%".$requestData['search']['value']."%'";
        $countfilter.=" OR firstname LIKE '%".$requestData['search']['value']."%' ";
        $countfilter.=" OR middlename LIKE '%".$requestData['search']['value']."%' ";
        $countfilter.=" OR lastname LIKE '%".$requestData['search']['value']."%' ";
        $countfilter.=" OR position LIKE '%".$requestData['search']['value']."%' ";
        $countfilter.=" OR status LIKE '%".$requestData['search']['value']."%') ";
-       $countfilter.="LIMIT ".$requestData['length']." " ;
+       $countfilter.=" LIMIT ".$requestData['length']." " ;
 
 
         $getrecordstmt = $con->prepare($countfilter);
@@ -77,13 +80,18 @@ $getAllIndividual = "SELECT * from hms_technician where ";
 	$nestedData=array(); 
 
 	$nestedData[] = $row["idno"];
-    $nestedData[] = ucwords(strtoupper($row["firstname"].' '.$row["middlename"].'. '.$row["lastname"]));
+    $nestedData[] = ucwords(strtoupper($row["firstname"]));
+    $nestedData[] = ucwords(strtoupper($row["middlename"]));
+    $nestedData[] = ucwords(strtoupper($row["lastname"]));
     $nestedData[] = $row["position"];
     $nestedData[] = $row["status"];
 
+
 	$data[] = $nestedData;
+
 }
-        $json_data = array(
+
+    $json_data = array(
     "draw"            => intval( $requestData['draw'] ),   // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw. 
     "recordsTotal"    => intval( $totalData ),  // total number of records
     "recordsFiltered" => intval( $totalFiltered ), // total number of records after searching, if there is no searching then totalFiltered = totalData
