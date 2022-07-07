@@ -7,6 +7,7 @@ session_start();
 
 include('../config/db_config.php');
 
+
 if (!isset($_SESSION['id'])) {
     header('location:../index');
 }
@@ -92,7 +93,7 @@ $alert_msg = $btnEdit = $btnSave = $firstname = $middlename = $lastname = ' ';
                                             <label>First Name:</label>
                                         </div>
                                         <div class="col-md-7">
-                                            <input type="text" readonly class="form-control" name="firstname" placeholder="First Name" value="<?php echo $firstname; ?>" required>
+                                            <input type="text" readonly class="form-control" name="firstname" placeholder="First Name" >
                                         </div>
                                     </div><br>
 
@@ -101,7 +102,7 @@ $alert_msg = $btnEdit = $btnSave = $firstname = $middlename = $lastname = ' ';
                                             <label>Middle Name:</label>
                                         </div>
                                         <div class="col-md-7">
-                                            <input type="text" readonly class="form-control" name="middlename" placeholder="Middle Name" value="<?php echo $middlename; ?>" required>
+                                            <input type="text" readonly class="form-control" name="middlename" placeholder="Middle Name"  >
                                         </div>
                                     </div><br>
 
@@ -110,9 +111,26 @@ $alert_msg = $btnEdit = $btnSave = $firstname = $middlename = $lastname = ' ';
                                             <label>Last Name:</label>
                                         </div>
                                         <div class="col-md-7">
-                                            <input type="text" readonly class="form-control" name="lastname" placeholder="Last Name" value="<?php echo $lastname; ?>" required>
+                                            <input type="text" readonly class="form-control" name="lastname" placeholder="Last Name"  >
                                         </div>
                                     </div><br>
+
+                                    <div class="row">
+                                        <div class="col-md-3" style="text-align: right;padding-top: 5px;">
+                                            <label>Position:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <input type="text" readonly class="form-control" name="position" placeholder="Position " >
+                                        </div>
+                                    </div><br>
+                                    
+
+
+
+
+
+
+
 
                                     <div class="box-footer" align="center">
                                         <button type="button" <?php echo $btnEdit; ?> name="edit" id="btnEdit" class="btn btn-info">

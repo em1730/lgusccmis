@@ -33,9 +33,9 @@ $alert_msg = $othersItem = $btnEdit = $btnSave =
     $received = $diagnostics =  $description = ' ';
 
 //select all data type
-$get_all_requestedby_sql = "SELECT * FROM tbl_requestedby where status='Active'";
-$get_all_requestedby_data = $con->prepare($get_all_requestedby_sql);
-$get_all_requestedby_data->execute();
+// $get_all_requestedby_sql = "SELECT * FROM tbl_requestedby where status='Active'";
+// $get_all_requestedby_data = $con->prepare($get_all_requestedby_sql);
+// $get_all_requestedby_data->execute();
 
 //select all departments
 $get_all_departments_sql = "SELECT * FROM tbl_department";
@@ -43,15 +43,15 @@ $get_all_departments_data = $con->prepare($get_all_departments_sql);
 $get_all_departments_data->execute();
 
 
-$get_all_items_sql = "SELECT * FROM tbl_items";
-$get_all_items_data = $con->prepare($get_all_items_sql);
-$get_all_items_data->execute();
+// $get_all_items_sql = "SELECT * FROM tbl_items";
+// $get_all_items_data = $con->prepare($get_all_items_sql);
+// $get_all_items_data->execute();
 
 
 
-$get_all_tech_sql = "SELECT * FROM hms_technician";
-$get_all_tech_data = $con->prepare($get_all_tech_sql);
-$get_all_tech_data->execute();
+// $get_all_tech_sql = "SELECT * FROM hms_technician";
+// $get_all_tech_data = $con->prepare($get_all_tech_sql);
+// $get_all_tech_data->execute();
 
 
 ?>
@@ -62,7 +62,7 @@ $get_all_tech_data->execute();
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>HM SYSTEM | Add Hardware Repair</title>
+    <title>HMS | Repair Item</title>
 
 
     <?php include('heading.php') ?>
@@ -74,19 +74,19 @@ $get_all_tech_data->execute();
     <div class="wrapper">
 
         <?php include('sidebar.php'); ?>
-        <div class="content-wrapper" align="center">
+        <div class="content-wrapper" >
             <div class="content-header"></div>
 
             <div class="topright col-md-3 ">
                 <?php echo $alert_msg; ?>
             </div>
-            <section class="content  col-md-10">
+            <section class="content ">
                 <div class="card card-danger">
-                    <div class="card-header" align="left">
-                        <h4>Add Hardware Repair</h4>
+                    <div class="card-header">
+                        <h4>Repair an Item</h4>
                     </div>
 
-                    <div class="card-body" align="left">
+                    <div class="card-body" >
                         <div class="box box-primary">
                             <form role="form" method="POST" action="">
                                 <div class="box-body">
@@ -116,14 +116,7 @@ $get_all_tech_data->execute();
                                         <div class="col-md-4">
                                             <select class=" form-control select2" style="width: 100%;" name="itemrecieved" value="<?php echo $items; ?>">
                                                 <option selected="selected">Please select...</option>
-                                                <?php while ($get_items = $get_all_items_data->fetch(PDO::FETCH_ASSOC)) { ?>
-                                                    <option value="<?php echo $get_items['itemname']; ?>">
-                                                        <?php echo $get_items['itemname'];
-                                                        echo " || ";
-                                                        echo $get_items['specifications'];  ?>
-
-                                                    </option>
-                                                <?php } ?>
+                                                <!-- -->
                                             </select>
                                         </div>
 
@@ -136,6 +129,7 @@ $get_all_tech_data->execute();
                                             <input type="text" readonly class="form-control" name="others" placeholder="Other Items" value="<?php echo $othersItem; ?>" required>
                                         </div>
                                     </div><br>
+                                    
                                     <div class="row">
 
 
@@ -154,10 +148,7 @@ $get_all_tech_data->execute();
                                         </div>
                                         <div class="col-md-8">
                                             <select class=" form-control select2" id="requested" style="width: 100%;" name="department" value="<?php echo $department; ?>">
-                                                <option selected="selected">Please select...</option>
-                                                <?php while ($get_department = $get_all_departments_data->fetch(PDO::FETCH_ASSOC)) { ?>
-                                                    <option value="<?php echo $get_department['objid']; ?>"> <?php echo $get_department['department']; ?> </option>
-                                                <?php } ?>
+                                                <option selected="selected">Please select...</option> 
                                             </select>
                                         </div>
                                     </div><br>
@@ -176,20 +167,8 @@ $get_all_tech_data->execute();
                                         </div>
                                         <div class="col-md-8">
                                             <select class=" form-control select2" id="technician" style="width: 100%;" name="technician" value="<?php echo $technician; ?>">
-                                                <option selected="selected">Please select...</option>
-                                                <?php while ($get_technician = $get_all_tech_data->fetch(PDO::FETCH_ASSOC)) { ?>
-                                                    <option value="<?php echo $get_technician['firstname'];
-                                                                    echo " ";
-                                                                    echo $get_technician['middlename'];
-                                                                    echo " ";
-                                                                    echo $get_technician['lastname'];  ?>">
-                                                        <?php echo $get_technician['firstname'];
-                                                        echo " ";
-                                                        echo $get_technician['middlename'];
-                                                        echo " ";
-                                                        echo $get_technician['lastname']; ?>
-                                                    </option>
-                                                <?php } ?>
+                                                <!-- <option selected="selected">Please select...</option> -->
+                                             
                                             </select>
                                         </div>
                                     </div><br>
@@ -219,7 +198,7 @@ $get_all_tech_data->execute();
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> <br>
         </div>
         <?php include('footer.php'); ?>
     </div>
