@@ -94,7 +94,7 @@
   <!-- Ionicons -->
   <!-- <link rel="stylesheet" href="../dist/css/ionicons.min.css"> -->
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="landing/dist/css/adminlte.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
   <!-- Morris chart
