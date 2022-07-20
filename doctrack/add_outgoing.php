@@ -1,64 +1,38 @@
 <?php
 
-include('../config/db_config.php');
-
 session_start();
-$user_id = $_SESSION['id'];
+
+include('../config/db_config.php');
+//user-account details
+include('user_account.php');
+//document type masterlist
+include('../masterlisting/list_doctype.php');
+//department masterlist
+include('../masterlisting/list_department.php');
+
+
+
+
 $docno = $date  = $type = $particulars = $origin =
   $destination = $amount = $status    = $remarks = $btnNew = $btnPrint = '';
 
-// $btnNew = 'disabled';
-// $btnPrint = 'disabled';
 $btnStatus = '';
+// if(!empty($_POST['type'])) {
+//   $list_doctype = $_POST['type'];
+ 
+// }
 
-if (!isset($_SESSION['id'])) {
-  header('location:../login.php');
-} else {
-}
 
-// include('insert_outgoing.php');
+
 
 $now = new DateTime();
 
 
 
-//fetch user from database
-$get_user_sql = "SELECT * FROM tbl_users where user_id = :id";
-$user_data = $con->prepare($get_user_sql);
-$user_data->execute([':id' => $user_id]);
-while ($result = $user_data->fetch(PDO::FETCH_ASSOC)) {
-
-
-  $db_first_name = $result['first_name'];
-  $db_middle_name = $result['middle_name'];
-  $db_last_name = $result['last_name'];
-  $db_email_ad = $result['email'];
-  $db_contact_number = $result['contact_no'];
-  $user_name = $result['username'];
-  $department = $result['department'];
-}
 
 
 
 
-
-
-
-// include('insert_outgoing.php');
-//include ('insert_ledger.php');
-
-
-
-
-
-$get_all_document_sql = "SELECT * FROM document_type";
-$get_all_document_data = $con->prepare($get_all_document_sql);
-$get_all_document_data->execute();
-
-//select all departments
-$get_all_departments_sql = "SELECT * FROM tbl_department";
-$get_all_departments_data = $con->prepare($get_all_departments_sql);
-$get_all_departments_data->execute();
 
 ?>
 
@@ -73,10 +47,7 @@ $get_all_departments_data->execute();
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title> DOCTRACK | Forward Document</title>
-
   <?php include('heading.php'); ?>
-
-
 </head>
 
 
@@ -107,7 +78,7 @@ $get_all_departments_data->execute();
                     <label>Document No.:</label>
                   </div>
                   <div class="col-md-4">
-                    <input type="text" readonly class="form-control" id="doc_no" name="doc_no" placeholder="Document Number" value="<?php echo $docno; ?>" required>
+                    <input type="text" readonly class="form-control" id="doc_no" name="doc_no" placeholder="Document Number" value="<?php echo $docno; ?>" >
                   </div>
 
                   <div class="col-md-1" style="text-align: right;padding-top: 5px;">
@@ -137,11 +108,11 @@ $get_all_departments_data->execute();
                   </div>
 
                   <div class="col-md-8">
-                    <select class="form-control select2" id="select_type" style="width: 100%;" name="type" value="<?php echo $type; ?>">
+                    <select class="form-control select2" id="select_type" style="width: 100%;" name="type" value="">
                       <option selected="selected">Please select...</option>
-                      <?php while ($get_type = $get_all_document_data->fetch(PDO::FETCH_ASSOC)) { ?>
-                        <option value="<?php echo $get_type['objid']; ?>"><?php echo $get_type['description']; ?></option>
-                      <?php } ?>
+                      <?php foreach ($list_doctype as $doctype) { ?>
+                        <option value="<?php echo $doctype['objid']; ?>"><?php echo $doctype['type']; ?></option>
+                      <?php  }   ?>
                     </select>
                   </div>
                 </div><br>
@@ -152,18 +123,9 @@ $get_all_departments_data->execute();
                     <label>Subject/Particulars:</label>
                   </div>
                   <div class="col-md-8">
-                    <textarea rows="5" class="form-control" name="particulars" style=" text-transform: uppercase;" placeholder="Subject/Particulars" required><?php echo $particulars; ?></textarea>
+                    <textarea rows="5" class="form-control" name="particulars" style=" text-transform: uppercase;" placeholder="Subject/Particulars" ><?php echo $particulars; ?></textarea>
                   </div>
                 </div><br>
-
-                <!-- <div class="row">
-                  <div class="col-md-2" style="text-align: right;padding-top: 5px;">
-                   <label>Amount: (Optional)</label>
-                  </div>
-                  <div class="col-md-10">
-                      <input type="text" class="form-control" name="amount" placeholder="Amount" value="<?php echo  $amount; ?>" >
-                  </div>
-                </div><br> -->
 
 
                 <div class="row">
@@ -174,18 +136,10 @@ $get_all_departments_data->execute();
 
                   <div class="col-md-8">
                     <select class="form-control select2" readonly style="width: 100%;" name="receiver" value="<?php echo $destination; ?>">
-                      <option>Please select...</option>
-                      <?php while ($get_dept = $get_all_departments_data->fetch(PDO::FETCH_ASSOC)) { ?>
-
-                        <?php
-                        //if $get_author naa value, check nato if equals sa $get_author1['fullname']
-                        //if equals, put 'selected' sa option
-                        $selected = ($destination == $get_dept['objid']) ? 'selected' : '';
-
-                        ?>
-
-                        <option <?= $selected; ?> value="<?php echo $get_dept['objid']; ?>"><?php echo $get_dept['department']; ?></option>
-                      <?php } ?>
+                      <option selected="selected">Please select...</option>
+                      <?php foreach ($list_department as $department) { ?>
+                        <option value="<?php echo $department['objid']; ?>"><?php echo $department['department']; ?></option>
+                      <?php  }   ?>
                     </select>
                   </div>
                 </div><br>
@@ -197,7 +151,7 @@ $get_all_departments_data->execute();
 
 
                   <div class="col-md-8">
-                    <textarea rows="5" style=" text-transform: uppercase;" class="form-control" name="remarks" placeholder="Remarks" required><?php echo $remarks; ?></textarea>
+                    <textarea rows="5" style=" text-transform: uppercase;" class="form-control" name="remarks" placeholder="Remarks" ><?php echo $remarks; ?></textarea>
                   </div>
                 </div><br>
 
@@ -224,10 +178,10 @@ $get_all_departments_data->execute();
                 </div>
 
                 <div class="col-md-10">
-                  <input type="hidden" id="department" readonly class="form-control" name="department" placeholder="Department" value="<?php echo $department; ?>">
+                  <input type="hidden" id="department" readonly class="form-control" name="department" placeholder="Department" value="<?php echo $db_department; ?>">
                 </div>
                 <div class="col-md-10">
-                  <input type="hidden" readonly class="form-control" name="username" placeholder="username" value="<?php echo $user_name; ?>" required>
+                  <input type="hidden" readonly class="form-control" name="username" placeholder="username" value="<?php echo $db_user_name; ?>" >
                 </div>
               </div><br>
 
@@ -338,19 +292,5 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
     }
   });
 
-  // $('#doc_no').on('change',function(){
-  //      var docno = $(this).val();
-  //       $.ajax({
-  //         type:'POST',
-  //         data:{docno:docno},
-  //         url:'check_serial.php',
-  //          success:function(data){
-  //          $('#doc_no').val(data);
-  //              alert (data);
-  //          }
-
-
-  //           });           
-
-  //                 });
+ 
 </script>
