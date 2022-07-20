@@ -149,15 +149,12 @@ $now = new DateTime();
                     <label>Remarks:</label>
                   </div>
 
-
                   <div class="col-md-8">
                     <textarea rows="5" style=" text-transform: uppercase;" class="form-control" name="remarks" id="remarks" placeholder="Remarks"><?php echo $remarks; ?></textarea>
                   </div>
                 </div><br>
 
-
-
-
+                
                 <div class="box-footer" align="center">
                   <!-- <input type="submit" <?php echo $btnNew; ?> name="add" class="btn btn-primary" value="New"> -->
                   <!-- <input type="submit" <?php echo $btnStatus; ?> name="insert_outgoing" class="btn btn-primary" value="Save"> -->
