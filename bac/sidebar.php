@@ -1,7 +1,7 @@
 <!-- navbar and sidebar -->
 <?php
 
-include ('../config/db_config.php');
+include('../config/db_config.php');
 
 
 
@@ -11,9 +11,8 @@ include ('../config/db_config.php');
 $user_id = $_SESSION['id'];
 
 if (!isset($_SESSION['id'])) {
-    header('location:../index.php');
+  header('location:../index.php');
 } else {
-
 }
 
 
@@ -25,100 +24,98 @@ $user_data->execute([':id' => $user_id]);
 while ($result = $user_data->fetch(PDO::FETCH_ASSOC)) {
 
 
-    $db_first_name = $result['first_name'];
-    $db_middle_name = $result['middle_name'];
-    $db_last_name = $result['last_name'];
-
+  $db_first_name = $result['first_name'];
+  $db_middle_name = $result['middle_name'];
+  $db_last_name = $result['last_name'];
 }
 
 
 ?>
 <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
-      </li>
+  <!-- Left navbar links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+    </li>
 
-     
-    </ul>
-   
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../lockscreen.php" class="nav-link">Lock Screen</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../logout.php" class="nav-link">Log Out</a>
-      </li>
-     </ul>
-    
-   
-     
-  </nav>
-  <!-- /.navbar -->
 
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="../dist/img/scclogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-           style="opacity: ">
-      <span class="brand-text font-weight-light">BAC | SYSTEM</span>
-    </a>
+  </ul>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="profile.php" class="d-block"><?php echo $db_first_name . " " . $db_middle_name . " " . $db_last_name ?>  </a>
-        </div>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item d-none d-sm-inline-block">
+      <a href="../../lockscreen.php" class="nav-link">Lock Screen</a>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
+      <a href="../../logout.php" class="nav-link">Log Out</a>
+    </li>
+  </ul>
+
+
+
+</nav>
+<!-- /.navbar -->
+
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="index3.html" class="brand-link">
+    <img src="../dist/img/scclogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" >
+    <span class="brand-text font-weight-light">BAC | SYSTEM</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
       </div>
+      <div class="info">
+        <a href="profile.php" class="d-block"><?php echo $db_first_name . " " . $db_middle_name . " " . $db_last_name ?> </a>
+      </div>
+    </div>
 
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               
-               <li class="nav-item">
-                <a href="index" class="nav-link active">
-                  <i class="nav-icon fa fa-th"></i>
-                  <p>
-                    Dashboard
-                   
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item has-treeview" style="font-size:16px">
-            <a href="" class="nav-link ">
-              <i class="nav-icon fa fa-exchange"></i>
-              <p>
-                TRANSACTIONS
-                <i class="right fa fa-angle-left"></i>
-              </p>
-            </a>
 
-            <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="index" class="nav-link active">
+            <i class="nav-icon fa fa-th"></i>
+            <p>
+              Dashboard
+
+            </p>
+          </a>
+        </li>
+        <li class="nav-item has-treeview" style="font-size:16px">
+          <a href="" class="nav-link ">
+            <i class="nav-icon fa fa-exchange"></i>
+            <p>
+              TRANSACTIONS
+              <i class="right fa fa-angle-left"></i>
+            </p>
+          </a>
+
+          <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="add_pr" class="nav-link">
-                  <i class="fa fa-minus nav-icon"></i>
-                  <p>Purchase Request</p>
-                </a>
-              </li>
-            </ul>
-              <li class="nav-item has-treeview" style="font-size:16px">
-            <a href="product" class="nav-link ">
-              <i class="nav-icon fa fa-product-hunt"></i>
-              <p>
-                PRODUCTS
-                <!-- <i class="right fa fa-angle-left"></i> -->
-              </p>
-            </a>
-            <!-- <ul class="nav nav-treeview">
+              <a href="add_pr" class="nav-link">
+                <i class="fa fa-minus nav-icon"></i>
+                <p>Purchase Request</p>
+              </a>
+            </li>
+          </ul>
+        <li class="nav-item has-treeview" style="font-size:16px">
+          <a href="product" class="nav-link ">
+            <i class="nav-icon fa fa-product-hunt"></i>
+            <p>
+              PRODUCTS
+              <!-- <i class="right fa fa-angle-left"></i> -->
+            </p>
+          </a>
+          <!-- <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="list_items" class="nav-link">
                   <i class="fa fa-minus nav-icon"></i>
@@ -146,18 +143,18 @@ while ($result = $user_data->fetch(PDO::FETCH_ASSOC)) {
             
             </ul> -->
 
-            <li class="nav-item has-treeview" style="font-size:16px">
-            <a href="properties" class="nav-link ">
-              <i class="nav-icon fa fa-list"></i>
-              <p>
-                PROPERTIES
-                <!-- <i class="right fa fa-angle-left"></i> -->
-              </p>
-            </a>
-            <!-- <ul class="nav nav-treeview">
+        <li class="nav-item has-treeview" style="font-size:16px">
+          <a href="properties" class="nav-link ">
+            <i class="nav-icon fa fa-list"></i>
+            <p>
+              PROPERTIES
+              <!-- <i class="right fa fa-angle-left"></i> -->
+            </p>
+          </a>
+          <!-- <ul class="nav nav-treeview">
                -->
 
-               <!-- <li class="nav-item">
+          <!-- <li class="nav-item">
                 <a href="list_position" class="nav-link">
                   <i class="fa fa-minus nav-icon"></i>
                   <p>Position</p>
@@ -193,34 +190,34 @@ while ($result = $user_data->fetch(PDO::FETCH_ASSOC)) {
                   <p>Requested by</p> 
                 </a>
               </li> -->
-              
-            <!-- </ul> -->
-              
-            
-            <li class="nav-item has-treeview" style="font-size:16px">
-            <a href="#" class="nav-link ">
-              <i class="nav-icon fa fa-cogs" ></i>
-              <p>
-                SYSTEM
-                <i class="right fa fa-angle-left"></i>
-              </p>
-            </a>  
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Lock Screen</p>
-                </a>
-                <li class="nav-item">
-                <a href="" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Log Out</p>
-                </a>
-             
-            </ul>
-          
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
+
+          <!-- </ul> -->
+
+
+        <li class="nav-item has-treeview" style="font-size:16px">
+          <a href="#" class="nav-link ">
+            <i class="nav-icon fa fa-cogs"></i>
+            <p>
+              SYSTEM
+              <i class="right fa fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="" class="nav-link">
+                <i class="fa fa-circle-o nav-icon"></i>
+                <p>Lock Screen</p>
+              </a>
+            <li class="nav-item">
+              <a href="" class="nav-link">
+                <i class="fa fa-circle-o nav-icon"></i>
+                <p>Log Out</p>
+              </a>
+
+          </ul>
+
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>

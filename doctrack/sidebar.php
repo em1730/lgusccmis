@@ -370,14 +370,7 @@ while ($result = $get_all_settings_data->fetch(PDO::FETCH_ASSOC)) {
                     </label>
 
 
-                    <li class="nav-item">
-                        <a href="list_document_type.php" class="nav-link sidebar-link">
-                            &nbsp;
-                            <!-- <i class="nav-icon fa fa-question icons"></i> -->
-                            <i class="nav-icon fas fa-file-invoice icons"></i>
-                            <p> &nbsp; Document Type</p>
-                        </a>
-                    </li>
+              
 
                     <li class="nav-item">
                         <a href="list_suppliers.php" class="nav-link sidebar-link">
