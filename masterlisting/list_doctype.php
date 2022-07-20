@@ -1,5 +1,13 @@
 <?php
 
+// TEMPLATE TO ADD ANOTHER ARRAY 
+// FOR DOCUMENT TYPE
+// array(
+//     'objid' => '',
+//     'type' => '',
+//     'description' => '',
+//     'status' => 'Active'
+// ),
 
 $list_doctype = array(
 

@@ -1,6 +1,13 @@
 <?php
 
 
+// TEMPLATE TO ADD ANOTHER ARRAY 
+// FOR DEPARTMENT
+// array(
+//     'objid' => '',
+//     'department' => '',
+//     'status' => 'Active'
+// ),
 
 $list_department = array(
 

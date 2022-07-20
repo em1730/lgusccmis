@@ -1,17 +1,16 @@
 <?php
 include('config/db_config.php');
+
 //variable declaration
+
 $alert_msg = '';
+
 //sign in button
+
 if (isset($_POST['signin'])) {
-  //to check if data are passed
-  // echo "<pre>";
-  //     print_r($_POST);
-  // echo "</pre>";
 
   $username = $_POST['username'];
   $password = $_POST['password'];
-  
 
   $check_username_sql = "SELECT * FROM tbl_users where username = :uname";
 
