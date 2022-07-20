@@ -1,8 +1,7 @@
  <?php
 
     include('../config/db_config.php');
-    //include('import_pdf.php');
-    // session_start();
+ 
 
     session_start();
     date_default_timezone_set('Asia/Manila');
@@ -16,6 +15,8 @@
         $docno = $_POST['doc_no'];
         $date = date('Y-m-d', strtotime($_POST['date']));
         $time =  date('H:i:s');
+
+        //save selected array (document type)
         if(!empty($_POST['type'])) {
             $type = $_POST['type'];
         }
@@ -25,11 +26,11 @@
         $department = $_POST['department'];
         $creator = $_POST['department'];
 
+        //save selected array (reciever)
         if(!empty($_POST['receiver'])) {
             $destination = $_POST['receiver'];
         }
-        // $destination = $_POST['receiver'];
-        // $amount = $_POST['amount'];
+
         $status = 'CREATED';
         $remarks = $_POST['remarks'];
         $user_name = $_POST['username'];
