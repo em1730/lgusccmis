@@ -6,7 +6,7 @@
 
     session_start();
     date_default_timezone_set('Asia/Manila');
- 
+
 
     if (isset($_POST['insert_outgoing'])) {
 
@@ -16,11 +16,19 @@
         $docno = $_POST['doc_no'];
         $date = date('Y-m-d', strtotime($_POST['date']));
         $time =  date('H:i:s');
+        if(!empty($_POST['type'])) {
+            $type = $_POST['type'];
+        }
+
         $type = $_POST['type'];
         $particulars = $_POST['particulars'];
         $department = $_POST['department'];
         $creator = $_POST['department'];
-        $destination = $_POST['receiver'];
+
+        if(!empty($_POST['receiver'])) {
+            $destination = $_POST['receiver'];
+        }
+        // $destination = $_POST['receiver'];
         // $amount = $_POST['amount'];
         $status = 'CREATED';
         $remarks = $_POST['remarks'];
@@ -37,14 +45,14 @@
         while ($result = $check_start_data->fetch(PDO::FETCH_ASSOC)) {
             $start_time = $result['end_time'];
         }
-    
+
         $check_now_sql =  "select now() as time";
         $check_now_data = $con->prepare($check_now_sql);
         $check_now_data->execute([]);
         while ($result = $check_now_data->fetch(PDO::FETCH_ASSOC)) {
             $now_time = $result['time'];
         }
-    
+
 
         $insert_outgoing_sql = "INSERT INTO tbl_documents SET 
         docno              = :code,
@@ -130,7 +138,7 @@
             ':docno'                  => $docno,
 
             ':username'               => $user_name,
-            ':activity'               => "FORWARD ". $type . " DOCUMENT TO ". $destination
+            ':activity'               => "FORWARD " . $type . " DOCUMENT TO " . $destination
 
 
 
@@ -144,7 +152,7 @@
 
             header('location: add_outgoing.php?docno=' . $docno);
         } else {
-            $_SESSION['status'] ="Forward Document Unsuccessfull!";
+            $_SESSION['status'] = "Forward Document Unsuccessfull!";
             $_SESSION['status_code'] = "error";
 
             header('location: add_outgoing.php?docno=' . $docno);
