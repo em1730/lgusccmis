@@ -19,7 +19,7 @@ $docno = $date  = $type = $particulars = $origin =
 $btnStatus = '';
 // if(!empty($_POST['type'])) {
 //   $list_doctype = $_POST['type'];
- 
+
 // }
 
 
@@ -78,7 +78,7 @@ $now = new DateTime();
                     <label>Document No.:</label>
                   </div>
                   <div class="col-md-4">
-                    <input type="text" readonly class="form-control" id="doc_no" name="doc_no" placeholder="Document Number" value="<?php echo $docno; ?>" >
+                    <input type="text" readonly class="form-control" id="doc_no" name="doc_no" placeholder="Document Number" value="<?php echo $docno; ?>">
                   </div>
 
                   <div class="col-md-1" style="text-align: right;padding-top: 5px;">
@@ -123,7 +123,7 @@ $now = new DateTime();
                     <label>Subject/Particulars:</label>
                   </div>
                   <div class="col-md-8">
-                    <textarea rows="5" class="form-control" name="particulars" style=" text-transform: uppercase;" placeholder="Subject/Particulars" ><?php echo $particulars; ?></textarea>
+                    <textarea rows="5" class="form-control" id="particulars" name="particulars" style=" text-transform: uppercase;" placeholder="Subject/Particulars"><?php echo $particulars; ?></textarea>
                   </div>
                 </div><br>
 
@@ -135,7 +135,7 @@ $now = new DateTime();
                   </div>
 
                   <div class="col-md-8">
-                    <select class="form-control select2" readonly style="width: 100%;" name="receiver" value="<?php echo $destination; ?>">
+                    <select class="form-control select2" readonly id="receiver" style="width: 100%;" name="receiver" value="<?php echo $destination; ?>">
                       <option selected="selected">Please select...</option>
                       <?php foreach ($list_department as $department) { ?>
                         <option value="<?php echo $department['objid']; ?>"><?php echo $department['department']; ?></option>
@@ -151,7 +151,7 @@ $now = new DateTime();
 
 
                   <div class="col-md-8">
-                    <textarea rows="5" style=" text-transform: uppercase;" class="form-control" name="remarks" placeholder="Remarks" ><?php echo $remarks; ?></textarea>
+                    <textarea rows="5" style=" text-transform: uppercase;" class="form-control" name="remarks" id="remarks" placeholder="Remarks"><?php echo $remarks; ?></textarea>
                   </div>
                 </div><br>
 
@@ -162,7 +162,7 @@ $now = new DateTime();
                   <!-- <input type="submit" <?php echo $btnNew; ?> name="add" class="btn btn-primary" value="New"> -->
                   <!-- <input type="submit" <?php echo $btnStatus; ?> name="insert_outgoing" class="btn btn-primary" value="Save"> -->
 
-                  <button type="submit" <?php echo $btnStatus; ?> name="insert_outgoing" class="btn btn-success">
+                  <button type="submit" <?php echo $btnStatus; ?> id="btn_submit" name="insert_outgoing" class="btn btn-success">
                     <h4>Submit Form</h4>
                   </button>
 
@@ -181,7 +181,7 @@ $now = new DateTime();
                   <input type="hidden" id="department" readonly class="form-control" name="department" placeholder="Department" value="<?php echo $db_department; ?>">
                 </div>
                 <div class="col-md-10">
-                  <input type="hidden" readonly class="form-control" name="username" placeholder="username" value="<?php echo $db_user_name; ?>" >
+                  <input type="hidden" readonly class="form-control" name="username" placeholder="username" value="<?php echo $db_user_name; ?>">
                 </div>
               </div><br>
 
@@ -291,6 +291,35 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
       });
     }
   });
+  $("#btn_submit").click(function() {
 
- 
+    var doctype = $('#select_type :selected').text();
+    var receiver = $('#receiver :selected').text();
+
+    var particulars = $('#particulars').val();
+    var particularscount = particulars.length;
+
+    var remarks = $('#remarks').val();
+    var remarkscount = remarks.length;
+
+    if (doctype == 'Please select...') {
+      alert("Select Type of Document!");
+      $('#select_type').select2('open');
+      return false;
+    } else if (particularscount == 0) {
+      alert("Fill up the particulars or description of the document!");
+      $('#particulars').focus();
+      return false;
+    } else if (receiver == 'Please select...') {
+      alert("Select any department to forward the document!");
+      $('#receiver').select2('open');
+      return false;
+    } else if (remarkscount == 0) {
+      alert("Please fill up the remarks!");
+      $('#remarks').focus();
+      return false;
+    } 
+
+
+  });
 </script>
