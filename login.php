@@ -18,7 +18,7 @@ if (isset($_POST['signin'])) {
   $username_data->execute([
     ':uname' => $username
   ]);
-  
+
   if ($username_data->rowCount() > 0) {
     while ($result = $username_data->fetch(PDO::FETCH_ASSOC)) {
 
@@ -30,15 +30,18 @@ if (isset($_POST['signin'])) {
         session_start();
         $_SESSION['id'] = $result['user_id'];
 
-        if ($result['account_type'] == 1) {
-          header('location: admin'); //location is folder || IT ADMIN 
-        } else if ($result['account_type'] == 2) {
-          header('location: doctrack'); //location is folder || DOCUMENT TRACKING
-        } else if ($result['account_type'] == 3) {
-          header('location: sp'); //location is folder || SP SYSTEM
-        } else if ($result['account_type'] == 4) {
-          header('location: hms'); //location is folder || HARDWARE MONITORING SYSTEM
-        }
+
+        header('location: homescreen.php');
+
+        // if ($result['account_type'] == 1) {
+        //   header('location: admin');
+        // } else if ($result['account_type'] == 2) {
+        //   header('location: doctrack'); 
+        // } else if ($result['account_type'] == 3) {
+        //   header('location: sp'); 
+        // } else if ($result['account_type'] == 4) {
+        //   header('location: hms'); 
+        // }
       } else {
         //echo "Password does not match!";
         $alert_msg .= ' 
