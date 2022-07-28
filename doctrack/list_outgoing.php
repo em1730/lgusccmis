@@ -1,94 +1,16 @@
 <?php
 
 session_start();
-if (!isset($_SESSION['id'])) {
-    header('location:../index.php');
-}
+include('../config/db_config.php');
+//user-account details
+include('user_account.php');
 
 
-$user_id = $_SESSION['id'];
 $docno = '';
 
-include('../config/db_config.php');
-// include('delete.php');
-
-$get_user_sql = "SELECT * FROM tbl_users WHERE user_id = :id";
-$get_user_data = $con->prepare($get_user_sql);
-$get_user_data->execute([':id' => $user_id]);
-while ($result = $get_user_data->fetch(PDO::FETCH_ASSOC)) {
-
-    $user_name = $result['username'];
-    $GLOBALS['department'] = $result['department'];
-    $db_first_name = $result['first_name'];
-    $db_middle_name = $result['middle_name'];
-    $db_last_name = $result['last_name'];
-    $db_email_ad = $result['email'];
-    $db_contact_number = $result['contact_no'];
-    $db_user_name = $result['username'];
-}
-
-
-//select all outgoing documents
-$get_all_document_sql = "SELECT * FROM tbl_documents where origin = '$department'";
-$get_all_document_data = $con->prepare($get_all_document_sql);
-$get_all_document_data->execute();
 
 
 
-//count incoming documents
-$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status in ('CREATED','FORWARDED') and destination = '$department'";
-$get_noofdocs_data = $con->prepare($get_noofdocs_sql);
-$get_noofdocs_data->execute();
-$get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
-while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
-    $incoming_count =  $result1['total'];
-}
-
-
-//count incoming documents
-$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status = 'RECEIVED' and destination = '$department'";
-$get_noofdocs_data = $con->prepare($get_noofdocs_sql);
-$get_noofdocs_data->execute();
-$get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
-while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
-    $received_count =  $result1['total'];
-}
-
-$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status in ('CREATED','FORWARDED') and origin = '$department'";
-$get_noofdocs_data = $con->prepare($get_noofdocs_sql);
-$get_noofdocs_data->execute();
-$get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
-while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
-    $outgoing_count =  $result1['total'];
-}
-
-$get_noofdocs_sql = "SELECT COUNT(`docno`) as total FROM `tbl_documents` WHERE status = 'ARCHIVED' and destination = '$department'";
-$get_noofdocs_data = $con->prepare($get_noofdocs_sql);
-$get_noofdocs_data->execute();
-$get_noofdocs_data->setFetchMode(PDO::FETCH_ASSOC);
-while ($result1 = $get_noofdocs_data->fetch(PDO::FETCH_ASSOC)) {
-    $archived_count =  $result1['total'];
-}
-
-
-
-// count new messages
-$get_all_message_sql = "SELECT count(*) as total FROM tbl_message where receiver = $user_id and status = 'PENDING'";
-$get_all_message_data = $con->prepare($get_all_message_sql);
-$get_all_message_data->execute();
-while ($result1 = $get_all_message_data->fetch(PDO::FETCH_ASSOC)) {
-    $message_count =  $result1['total'];
-}
-
-// //select all messages for notification
-$get_all_messages_sql = "SELECT * FROM tbl_message where (receiver = $user_id or receiver = '0') and status = 'PENDING' ";
-$get_all_messages_data = $con->prepare($get_all_messages_sql);
-$get_all_messages_data->execute();
-
-// //select all messages for email
-$get_all_messages1_sql = "SELECT * FROM tbl_message where receiver = $user_id or receiver ='0'";
-$get_all_messages1_data = $con->prepare($get_all_messages1_sql);
-$get_all_messages1_data->execute();
 
 
 ?>
@@ -173,7 +95,7 @@ $get_all_messages1_data->execute();
         </div>
 
         <div class="col-md-10">
-            <input type="hidden" id="department2" readonly class="form-control" name="department2" placeholder="Department2" value="<?php echo $department; ?>">
+            <input type="hidden" id="department2" readonly class="form-control" name="department2" placeholder="Department2" value="<?php echo $db_department; ?>">
         </div>
 
 

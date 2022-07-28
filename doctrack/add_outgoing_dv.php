@@ -2,6 +2,14 @@
 
 
 session_start();
+include('../config/db_config.php');
+//user-account details
+include('user_account.php');
+//department masterlist
+include('../masterlisting/list_department.php');
+
+
+
 
 $docno = $prevyear = $pr_no = $po_no = $date = $etal  = $type = $particulars = $origin = $destination =  $obr_no =
   $account = $dv_no = $cheque_no = $acct_no  = $status = $payee =  $remarks = '';
@@ -14,42 +22,16 @@ $type1 = $_GET['type'];
 
 $now = new DateTime();
 
-if (!isset($_SESSION['id'])) {
-  header('location:../index');
-}
-$user_id = $_SESSION['id'];
 
-include('../config/db_config.php');
 // include('insert_outgoing_dv.php');   
 //for tbl_documents and tbl_dv
 // include ('insert_ledger_dv.php');     //for ledger
 
 
 
-//select user
-$get_user_sql = "SELECT * FROM tbl_users WHERE user_id = :id";
-$user_data = $con->prepare($get_user_sql);
-$user_data->execute([':id' => $user_id]);
-while ($result = $user_data->fetch(PDO::FETCH_ASSOC)) {
-  $db_first_name = $result['first_name'];
-  $db_middle_name = $result['middle_name'];
-  $db_last_name = $result['last_name'];
-  $db_email_ad = $result['email'];
-  $db_contact_number = $result['contact_no'];
-  $user_name = $result['username'];
-  $department = $result['department'];
-}
 
 
-//select all data type
-$get_all_document_sql = "SELECT * FROM document_type";
-$get_all_document_data = $con->prepare($get_all_document_sql);
-$get_all_document_data->execute();
 
-//select all departments
-$get_all_departments_sql = "SELECT * FROM tbl_department";
-$get_all_departments_data = $con->prepare($get_all_departments_sql);
-$get_all_departments_data->execute();
 
 //select all payee
 $get_all_payee_sql = "SELECT code, name_supplier from tbl_suppliers 
@@ -58,10 +40,10 @@ select objid, CONCAT(firstname, ' ', middlename, ' ', lastname) from tbl_joborde
 UNION
 select employeeno, CONCAT(firstname, ' ', middlename, ' ', lastname) from tbl_employee
 ORDER BY name_supplier";
-
-
 $get_all_payee_data = $con->prepare($get_all_payee_sql);
 $get_all_payee_data->execute();
+
+
 
 //select all account type
 $get_all_account_sql = "SELECT * FROM tbl_accounts";
@@ -89,7 +71,7 @@ $get_all_account_data->execute();
       width: 115%;
     }
 
-    .item:hover{
+    .item:hover {
       background-color: lightgreen;
 
     }
@@ -153,12 +135,12 @@ $get_all_account_data->execute();
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
-
+                        <!-- <label>Date:</label> -->
                         <div class="input-group date" data-provide="datepicker">
                           <div class="input-group-addon">
                             <i class="fa fa-calendar"></i>
                           </div>
-                          <input type="text" readonly class="form-control pull-right" id="datepicker" name="date" placeholder="Date Created" value="<?php echo $now->format('m/d/Y');; ?>">
+                          <input type="text" readonly class="form-control pull-right" id="datepicker" name="date" placeholder="Date Created" value="<?php echo $now->format('m/d/Y'); ?>">
                         </div>
                       </div>
                     </div>
@@ -236,8 +218,8 @@ $get_all_account_data->execute();
                           <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"> ADD </button>
                           <ul class="dropdown-menu items">
                             <li class="dropdown-item item"><a href="add_suppliers.php" style="color:black" target="_blank">Supplier</a></li>
-                            <li class="dropdown-item item"><a href="add_joborder.php" style="color:black"  target="_blank">Job Order</a></li>
-                            <li class="dropdown-item item"><a href="add_joborder" style="color:black"  target="_blank">Regular Employee</a></li>
+                            <li class="dropdown-item item"><a href="add_joborder.php" style="color:black" target="_blank">Job Order</a></li>
+                            <li class="dropdown-item item"><a href="add_joborder" style="color:black" target="_blank">Regular Employee</a></li>
                             <li class="dropdown-divider"></li>
                             <li class="dropdown-item" id="refresh">Refresh</li>
                           </ul>
@@ -260,8 +242,7 @@ $get_all_account_data->execute();
                       <label>Particulars:</label>
                     </div>
                     <div class="col-md-8">
-                      <textarea rows="3" class="form-control" name="particulars" placeholder="Subject/Particulars" required><?php echo
-                                                                                                                            $particulars; ?></textarea>
+                      <textarea rows="3" class="form-control" name="particulars" placeholder="Subject/Particulars" required><?php echo  $particulars; ?></textarea>
                     </div>
                   </div><br>
 
@@ -274,8 +255,7 @@ $get_all_account_data->execute();
                       <label>Amount:</label>
                     </div>
                     <div class="col-md-2">
-                      <input required type="text" class="form-control" id="amount" name="amount" placeholder="Amount" value="<?php echo
-                                                                                                                              number_format($amount, 2); ?>" required>
+                      <input required type="text" class="form-control" id="amount" name="amount" placeholder="Amount" value="<?php echo number_format($amount, 2); ?>" required>
                     </div>
                     <p>NOTE: <code>Numbers & decimal point only, do not use comma (,)</code></p>
                   </div><br>
@@ -291,18 +271,11 @@ $get_all_account_data->execute();
 
                     <div class="col-md-8">
                       <select class="form-control select2" readonly style="width: 100%;" name="receiver" value="<?php echo $destination; ?>">
-                        <option>Please select...</option>
-                        <?php while ($get_dept = $get_all_departments_data->fetch(PDO::FETCH_ASSOC)) { ?>
+                        <option selected="selected">Please select...</option>
+                        <?php foreach ($list_department as $department) { ?>
+                          <option value="<?php echo $department['objid']; ?>"><?php echo $department['department']; ?></option>
+                        <?php  }   ?>
 
-                          <?php
-                          //if $get_author naa value, check nato if equals sa $get_author1['fullname']
-                          //if equals, put 'selected' sa option
-                          $selected = ($destination == $get_dept['objid']) ? 'selected' : '';
-
-                          ?>
-
-                          <option <?= $selected; ?> value="<?php echo $get_dept['objid']; ?>"><?php echo $get_dept['department']; ?></option>
-                        <?php } ?>
                       </select>
                     </div>
                   </div><br>
@@ -315,8 +288,7 @@ $get_all_account_data->execute();
                       <label>Remarks:</label>
                     </div>
                     <div class="col-md-8">
-                      <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Remarks" value="<?php echo
-                                                                                                                        $remarks; ?>" required>
+                      <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Remarks" value="<?php echo  $remarks; ?>" required>
                     </div>
 
                   </div><br>
@@ -334,13 +306,11 @@ $get_all_account_data->execute();
 
 
                   <div class="col-md-10">
-                    <input type="hidden" id="department" readonly class="form-control" name="department" placeholder="Department" value="<?php echo
-                                                                                                                                          $department; ?>">
+                    <input type="hidden" id="department" readonly class="form-control" name="department" placeholder="Department" value="<?php echo $department; ?>">
                   </div>
 
                   <div class="col-md-10">
-                    <input type="hidden" readonly class="form-control" name="username" placeholder="username" value="<?php echo
-                                                                                                                      $user_name; ?>" required>
+                    <input type="hidden" readonly class="form-control" name="username" placeholder="username" value="<?php echo $user_name; ?>" >
                   </div>
 
                 </div>
@@ -376,24 +346,6 @@ $get_all_account_data->execute();
 
   });
 
-  // $('#select_account').on('change',function(){
-  //   // var type = $('#select_type').val();
-  //   var account = $(this).val();
-  //   var office = $('#department').val();
-
-  //             $.ajax({
-  //               type:'POST',
-  //               data:{account:account, office:office},
-  //               url:'generate_dv.php',
-  //                success:function(data){
-  //             $('#dv_no').val(data);
-
-
-  //             } 
-
-  //                 });           
-
-  //                       });
 
   $(function() {
 

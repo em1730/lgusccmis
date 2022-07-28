@@ -1,0 +1,105 @@
+array(
+        'objid' => 'MYBONUS',
+        'type' => 'Mid-Year Bonus',
+        'description' => 'Mid-Year Bonus',
+        'status' => 'Active'
+    ),
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+array(
+        'objid' => 'BS',
+        'type' => 'Billing Statement',
+        'description' => 'Billing',
+        'status' => 'Active'
+    ),
+
+
+
+
+    array(
+        'objid' => 'DEO',
+        'type' => 'Draft of Executive Order',
+        'description' => 'Draft of Executive Order',
+        'status' => 'Active'
+    ),
+    array(
+        'objid' => 'REO',
+        'type' => 'Review of Executive Order',
+        'description' => 'Review of Executive Order'
+    ),
+
+
+    array(
+        'objid' => 'AROFMOOE',
+        'type' => 'Allotment Release Order for MOOE',
+        'description' => 'ARO-MOOE CY 2019',
+        'status' => 'Active'
+    ),
+
+
+
+    array(
+        'objid' => 'AROFPS',
+        'type' => 'ALLOTMENT RELEASE ORDER FOR PERSONAL SERVICES',
+        'description' => 'ALLOTMENT RELEASE ORDER FOR PERSONAL SERVICES',
+        'status' => 'Active'
+    ),
+
+    array(
+        'objid' => 'AmTO',
+        'type' => 'Amendment to Order',
+        'description' => 'Amendment to Order',
+        'status' => 'Active'
+    ),
+    
+    array(
+        'objid' => 'PO',
+        'type' => 'Purchase Order',
+        'description' => 'Purchase Order',
+        'status' => 'Active'
+    ),
+    array(
+        'objid' => 'JO',
+        'type' => 'Job Order',
+        'description' => 'Job Order',
+        'status' => 'Active'
+    ),
+    array(
+        'objid' => 'EO',
+        'type' => 'Executive Order',
+        'description' => 'Executive Order',
+        'status' => 'Active'
+    ),
+    array(
+        'objid' => 'CONORDER',
+        'type' => 'CONSIGNMENT ORDER',
+        'description' => 'CONSIGNMENT ORDER',
+        'status' => 'Active'
+    ),
+
+
+
+
+
+
+
+
+
+
+

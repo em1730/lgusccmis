@@ -1,0 +1,1029 @@
+
+
+
+
+
+    //
+    array(
+        'objid' => 'YREND/CASHGFT',
+        'type' => 'YREND/CASHGFT',
+        'description' => 'YEAR END BONUS & CASH GIFT',
+        'status' => 'Active'
+    ),
+array(
+        'objid' => 'PEIB',
+        'type' => 'PEIB',
+        'description' => 'PRODUCTIVITY ENHANCEMENT INCENTIVE BONUS ',
+        'status' => 'Active'
+    ),
+//
+
+    array(
+        'objid' => 'BUSNSSCLOSURE',
+        'type' => 'Business Closure',
+        'description' => 'Business Closure',
+        'status' => 'Active'
+    ),
+    // 
+    array(
+        'objid' => 'BUSNSPRMT',
+        'type' => 'Business Permit',
+        'description' => 'Business Permit',
+        'status' => 'Active'
+    ),
+    // 
+    array(
+        'objid' => 'BUSNSPLAN',
+        'type' => 'Business Plan',
+        'description' => 'Business Plan',
+        'status' => 'Active'
+    ),
+
+    array(
+        'objid' => 'List of Business Establishments',
+        'type' => 'List of Business Establishments',
+        'description' => 'List of Business Establishments',
+        'status' => 'Active'
+    ),
+
+
+
+
+
+
+    array(
+        'objid' => 'CHNGEOFBUSNSNAME',
+        'type' => 'Change of Business Name',
+        'description' => 'CHANGE OF BUSINESS NAME',
+        'status' => 'Active'
+    ),
+
+
+    array(
+        'objid' => 'CHCKLIST',
+        'type' => 'Checklist',
+        'description' => 'Checklist',
+        'status' => 'Active'
+    ),
+
+
+ array(
+        'objid' => 'CL',
+        'type' => 'COLLECTION LIST',
+        'description' => 'COLLECTION LIST OF EMPLOYEES',
+        'status' => 'Active'
+    ),
+ array(
+        'objid' => 'IOSLOE',
+        'type' => 'Inventory of Office Supplies & List of Office Equipment',
+        'description' => 'Inventory of Office Supplies & List of Office Equipment',
+        'status' => 'Active'
+    ),
+array(
+        'objid' => 'List of Approved Voters',
+        'type' => 'List of Approved Voters',
+        'description' => 'List of Approved Voters',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'LSTOFBNFCRIES',
+        'type' => 'List of Bnefeciaries',
+        'description' => 'List of Benefeciaries',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'LISTOFBOND',
+        'type' => 'List of Bond',
+        'description' => 'List of Bond',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'LISTOFBND',
+        'type' => 'List of Bond',
+        'description' => 'List of Bond Barangay',
+        'status' => 'Active'
+    ),
+    //
+   
+    //
+    array(
+        'objid' => 'LDRP',
+        'type' => 'LIST OF DELINQUENT REAL PROPERTIES',
+        'description' => 'LIST OF DELINQUENT REAL PROPERTIES',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'List of Employees',
+        'type' => 'List of Employees',
+        'description' => 'List of Employees',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'LISTOFEVCTNCNTR',
+        'type' => 'List Of Evacuation Center',
+        'description' => 'List of Evacuation  Center',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'PMSD',
+        'type' => 'LIST OF GOODS',
+        'description' => 'PRICES OF GOODS/PRODUCT',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'LIST/NAME',
+        'type' => 'List of Left out -SAP',
+        'description' => 'SAP  Left Outs',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'List of Offices',
+        'type' => 'List of Offices',
+        'description' => 'List of Offices',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'List of Project Proposed',
+        'type' => 'List of Project Proposed',
+        'description' => 'List of Project Proposed',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'LSTOFRCPNTSOFDSPRSAL',
+        'type' => 'List of recepient of dispersal',
+        'description' => 'List ofrecepient of dispersa;',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'List of Teachers',
+        'type' => 'List of Teachers',
+        'description' => 'List of Teachers',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'LIST/ PROFILE',
+        'type' => 'LIST/PROFILE OF BRGY NUTRITION PROFILE',
+        'description' => 'BNS-Alquisalas, Jonathan et al ',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'LIST/ PROF',
+        'type' => 'LIST/PROFILE OF BRGY NUTRITION SCHOLAR',
+        'description' => 'LIST/PROFILE',
+        'status' => 'Active'
+    ),
+
+//
+    array(
+        'objid' => 'MSTERLST',
+        'type' => 'MASTERLIST',
+        'description' => 'MASTER LIST-SOCIAL PENSION',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'Masterlist',
+        'type' => 'Masterlist',
+        'description' => 'Masterlist',
+        'status' => 'Active'
+    ),
+//
+    array(
+        'objid' => 'SOCIAL AMLRATION PRGRM(SAP)MASTRLIST',
+        'type' => 'SAP',
+        'description' => 'SOCIAL AMELIORATION PROGRAM(SAP)MASTERLIST',
+        'status' => 'Active'
+    ),
+    array(
+        'objid' => 'VBM',
+        'type' => 'BAC MEETING',
+        'description' => 'BAC MEETING',
+        'status' => 'Active'
+    ),
+
+    array(
+        'objid' => 'DOA',
+        'type' => 'ONLINE MEETING',
+        'description' => 'ONLINE MEETING',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'MTNG',
+        'type' => 'Meeting',
+        'description' => 'Notice of Meeting',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'METNGANDDELIBERTION',
+        'type' => 'Meeting and Deliberation',
+        'description' => 'Meeting and Deliberation',
+        'status' => 'Active'
+    ),
+
+    array(
+        'objid' => 'LSBMTNG',
+        'type' => 'Local School Borad Meeting',
+        'description' => 'Local School Board Meeting',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'MNUTESOFMTNG',
+        'type' => 'Minutes of Meeting',
+        'description' => 'Minutes of Meeting',
+        'status' => 'Active'
+    ),
+
+
+    array(
+        'objid' => 'MTHLYMTNG',
+        'type' => 'Monthly  Meeting',
+        'description' => 'Monthly Meeting',
+        'status' => 'Active'
+    ),
+
+
+
+    array(
+        'objid' => 'JCM',
+        'type' => 'JOINT COMMITTEE MEETING',
+        'description' => 'JOINT COMMITTEE MEETING',
+        'status' => 'Active'
+    ),
+
+
+
+    //
+    array(
+        'objid' => 'OT',
+        'type' => 'Request',
+        'description' => 'Request for Overtime Work',
+        'status' => 'Active'
+    ),
+ //
+    array(
+        'objid' => 'Request Overtime',
+        'type' => 'Request Overtime',
+        'description' => 'Overtime Service: November 04,2019 OHRM 1.Jonard A.Mondero 2.Mark Glenver P.Villasorda',
+        'status' => 'Active'
+    ),
+  //
+    array(
+        'objid' => 'Request Permission to Conduct Overtime Work',
+        'type' => 'Request Permission to Conduct Overtime Work',
+        'description' => 'Request Permission to Conduct Overtime Work',
+        'status' => 'Active'
+    ),
+  // 
+    array(
+        'objid' => 'ATO',
+        'type' => 'Authority to Render Overtime',
+        'description' => 'Authority to Render Overtime',
+        'status' => 'Active'
+    ),
+   array(
+        'objid' => 'Confirmation of Ovetime',
+        'type' => 'Confirmation of Ovetime',
+        'description' => 'Confirmation of Ovetime',
+        'status' => 'Active'
+    ),
+
+
+
+
+
+
+    //
+    array(
+        'objid' => 'STRP',
+        'type' => 'Streamer Permit',
+        'description' => 'Permit of Streamer',
+        'status' => 'Active'
+    ),
+ array(
+        'objid' => 'BLDNGPRMT',
+        'type' => 'Building Permit',
+        'description' => 'Building Permit',
+        'status' => 'Active'
+    ),
+array(
+        'objid' => 'Permit',
+        'type' => 'Dance Permit Brgy. I',
+        'description' => 'Dance Permit',
+        'status' => 'Active'
+    ),
+array(
+        'objid' => 'ExcavPrmt',
+        'type' => 'Excavation Permit',
+        'description' => 'Excavation Permit',
+        'status' => 'Active'
+    ),
+array(
+        'objid' => 'FSTAPRMT',
+        'type' => 'Fiesta Permit',
+        'description' => 'Fiesta Permit',
+        'status' => 'Active'
+    ),
+ array(
+        'objid' => 'MYRSPRMT',
+        'type' => "Mayor'S Permit",
+        'description' => "Mayor's Permit",
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'MYRSPRMTTARPLN',
+        'type' => 'Mayors Permit',
+        'description' => 'Mayors Permit (Tarpaulin):',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'MYRPRMT',
+        'type' => 'Mayors Permit',
+        'description' => 'Mayors Permit',
+        'status' => 'Active'
+    ),
+
+
+array(
+        'objid' => 'PRMTFORACMDTNPANAAD',
+        'type' => 'Permit Accomodation Panaad',
+        'description' => 'Permit Accomodation Panaad',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'PRMTPRD',
+        'type' => 'Permit Parade',
+        'description' => 'Permit Parade',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'PRMTPRDCRVN',
+        'type' => 'Permit Parade/Caravan',
+        'description' => 'Permit Parade/Caravan',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'PRMTPRCSSN',
+        'type' => 'Permit Procession',
+        'description' => 'Permit Procession',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RPRT',
+        'type' => 'REPORT',
+        'description' => 'REPORT',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'REPRT',
+        'type' => 'Report',
+        'description' => 'Submitting the Reports',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'REP',
+        'type' => 'REPORT',
+        'description' => 'REPORT',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'Daily Summary Apprehensions (City Wide Enforcers)',
+        'type' => 'Report Apprehensions',
+        'description' => 'Apprehension for  City Wide Report',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RPTOFDSBRSMNT',
+        'type' => 'Report of Disbursement',
+        'description' => 'Report of Disbursement(ROD)',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RPTOFFUNDUTLZTN',
+        'type' => 'Report of fund Utilization',
+        'description' => 'Report of fund Utilization',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RAI',
+        'type' => 'REPORT ON APPOINTMENTS ISSUED',
+        'description' => 'REPORT ON APPOINTMENTS ISSUED',
+        'status' => 'Active'
+    ),
+ //
+    array(
+        'objid' => 'QUARTERLY REPORT',
+        'type' => 'QUARTERLY REPORT OF STATEMENT ',
+        'description' => 'SPECIAL EDUCATION FUND UTILIZATION ',
+        'status' => 'Active'
+    ),
+ //
+    array(
+        'objid' => 'SEMESTRAL REPORT',
+        'type' => 'SEMESTRAL REPORT ON PUNCTUALITY AND ATTENDANCE',
+        'description' => 'SEMESTRAL REPORT ON PUNCTUALITY AND ATTENDANCE',
+        'status' => 'Active'
+    ),
+//
+    array(
+        'objid' => 'SL',
+        'type' => 'SITUATIONAL REPORT',
+        'description' => 'SITUATIONAL REPORT',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'SITUATIONAL REPORT',
+        'type' => 'SITUATIONAL REPORT',
+        'description' => 'SITUATIONAL REPORT',
+        'status' => 'Active'
+    ),
+//
+    array(
+        'objid' => 'STATRPT',
+        'type' => 'Status Report',
+        'description' => 'Status Report City Waterworks Dep.',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'Status Report',
+        'type' => 'Status Report',
+        'description' => 'Status Report',
+        'status' => 'Active'
+    ),
+//
+    array(
+        'objid' => 'CAO-QR',
+        'type' => 'QUARTERLY REPORT ',
+        'description' => 'QUARTERLY REPORT ON REAL PROPERTY ASSESSMENT ',
+        'status' => 'Active'
+    ),
+ //
+    array(
+        'objid' => 'PostQualRep',
+        'type' => 'Post-Qualification Report',
+        'description' => 'Post-Qualification Report',
+        'status' => 'Active'
+    ),
+ //
+    array(
+        'objid' => 'MR',
+        'type' => 'MONITORING REPORT',
+        'description' => 'MONITORING REPORT',
+        'status' => 'Active'
+    ),
+ //
+    array(
+        'objid' => 'MNTHLYACMPLSHMNTRPRT',
+        'type' => 'Monthly Accomplishment Report',
+        'description' => 'Monthly Accomplishment Report',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'MAR',
+        'type' => 'MONTHLY ACCOMPLISHMENT REPORT',
+        'description' => 'MONTHLY ACCOMPLISHMENT REPORT',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'MCR',
+        'type' => 'MONTHLY COLLECTION REPORT',
+        'description' => 'MONTHLY COLLECTION REPORT',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'MNTHLYMNTRNGRPRT',
+        'type' => 'Monthly Monitoring Report',
+        'description' => 'Monthly Monitoring Report',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'AGRI-SALES-REP',
+        'type' => 'MONTHLY SALES REPORT',
+        'description' => 'MONTHLY REPORT ON VARIOUS AGRICULTURAL PRODUCTS',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'MSR',
+        'type' => 'MONTHLY STATUS REPORT',
+        'description' => 'MONTHLY STATUS REPORT',
+        'status' => 'Active'
+    ),
+ //
+    array(
+        'objid' => 'Terminal report',
+        'type' => 'Terminal report',
+        'description' => 'Terminal report Pinta Flores Foundation',
+        'status' => 'Active'
+    ),
+ //
+    array(
+        'objid' => "The President's Report to the People",
+        'type' => "The President's Report to the People",
+        'description' => "The President's Report to the People",
+        'status' => 'Active'
+    ),
+ //
+    array(
+        'objid' => 'Vehicle Condition Report',
+        'type' => 'Vehicle Condition Report',
+        'description' => 'Vehicle Condition Report',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'WMR',
+        'type' => 'WASTE MATERIAL REPORT',
+        'description' => 'WASTE MATERIAL REPORT',
+        'status' => 'Active'
+    ),
+ //
+    array(
+        'objid' => 'Weekly Narrative Report',
+        'type' => 'Weekly Narrative Report',
+        'description' => 'Weekly Narrative Report',
+        'status' => 'Active'
+    ),
+//
+    array(
+        'objid' => 'LR',
+        'type' => 'Liquidation Report',
+        'description' => 'Liquidation Report',
+        'status' => 'Active'
+    ),
+// 
+    array(
+        'objid' => 'INCIDENTREPORT',
+        'type' => 'Incident Report',
+        'description' => 'Incident Report',
+        'status' => 'Active'
+    ),
+    // 
+    array(
+        'objid' => 'INCDNTRPRT',
+        'type' => 'Incident Report',
+        'description' => 'Incident Report',
+        'status' => 'Active'
+    ),
+ // 
+    array(
+        'objid' => 'Hazard Monitoring Report',
+        'type' => 'Hazard Monitoring Report',
+        'description' => 'Hazard Monitoring Report',
+        'status' => 'Active'
+    ),
+ // 
+    array(
+        'objid' => 'FR',
+        'type' => 'FINAL REPORT',
+        'description' => 'FINAL REPORT',
+        'status' => 'Active'
+    ),
+ // 
+    array(
+        'objid' => 'Daily Cash Position Report',
+        'type' => 'Daily Cash Position Report',
+        'description' => 'Daily Cash Position Report',
+        'status' => 'Active'
+    ),
+// 
+    array(
+        'objid' => 'Annual Report',
+        'type' => 'Annual Report',
+        'description' => 'Annual Report',
+        'status' => 'Active'
+    ),
+ // 
+    array(
+        'objid' => 'Annual Accomplishment Report',
+        'type' => 'Annual Accomplishment Report',
+        'description' => 'Annual Accomplishment Report',
+        'status' => 'Active'
+    ),
+    // 
+    array(
+        'objid' => 'AAR',
+        'type' => 'ANNUAL AUDIT REPORT',
+        'description' => 'ANNUAL AUDIT REPORT',
+        'status' => 'Active'
+    ),
+ // 
+    array(
+        'objid' => 'Acknowledgement Receipt of Report',
+        'type' => 'Acknowledgement Receipt of Report',
+        'description' => 'Acknowledgement Receipt of Report',
+        'status' => 'Active'
+    ),
+ // 
+    array(
+        'objid' => 'ARR',
+        'type' => 'Accomplishment Report/Record',
+        'description' => 'Accomplishment Report',
+        'status' => 'Active'
+    ),
+ // OKAY NA
+    array(
+        'objid' => 'AIR',
+        'type' => 'Acceptance Inspection Report ',
+        'description' => 'Acceptance Inspection Report ',
+        'status' => 'Active'
+    ),
+// 
+    array(
+        'objid' => 'AGRI',
+        'type' => 'AGRICULTURE PRODUCTS',
+        'description' => 'MONTHLY SALES REPORT ',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'OBR',
+        'type' => 'Obligation Request',
+        'description' => 'Obligation Request',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'OBR&DV',
+        'type' => 'Obligation Request & DV- Photocopy',
+        'description' => 'payments of photocopy',
+        'status' => 'Active'
+    ),
+//
+    array(
+        'objid' => 'OBR + DV',
+        'type' => 'OBR + DV',
+        'description' => 'Obligation Request + Disbursement Voucher',
+        'status' => 'Active'
+    ),
+//
+    array(
+        'objid' => 'PR',
+        'type' => 'Purchase Request',
+        'description' => 'Purchase Request',
+        'status' => 'Active'
+    ),
+//
+    array(
+        'objid' => 'COMPEN',
+        'type' => 'Request',
+        'description' => 'Request for Compensatory Day off',
+        'status' => 'Active'
+    ),
+   
+    //
+    array(
+        'objid' => 'RQSTLTR',
+        'type' => 'Request',
+        'description' => ' Awarding Ceremonies ',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'R',
+        'type' => 'REQUEST ',
+        'description' => 'REQUEST FOR REALIGNMENT OF SAVINGS',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'ADVCEOFALTMNT',
+        'type' => 'request Advice of Allotment',
+        'description' => 'request Advice of Allotment rel;ease',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RQSTAPPRTION',
+        'type' => 'Request Appropriation',
+        'description' => 'Request Additional Approriation',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RQSTAPRPRATION',
+        'type' => 'Request Appropriation',
+        'description' => 'Request Appropriation',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'Request Curfew Pass',
+        'type' => 'Request Curfew Pass',
+        'description' => 'Request Curfew Pass',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'REQAUG',
+        'type' => 'REQUEST FOR AUGMENTATION',
+        'description' => 'REQUEST FOR AUGMENTATION',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RAT',
+        'type' => 'REQUEST FOR AUTHORITY TO TRAVEL',
+        'description' => 'REQUEST FOR AUTHORITY TO TRAVEL',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'REQSTFORBOND',
+        'type' => 'Request for Bond',
+        'description' => 'Request for Bond',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'OT/COMPEN',
+        'type' => 'Request for compensatory day-off',
+        'description' => 'Request for compensatory day- off',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RQSTFORCRATN',
+        'type' => 'Request For Creation',
+        'description' => 'Request for creation Of position',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RSTFORDWNGRDEOFPSTN',
+        'type' => 'Request for Downgrade of Position',
+        'description' => 'Request for Downgrade of Position',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'req',
+        'type' => 'request for flexi time',
+        'description' => 'REQUEST FOR FLEXIBLE TIME',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'REQFORFLEXITM',
+        'type' => 'request for flexi time',
+        'description' => 'REQUEST FOR FLEXIBLE WORKING HOURS',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RQSTFULLRLSE',
+        'type' => 'Request for Full release',
+        'description' => 'Request for Full release',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RFM',
+        'type' => 'Request for Multimedia',
+        'description' => 'Request for Multimedia',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RFQ',
+        'type' => 'Request for Quotation',
+        'description' => 'Request for Quotation',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'REQUEST FOR REAIGNMENT OF SAVINGS',
+        'type' => 'REQUEST FOR REALIGNMENT OF SAVINGS ',
+        'description' => 'REQUEST FOR REALIGNMENT OF SAVINGS PURCHASE OF VARIOUS IT EQUIPMENT CHARGE TO LUMPSUM APPROPRIATION ',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RTVP',
+        'type' => 'REQUEST FOR TRANSFER OF A VACANT POSITION',
+        'description' => 'REQUEST FOR TRANSFER OF A VACANT POSITION',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RV',
+        'type' => 'Request for Vehicle',
+        'description' => 'Request for Vehicle',
+        'status' => 'Active'
+    ),
+    
+    //
+    array(
+        'objid' => 'Request of Acceptance',
+        'type' => 'Request of Acceptance',
+        'description' => 'Request of Acceptance',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'REQALTMNT',
+        'type' => 'Request of Allotment Release',
+        'description' => 'Request of Allotment Release',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'REQUEST OF DOCUMENTS',
+        'type' => 'REQUEST OF DOCUMENTS',
+        'description' => 'REQUEST OF DOCUMENTS',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RQSTOFFNDS',
+        'type' => 'Request of Funds',
+        'description' => 'Request of Funds',
+        'status' => 'Active'
+    ),
+//
+    array(
+        'objid' => 'RQSTFORINSPCTN',
+        'type' => 'INSPECTION',
+        'description' => 'Request for Inspection',
+        'status' => 'Active'
+    ),
+// 
+    array(
+        'objid' => '001',
+        'type' => 'EO Preparation Request Form',
+        'description' => 'Request for EO',
+        'status' => 'Active'
+    ),
+
+// 
+    array(
+        'objid' => 'CR',
+        'type' => 'Consignment Request',
+        'description' => 'CR# 9-18-01-0002 / 12-5-19',
+        'status' => 'Active'
+    ),
+// 
+    array(
+        'objid' => 'TELEFAX FOR TRANSMISSION',
+        'type' => 'CONFERENCE',
+        'description' => 'REQUESTED TO ATTEND A CONFERENCE',
+        'status' => 'Active'
+    ),
+// 
+    array(
+        'objid' => 'LC',
+        'type' => 'Clearance form',
+        'description' => 'Ricardo C. Cabili Request for no pending case',
+        'status' => 'Active'
+    ),
+ // 
+    array(
+        'objid' => 'APR',
+        'type' => 'AGENCY PROCUREMENT REQUEST',
+        'description' => 'AGENCY PROCUREMENT REQUEST',
+        'status' => 'Active'
+    ),
+// OKAY NA
+    array(
+        'objid' => 'ACCRE',
+        'type' => 'Accreditation Request',
+        'description' => 'Accreditation Request',
+        'status' => 'Active'
+    ),
+ array(
+        'objid' => 'REQUEST',
+        'type' => 'ABOLITION/CREATION',
+        'description' => 'ABOLITION/CREATION OF POSITION TITLES',
+        'status' => 'Active'
+    ),
+
+    //
+    array(
+        'objid' => 'Travel Pass',
+        'type' => 'Travel Pass',
+        'description' => 'Travel Pass',
+        'status' => 'Active'
+    ),
+    array(
+        'objid' => 'Itinerary of Travel',
+        'type' => 'Itinerary of Travel',
+        'description' => 'Itinerary of Travel',
+        'status' => 'Active'
+    ),
+
+    array(
+        'objid' => 'SUMRYOFAPRVTRVL',
+        'type' => 'Summary of Approve Travel',
+        'description' => 'Summary of Approved Travel',
+        'status' => 'Active'
+    ),
+    // 
+    array(
+        'objid' => 'AT',
+        'type' => 'AUTHORITY TO TRAVEL',
+        'description' => 'AUTHORITY TO TRAVEL',
+        'status' => 'Active'
+    ),
+    // 
+    array(
+        'objid' => 'OHRM',
+        'type' => 'AUTHORITY TO TRAVEL ABROAD',
+        'description' => 'FOR APPROVAL/SIGNATURE',
+        'status' => 'Active'
+    ),
+
+ array(
+        'objid' => 'TO',
+        'type' => 'Travel Order',
+        'description' => 'Travel Order',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'TVLO',
+        'type' => 'Travel Order',
+        'description' => 'Travel Order',
+        'status' => 'Active'
+    ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
