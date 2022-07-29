@@ -12,12 +12,7 @@
   
 
 
-    array(
-        'objid' => 'MSTRLST',
-        'type' => 'MASTERLIST',
-        'description' => 'MASTER LIST-SOCIAL PENSION',
-        'status' => 'Active'
-    ),
+   
 
     array(
         'objid' => 'CBN',
