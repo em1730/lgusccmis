@@ -294,6 +294,287 @@ array(
 
 
 
+    //
+    array(
+        'objid' => 'OBR',
+        'type' => 'Obligation Request',
+        'description' => 'Obligation Request',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'OBR&DV',
+        'type' => 'Obligation Request & DV- Photocopy',
+        'description' => 'payments of photocopy',
+        'status' => 'Active'
+    ),
+//
+    array(
+        'objid' => 'OBR + DV',
+        'type' => 'OBR + DV',
+        'description' => 'Obligation Request + Disbursement Voucher',
+        'status' => 'Active'
+    ),
+//
+    array(
+        'objid' => 'PR',
+        'type' => 'Purchase Request',
+        'description' => 'Purchase Request',
+        'status' => 'Active'
+    ),
+//
+    array(
+        'objid' => 'COMPEN',
+        'type' => 'Request',
+        'description' => 'Request for Compensatory Day off',
+        'status' => 'Active'
+    ),
+   
+    //
+    array(
+        'objid' => 'RQSTLTR',
+        'type' => 'Request',
+        'description' => ' Awarding Ceremonies ',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'R',
+        'type' => 'REQUEST ',
+        'description' => 'REQUEST FOR REALIGNMENT OF SAVINGS',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'ADVCEOFALTMNT',
+        'type' => 'request Advice of Allotment',
+        'description' => 'request Advice of Allotment rel;ease',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RQSTAPPRTION',
+        'type' => 'Request Appropriation',
+        'description' => 'Request Additional Approriation',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RQSTAPRPRATION',
+        'type' => 'Request Appropriation',
+        'description' => 'Request Appropriation',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'Request Curfew Pass',
+        'type' => 'Request Curfew Pass',
+        'description' => 'Request Curfew Pass',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'REQAUG',
+        'type' => 'REQUEST FOR AUGMENTATION',
+        'description' => 'REQUEST FOR AUGMENTATION',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RAT',
+        'type' => 'REQUEST FOR AUTHORITY TO TRAVEL',
+        'description' => 'REQUEST FOR AUTHORITY TO TRAVEL',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'REQSTFORBOND',
+        'type' => 'Request for Bond',
+        'description' => 'Request for Bond',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'OT/COMPEN',
+        'type' => 'Request for compensatory day-off',
+        'description' => 'Request for compensatory day- off',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RQSTFORCRATN',
+        'type' => 'Request For Creation',
+        'description' => 'Request for creation Of position',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RSTFORDWNGRDEOFPSTN',
+        'type' => 'Request for Downgrade of Position',
+        'description' => 'Request for Downgrade of Position',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'req',
+        'type' => 'request for flexi time',
+        'description' => 'REQUEST FOR FLEXIBLE TIME',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'REQFORFLEXITM',
+        'type' => 'request for flexi time',
+        'description' => 'REQUEST FOR FLEXIBLE WORKING HOURS',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RQSTFULLRLSE',
+        'type' => 'Request for Full release',
+        'description' => 'Request for Full release',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RFM',
+        'type' => 'Request for Multimedia',
+        'description' => 'Request for Multimedia',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RFQ',
+        'type' => 'Request for Quotation',
+        'description' => 'Request for Quotation',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'REQUEST FOR REAIGNMENT OF SAVINGS',
+        'type' => 'REQUEST FOR REALIGNMENT OF SAVINGS ',
+        'description' => 'REQUEST FOR REALIGNMENT OF SAVINGS PURCHASE OF VARIOUS IT EQUIPMENT CHARGE TO LUMPSUM APPROPRIATION ',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RTVP',
+        'type' => 'REQUEST FOR TRANSFER OF A VACANT POSITION',
+        'description' => 'REQUEST FOR TRANSFER OF A VACANT POSITION',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RV',
+        'type' => 'Request for Vehicle',
+        'description' => 'Request for Vehicle',
+        'status' => 'Active'
+    ),
+    
+    //
+    array(
+        'objid' => 'Request of Acceptance',
+        'type' => 'Request of Acceptance',
+        'description' => 'Request of Acceptance',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'REQALTMNT',
+        'type' => 'Request of Allotment Release',
+        'description' => 'Request of Allotment Release',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'REQUEST OF DOCUMENTS',
+        'type' => 'REQUEST OF DOCUMENTS',
+        'description' => 'REQUEST OF DOCUMENTS',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'RQSTOFFNDS',
+        'type' => 'Request of Funds',
+        'description' => 'Request of Funds',
+        'status' => 'Active'
+    ),
+//
+    array(
+        'objid' => 'RQSTFORINSPCTN',
+        'type' => 'INSPECTION',
+        'description' => 'Request for Inspection',
+        'status' => 'Active'
+    ),
+// 
+    array(
+        'objid' => '001',
+        'type' => 'EO Preparation Request Form',
+        'description' => 'Request for EO',
+        'status' => 'Active'
+    ),
+
+// 
+    array(
+        'objid' => 'CR',
+        'type' => 'Consignment Request',
+        'description' => 'CR# 9-18-01-0002 / 12-5-19',
+        'status' => 'Active'
+    ),
+// 
+    array(
+        'objid' => 'TELEFAX FOR TRANSMISSION',
+        'type' => 'CONFERENCE',
+        'description' => 'REQUESTED TO ATTEND A CONFERENCE',
+        'status' => 'Active'
+    ),
+// 
+    array(
+        'objid' => 'LC',
+        'type' => 'Clearance form',
+        'description' => 'Ricardo C. Cabili Request for no pending case',
+        'status' => 'Active'
+    ),
+ // 
+    array(
+        'objid' => 'APR',
+        'type' => 'AGENCY PROCUREMENT REQUEST',
+        'description' => 'AGENCY PROCUREMENT REQUEST',
+        'status' => 'Active'
+    ),
+// OKAY NA
+    array(
+        'objid' => 'ACCRE',
+        'type' => 'Accreditation Request',
+        'description' => 'Accreditation Request',
+        'status' => 'Active'
+    ),
+ array(
+        'objid' => 'REQUEST',
+        'type' => 'ABOLITION/CREATION',
+        'description' => 'ABOLITION/CREATION OF POSITION TITLES',
+        'status' => 'Active'
+    ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -988,6 +1269,50 @@ array(
 
 
 
+    array(
+        'objid' => 'SPRSLTION',
+        'type' => 'sp resolution',
+        'description' => 'SP-RESOLUTION',
+        'status' => 'Active'
+    ),
+    //
+    array(
+        'objid' => 'SPRes',
+        'type' => 'SP Resolution',
+        'description' => 'SP Resolution',
+        'status' => 'Active'
+    ),
+ array(
+        'objid' => 'BACRes',
+        'type' => 'BAC Resolution',
+        'description' => 'BAC Resolution',
+        'status' => 'Active'
+    ),
+array(
+        'objid' => 'CDCRes',
+        'type' => 'CDCRes',
+        'description' => 'CDC Resolution',
+        'status' => 'Active'
+    ),
+ array(
+        'objid' => 'JR',
+        'type' => 'JOINT RESOLUTION',
+        'description' => 'JOINT RESOLUTION',
+        'status' => 'Active'
+    ),
+ //
+    array(
+        'objid' => 'RES',
+        'type' => 'Resolution',
+        'description' => 'Resolution',
+        'status' => 'Active'
+    ),
+    array(
+        'objid' => 'SPRSLTION',
+        'type' => 'sp resolution',
+        'description' => 'SP-RESOLUTION',
+        'status' => 'Active'
+    ),
 
 
 
