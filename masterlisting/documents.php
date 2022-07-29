@@ -125,7 +125,7 @@ $list_doctype = array(
     ),
     array(
         'objid' => 'AFL',
-        'type' => 'Application for Leave',
+        'type' => 'Appl ication for Leave',
         'description' => 'Application for Leave'
     ),
     array(
