@@ -8,18 +8,22 @@
 
 
 
- 
+
+
+
 
     array(
-        'objid' => 'CBN',
-        'type' => 'Change of Business Name',
-        'description' => 'CHANGE OF BUSINESS NAME',
+        'objid' => 'MSTRLST',
+        'type' => 'MASTERLIST',
+        'description' => 'MASTER LIST-SOCIAL PENSION',
         'status' => 'Active'
     ),
 
 
 
-    array(
+
+
+ array(
         'objid' => 'CHCKLIST',
         'type' => 'Checklist',
         'description' => 'Checklist',
