@@ -1,4 +1,4 @@
-array(
+    array(
         'objid' => 'MYBONUS',
         'type' => 'Mid-Year Bonus',
         'description' => 'Mid-Year Bonus',
@@ -9,16 +9,31 @@ array(
 
 
 
+  
+
+
+    array(
+        'objid' => 'MSTRLST',
+        'type' => 'MASTERLIST',
+        'description' => 'MASTER LIST-SOCIAL PENSION',
+        'status' => 'Active'
+    ),
+
+    array(
+        'objid' => 'CBN',
+        'type' => 'Change of Business Name',
+        'description' => 'CHANGE OF BUSINESS NAME',
+        'status' => 'Active'
+    ),
 
 
 
-
-
-
-
-
-
-
+    array(
+        'objid' => 'CHCKLIST',
+        'type' => 'Checklist',
+        'description' => 'Checklist',
+        'status' => 'Active'
+    ),
 
 
 

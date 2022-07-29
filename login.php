@@ -31,7 +31,9 @@ if (isset($_POST['signin'])) {
         $_SESSION['id'] = $result['user_id'];
 
 
+
         header('location: homescreen.php');
+        // header('location: doctrack/index.php');
 
         // if ($result['account_type'] == 1) {
         //   header('location: admin');

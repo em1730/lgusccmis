@@ -50,9 +50,9 @@ array(
 
 
 
-
+CBN
     array(
-        'objid' => 'CHNGEOFBUSNSNAME',
+        'objid' => 'CBN',
         'type' => 'Change of Business Name',
         'description' => 'CHANGE OF BUSINESS NAME',
         'status' => 'Active'
@@ -165,12 +165,7 @@ array(
         'status' => 'Active'
     ),
     //
-    array(
-        'objid' => 'List of Teachers',
-        'type' => 'List of Teachers',
-        'description' => 'List of Teachers',
-        'status' => 'Active'
-    ),
+ 
     //
     array(
         'objid' => 'LIST/ PROFILE',
@@ -187,19 +182,8 @@ array(
     ),
 
 //
-    array(
-        'objid' => 'MSTERLST',
-        'type' => 'MASTERLIST',
-        'description' => 'MASTER LIST-SOCIAL PENSION',
-        'status' => 'Active'
-    ),
-    //
-    array(
-        'objid' => 'Masterlist',
-        'type' => 'Masterlist',
-        'description' => 'Masterlist',
-        'status' => 'Active'
-    ),
+    
+
 //
     array(
         'objid' => 'SOCIAL AMLRATION PRGRM(SAP)MASTRLIST',
@@ -943,7 +927,7 @@ array(
         'description' => 'Itinerary of Travel',
         'status' => 'Active'
     ),
-
+    
     array(
         'objid' => 'SUMRYOFAPRVTRVL',
         'type' => 'Summary of Approve Travel',

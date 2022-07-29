@@ -102,12 +102,7 @@ $list_doctype = array(
     // 
     
     // 
-    array(
-        'objid' => 'BACRes',
-        'type' => 'BAC Resolution',
-        'description' => 'BAC Resolution',
-        'status' => 'Active'
-    ),
+   
     // 
     array(
         'objid' => 'AIAS',
@@ -217,12 +212,7 @@ $list_doctype = array(
         'status' => 'Active'
     ),
     // 
-    array(
-        'objid' => 'CDCRes',
-        'type' => 'CDCRes',
-        'description' => 'CDC Resolution',
-        'status' => 'Active'
-    ),
+    
     // 
     array(
         'objid' => 'CDRRMO Authority to Issue',
@@ -941,12 +931,7 @@ $list_doctype = array(
     //
     
     //
-    array(
-        'objid' => 'JR',
-        'type' => 'JOINT RESOLUTION',
-        'description' => 'JOINT RESOLUTION',
-        'status' => 'Active'
-    ),
+   
     //
     array(
         'objid' => 'LOCAL  DEVELOPMENT INVESTMENT PROGRAM',
@@ -1733,13 +1718,7 @@ $list_doctype = array(
         'status' => 'Active'
     ),
 
-    //
-    array(
-        'objid' => 'RES',
-        'type' => 'Resolution',
-        'description' => 'Resolution',
-        'status' => 'Active'
-    ),
+   
     //
     array(
         'objid' => 'RESUME',
@@ -1915,19 +1894,6 @@ $list_doctype = array(
         'status' => 'Active'
     ),
     //
-    array(
-        'objid' => 'SPRSLTION',
-        'type' => 'sp resolution',
-        'description' => 'SP-RESOLUTION',
-        'status' => 'Active'
-    ),
-    //
-    array(
-        'objid' => 'SPRes',
-        'type' => 'SP Resolution',
-        'description' => 'SP Resolution',
-        'status' => 'Active'
-    ),
 
     //
     array(
